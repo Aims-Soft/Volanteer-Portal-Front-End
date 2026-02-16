@@ -1,1 +1,224 @@
 /* You can add global styles to this file, and also import other style files */
+@use 'ngx-toastr/toastr';
+
+@import "bootstrap/dist/css/bootstrap.min.css";
+
+
+
+////////////////////////////custom variables ///////////////////////////
+
+
+:root{
+
+//  Primary Colors
+
+--green: #16BC88;
+--blue: #0a5186;  
+--orange:#B37A1A;
+--gold-gradient: linear-gradient(135deg, #EEAD2B, #E98D0C);
+ --light-bg: #F3F0E7;
+  --grey-gradient: linear-gradient( 180deg, #FFFFFFCC, #FFFFFF80);
+    --pink-gradient: linear-gradient( 180deg, #F7EFDE80 0%, #FCFBF8 50%, #F7EFDE80 100%);
+    --light-gradient: linear-gradient(135deg, #FCFBF8, #F7EFDE33);
+   --lightgreybg: linear-gradient(to bottom,#FCFBF8 0%,#F3F0E733 50%,#FCFBF8 100%);
+   --greymuted: linear-gradient(to bottom, #F0ECE64D 30%,#FCFBF8 100%);
+}
+
+
+
+
+
+
+// ======================= Color CLasses==========================
+
+.green-color{
+    color: var(--green);
+}
+
+
+
+// ======================= Gradient  CLasses ==========================
+.themecolor{
+  background: var(--gold-gradient);
+}
+
+.herogrey{
+     background: var(--grey-gradient);
+}
+
+.lightpink{
+  background: var(--pink-gradient);
+}
+.lightbg{
+  background: var(--light-gradient);
+}
+
+.greybg{
+  background: var(--lightgreybg);
+}
+.greymuted{
+  background: var(--greymuted);
+}
+
+
+////////////////////// Custom Styles ///////////////////////////
+
+
+
+html, body {
+  font-family: 'Segoe UI';
+}
+
+
+
+//////////////////////Icon and images classes ///////////////////////////
+.logo{
+    background: url('././assets/lcons/WebsiteLogo.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 32px;
+    width: 141px;
+    border-radius: 8px;  
+}
+
+
+.login-icon {
+  display: inline-block;
+  width: 15px;
+  height: 13px;
+  margin-right: 8px;
+
+
+  background-image: url('./assets/lcons/loginicon.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+//   background-size: contain;
+}
+
+
+.mosque-icon{
+  background-image:  url('./assets/lcons/mosques.svg');
+   height: 48px;
+  width: 48px;
+  background-position: center;
+  background-size: cover;
+}
+
+.users-icon{
+      background-image:  url('./assets/lcons/users.svg');
+    height: 48px;
+  width: 48px;
+  background-position: center;
+  background-size: cover;
+}
+
+.rate-icon{
+      background-image:  url('./assets/lcons/rate.svg');
+  height: 48px;
+  width: 48px;
+  background-position: center;
+  background-size: cover;
+}
+.item-icon{
+     background-image:  url('./assets/lcons/items.svg');
+  height: 48px;
+  width: 48px;
+  background-position: center;
+  background-size: cover;
+}
+
+
+.mothericon{
+     background-image:  url('./assets/lcons/mothericon.png');
+  height: 48px;
+  width: 48px;
+  background-position: center;
+  background-size: cover;
+}
+
+.purpose{
+     background-image:  url('./assets/lcons/purpose.png');
+  height: 48px;
+  width: 48px;
+  background-position: center;
+  background-size: cover;
+}
+.daughtericon{
+     background-image:  url('./assets/lcons/daughtericon.png');
+  height: 48px;
+  width: 48px;
+  background-position: center;
+  background-size: cover;
+}
+.create{
+     background-image:  url('./assets/lcons/create.png');
+  height: 48px;
+  width: 48px;
+  background-position: center;
+  background-size: cover;
+}
+
+.track{
+     background-image:  url('./assets/lcons/track.png');
+  height: 48px;
+  width: 48px;
+  background-position: center;
+  background-size: cover;
+}
+.detail{
+     background-image:  url('./assets/lcons/detail.png');
+  height: 48px;
+  width: 48px;
+  background-position: center;
+  background-size: cover;
+}
+.inventory{
+     background-image:  url('./assets/lcons/inventory.png');
+  height: 48px;
+  width: 48px;
+  background-position: center;
+  background-size: cover;
+}
+
+.user1{
+     background-image:  url('./assets/lcons/user1.png');
+  height: 30px;
+  width: 30px;
+  background-position: center;
+  background-size: cover;
+}
+
+.user2{
+  background-image:  url('./assets/lcons/users2.png');
+  height: 20px;
+  width: 20px;
+  background-position: center;
+  background-size: cover;
+}
+
+////////////////////// Top Nav Componnet ///////////////////////////
+
+.navbar .nav-link {
+  font-family: 'Segoe UI';
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+
+  color: var(--black);
+  transition: color 0.2s ease;
+}
+
+/* Hover */
+.navbar .nav-link:hover {
+  color: var(--orange);
+}
+
+/* Active (Selected) */
+.navbar .nav-link.active {
+  color: var(--orange);
+ background: var(--light-bg);
+  font-weight: 600;
+ border-radius: 50px;
+
+}

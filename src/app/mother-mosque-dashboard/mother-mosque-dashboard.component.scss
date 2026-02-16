@@ -1,0 +1,158 @@
+// Dark form controls
+.bg-dark.form-control,
+.bg-dark.form-select {
+  &:focus {
+    background-color: #1a202c !important;
+    border-color: #F59E0B;
+    color: white;
+  }
+}
+
+// Table hover
+.table-hover tbody tr:hover {
+  background-color: #f8f9fa;
+}
+
+// Responsive
+@media (max-width: 768px) {
+  .table-responsive {
+    font-size: 0.875rem;
+  }
+  
+  .card-body {
+    padding: 1rem !important;
+  }
+}
+
+
+// Custom tab styling
+.nav-tabs {
+  .nav-link {
+    background: transparent;
+    padding: 0.75rem 1.5rem;
+    position: relative;
+    
+    
+    &.active {
+      color: #f59e0b !important;
+      background: transparent;
+      
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: #f59e0b;
+      }
+    }
+    
+    &:hover:not(.active) {
+      color: rgba(255, 255, 255, 0.75) !important;
+    }
+  }
+}
+
+// Modal dark theme
+.modal-content {
+  background: #1a1a1a;
+}
+
+.modal-lg {
+  
+  max-height: 100%;
+}
+
+// Responsive
+@media (max-width: 768px) {
+  .nav-tabs {
+    .nav-link {
+      font-size: 0.875rem;
+      padding: 0.5rem 1rem;
+    }
+  }
+  
+  .modal-body {
+    padding: 1rem !important;
+  }
+  
+  h3 {
+    font-size: 1.5rem !important;
+  }
+  
+  .table {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .d-flex.gap-4 {
+    flex-direction: column !important;
+    gap: 1rem !important;
+  }
+}
+
+// Table styling
+.table {
+  thead {
+    th {
+      font-size: 0.75rem;
+      letter-spacing: 0.5px;
+      border-bottom: 2px solid #e5e7eb;
+    }
+  }
+  
+  tbody {
+    tr {
+      border-bottom: 1px solid #f3f4f6;
+      
+      &:last-child {
+        border-bottom: none;
+        
+        td {
+          border-bottom: none;
+        }
+      }
+      
+      &:hover {
+        background-color: #f9fafb;
+      }
+    }
+    
+    td {
+      font-size: 0.95rem;
+    }
+  }
+}
+
+// Search input
+.input-group {
+  .input-group-text {
+    border-right: none;
+  }
+  
+  .form-control {
+    border-left: none;
+    
+    &:focus {
+      border-color: #e5e7eb;
+      box-shadow: none;
+    }
+  }
+}
+
+// Responsive
+@media (max-width: 768px) {
+  .table-responsive {
+    font-size: 0.85rem;
+  }
+  
+  .input-group {
+    max-width: 100% !important;
+  }
+  
+  td, th {
+    padding: 0.75rem 0.5rem !important;
+  }
+}

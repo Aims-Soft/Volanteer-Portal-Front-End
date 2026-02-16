@@ -1,0 +1,150 @@
+.mosque-card {
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  background-color: white;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  border: 2px solid #e0e0e0;
+}
+
+.mosque-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.mosque-image {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+  background: linear-gradient(to bottom, #e8f4f8, #f0f8ff);
+}
+
+.mosque-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.mosque-card:hover .mosque-image img {
+  transform: scale(1.05);
+}
+
+.badge-label {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background-color: rgba(255, 255, 255, 0.95);
+  padding: 5px 14px;
+  border-radius: 16px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #333;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card-content {
+  padding: 18px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.mosque-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin-bottom: 4px;
+}
+
+.mosque-location {
+  font-size: 13px;
+  color: #666;
+  margin-bottom: 0;
+}
+
+.info-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.icon-wrapper {
+  // width: 36px;
+  // height: 36px;
+  // background-color: #fff3e0;
+  // border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+// .icon-wrapper i {
+//   color: #ff9800;
+//   font-size: 18px;
+// }
+
+.info-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.info-label {
+  font-size: 11px;
+  color: #666;
+  margin-bottom: 2px;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.info-value {
+  font-size: 13px;
+  color: #1a1a1a;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1199px) {
+  .mosque-image {
+    height: 180px;
+  }
+}
+
+@media (max-width: 991px) {
+  .mosque-image {
+    height: 200px;
+  }
+  
+  .mosque-title {
+    font-size: 17px;
+  }
+}
+
+@media (max-width: 767px) {
+  .mosque-image {
+    height: 220px;
+  }
+  
+  .card-content {
+    padding: 16px;
+  }
+}
+
+@media (max-width: 575px) {
+  .mosque-card {
+    border-radius: 12px;
+  }
+  
+  .mosque-image {
+    height: 200px;
+  }
+}

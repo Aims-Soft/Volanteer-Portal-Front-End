@@ -1,0 +1,143 @@
+<div class="container-fluid p-4">
+
+      <!-- ===== Table Card ===== -->
+  <div class="card border-0 shadow rounded-4 overflow-hidden">
+
+  <!-- ===== Header Section ===== -->
+  <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-2 gap-3">
+
+    <div class="col-md-5 mt-1">
+      <h4 class="fw-bold  ms-2">Stock & Inventory</h4>
+      <p class="text-muted small mb-0 ms-2">
+        Track masjid assets, supplies, and maintenance equipment status.
+      </p>
+    </div>
+
+    <div class="d-flex align-items-center gap-3  col-md-5 offset-md-1 ">
+
+      <!-- Search -->
+      <div class="input-group rounded-3 border  px-2 bg-light " style="max-width: 360px;">
+        <span class="input-group-text  border-0">
+          <i class="bi bi-search text-muted"></i>
+        </span>
+        <input
+          type="search"
+          class="form-control border-0 shadow-none bg-light"
+          placeholder="Search by item name category..."
+        />
+      </div>
+
+      <!-- Button -->
+      <button class="btn themecolor  text-white rounded-pill px-2 d-flex align-items-center gap-2 ">
+        <i class="bi bi-plus-circle"></i>
+        Add new Item
+      </button>
+
+    </div>
+  </div>
+
+
+
+    <div class="table-responsive">
+      <table class="table align-middle mb-0">
+
+        <!-- Table Head -->
+        <thead class="border-bottom">
+          <tr class="text-uppercase text-muted small ">
+            <th class="ps-4 py-3 fw-semibold">Item Name</th>
+            <th class="py-3 fw-semibold">Category</th>
+            <th class="py-3 fw-semibold">Quantity</th>
+            <th class="py-3 fw-semibold">Unit</th>
+            <th class="py-3 pe-4 fw-semibold text-end">Action</th>
+          </tr>
+        </thead>
+
+        <!-- Table Body -->
+        <tbody>
+
+          <!-- Row -->
+          <tr>
+            <td class="ps-4 py-3">Water Cooler</td>
+            <td class="text-muted">Assets</td>
+            <td>100</td>
+            <td class="text-muted">Unit</td>
+            <td class="pe-4 text-end">
+              <div class="d-inline-flex gap-2">
+                <button class="btn btn-sm btn-light rounded-circle">
+                  <i class="bi bi-eye text-muted"></i>
+                </button>
+                <button class="btn btn-sm btn-light rounded-circle">
+                  <i class="bi bi-pencil text-muted"></i>
+                </button>
+                <button class="btn btn-sm btn-light rounded-circle">
+                  <i class="bi bi-trash text-muted"></i>
+                </button>
+              </div>
+            </td>
+          </tr>
+
+          <!-- Repeat rows (same structure) -->
+          <tr>
+            <td class="ps-4 py-3">Blankets</td>
+            <td class="text-muted">Blankets</td>
+            <td>50</td>
+            <td class="text-muted">Piece</td>
+            <td class="pe-4 text-end">
+              <div class="d-inline-flex gap-2">
+                <button class="btn btn-sm btn-light rounded-circle"><i class="bi bi-eye"></i></button>
+                <button class="btn btn-sm btn-light rounded-circle"><i class="bi bi-pencil"></i></button>
+                <button class="btn btn-sm btn-light rounded-circle"><i class="bi bi-trash"></i></button>
+              </div>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="ps-4 py-3">Meat</td>
+            <td class="text-muted">Food</td>
+            <td>20</td>
+            <td class="text-muted">KG</td>
+            <td class="pe-4 text-end">
+              <div class="d-inline-flex gap-2">
+                <button class="btn btn-sm btn-light rounded-circle"><i class="bi bi-eye"></i></button>
+                <button class="btn btn-sm btn-light rounded-circle"><i class="bi bi-pencil"></i></button>
+                <button class="btn btn-sm btn-light rounded-circle"><i class="bi bi-trash"></i></button>
+              </div>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="ps-4 py-3">Cash Fund</td>
+            <td class="text-muted">Cash</td>
+            <td>Rs 50,000</td>
+            <td class="text-muted">PKR</td>
+            <td class="pe-4 text-end">
+              <div class="d-inline-flex gap-2">
+                <button class="btn btn-sm btn-light rounded-circle"><i class="bi bi-eye"></i></button>
+                <button class="btn btn-sm btn-light rounded-circle"><i class="bi bi-pencil"></i></button>
+                <button class="btn btn-sm btn-light rounded-circle"><i class="bi bi-trash"></i></button>
+              </div>
+            </td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+
+    <!-- ===== Footer ===== -->
+    <div class="d-flex justify-content-between align-items-center px-4 py-3 border-top">
+      <p class="small text-muted mb-0">
+        Showing 1 to 7 of 42 items
+      </p>
+
+      <div class="d-flex gap-2">
+        <button class="btn btn-sm btn-outline-secondary rounded-circle">
+          <i class="bi bi-chevron-left"></i>
+        </button>
+        <button class="btn btn-sm btn-outline-secondary rounded-circle">
+          <i class="bi bi-chevron-right"></i>
+        </button>
+      </div>
+    </div>
+
+  </div>
+</div>

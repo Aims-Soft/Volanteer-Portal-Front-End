@@ -1,0 +1,172 @@
+// Hero Section
+.hero-section {
+  background-attachment: fixed; // Parallax effect on desktop
+  
+  @media (max-width: 768px) {
+    background-attachment: scroll; // Better performance on mobile
+    padding-top: 80px; // Account for navbar
+    padding-bottom: 40px;
+  }
+}
+
+
+
+// Features bar specific styles
+.features-bar {
+  @media (max-width: 768px) {
+    flex-direction: column !important;
+    gap: 0.75rem !important;
+    width: 90%;
+    max-width: 350px;
+    margin: 0 auto;
+    padding: 1rem 1.5rem !important;
+    
+    span {
+      justify-content: center;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    max-width: 90%;
+    padding: 0.85rem 1.25rem !important;
+  }
+}
+
+.feature-text {
+  @media (max-width: 768px) {
+    font-size: 0.85rem;
+  }
+  
+  @media (max-width: 480px) {
+    font-size: 0.8rem;
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .display-3 {
+    font-size: 2.5rem !important;
+  }
+  
+  .lead {
+    font-size: 1rem !important;
+  }
+  
+  .btn-lg {
+    width: 100%;
+    max-width: 300px;
+  }
+}
+
+// Mobile Responsive (Tablets & Phones)
+@media (max-width: 768px) {
+  // Badge
+  .badge {
+    font-size: 0.85rem !important;
+    padding: 0.5rem 1rem !important;
+  }
+  
+  // Main Heading
+  .display-3 {
+    font-size: 2rem !important;
+    line-height: 1.2;
+  }
+  
+  // Subtitle
+  .lead {
+    font-size: 0.95rem !important;
+    line-height: 1.5;
+  }
+  
+  // Features Bar - Stack vertically
+  .features-bar {
+    flex-direction: column !important;
+    gap: 0.75rem !important;
+    width: 90%;
+    max-width: 350px;
+    margin: 0 auto;
+    padding: 1rem !important;
+    
+    span {
+      font-size: 0.85rem;
+    }
+  }
+  
+  // CTA Button
+  .btn-lg {
+    width: 90%;
+    max-width: 300px;
+    font-size: 0.95rem;
+    padding: 0.75rem 2rem !important;
+  }
+}
+
+// Small Mobile (iPhone SE, etc)
+@media (max-width: 480px) {
+  .display-3 {
+    font-size: 1.75rem !important;
+  }
+  
+  .lead {
+    font-size: 0.9rem !important;
+  }
+  
+  .badge {
+    font-size: 0.8rem !important;
+  }
+  
+  .features-bar {
+    font-size: 0.75rem;
+  }
+}
+
+// Tablet Portrait
+@media (min-width: 769px) and (max-width: 991px) {
+  .display-3 {
+    font-size: 2.5rem !important;
+  }
+  
+  .lead {
+    font-size: 1.1rem !important;
+  }
+}
+
+// Large Desktop
+@media (min-width: 1400px) {
+  .display-3 {
+    font-size: 4rem !important;
+  }
+  
+  .lead {
+    font-size: 1.5rem !important;
+  }
+}
+
+// Optional: Smooth hover effect
+.card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+  }
+}
+
+// Mobile responsive
+@media (max-width: 576px) {
+  .card {
+    padding: 1.5rem !important;
+    
+    h3 {
+      font-size: 2rem !important;
+    }
+    
+    .rounded-circle {
+      padding: 0.65rem !important;
+      
+      i {
+        font-size: 1.25rem !important;
+      }
+    }
+  }
+}
