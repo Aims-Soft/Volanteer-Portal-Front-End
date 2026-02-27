@@ -1,0 +1,148 @@
+<div class="bg-light min-vh-100 py-4">
+  <div class="container-fluid">
+    <!-- Header -->
+    <div class="card border-0 shadow-sm mb-4">
+      <div class="card-body">
+        <div class="row align-items-center">
+          <div class="col-md-4">
+            <h2 class="h4 mb-0 fw-bold">Applied Candidates</h2>
+          </div>
+          <div class="col-md-8">
+            <div class="row g-3 justify-content-end">
+              <div class="col-auto">
+                <button class="btn btn-outline-secondary">
+                  <i class="bi bi-box-arrow-up-right me-2"></i>Export List
+                </button>
+              </div>
+              <div class="col-md-4">
+                <select class="form-select">
+                  <option selected>Subject</option>
+                  <option>Data Science</option>
+                  <option>Programming</option>
+                  <option>Design</option>
+                  <option>AI Engineering</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Table -->
+    <div class="card border-0 shadow-sm">
+      <div class="table-responsive">
+        <table class="table table-hover mb-0">
+          <thead class="table-dark">
+            <tr>
+              <th scope="col" class="py-3">
+                <input class="form-check-input" type="checkbox" 
+                       [(ngModel)]="selectAll" (change)="toggleSelectAll()">
+                <span class="ms-2">Applicant Name</span>
+              </th>
+              <th scope="col" class="py-3">Subject</th>
+              <th scope="col" class="py-3">Topic</th>
+              <th scope="col" class="py-3">Contact No.</th>
+              <th scope="col" class="py-3 text-center">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let candidate of candidates" 
+                [class.table-active]="candidate.selected">
+              <td class="align-middle">
+                <input class="form-check-input" type="checkbox" 
+                       [(ngModel)]="candidate.selected">
+                <span class="ms-2">{{ candidate.name }}</span>
+              </td>
+              <td class="align-middle">{{ candidate.subject }}</td>
+              <td class="align-middle">{{ candidate.topic }}</td>
+              <td class="align-middle">{{ candidate.contactNo }}</td>
+              <td class="align-middle text-center">
+                <button class="btn btn-danger btn-sm rounded-circle me-2" 
+                        style="width: 32px; height: 32px;">
+                  <i class="bi bi-trash mt-1"></i>
+                </button>
+                <button class="btn greenColor btn-sm px-3"
+                   
+                        (click)="openArrangeLectureModal(candidate)">
+                  <i class="bi bi-calendar-check me-1"></i>Arrange
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Pagination -->
+    <div class="d-flex justify-content-end  align-items-end gap-2 mt-4">
+      <button class="btn btn-outline-secondary" [disabled]="currentPage === 1">
+        <i class="bi bi-chevron-left me-2"></i>Previous
+      </button>
+      <button class="btn" [class.btn-light]="currentPage === 1" 
+              [class.btn-outline-secondary]="currentPage !== 1">1</button>
+      <button class="btn btn-outline-secondary">2</button>
+      <button class="btn btn-outline-secondary">3</button>
+      <span class="text-muted">...</span>
+      <button class="btn btn-outline-secondary">
+        Next<i class="bi bi-chevron-right ms-2"></i>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Arrange Lecture Modal -->
+<div class="modal fade" id="arrangeLectureModal" tabindex="-1" 
+     [class.show]="showArrangeModal" 
+     [style.display]="showArrangeModal ? 'block' : 'none'">
+  <div class="modal-dialog   modal-lg  modal-dialog-centered">
+    <div class="modal-content    border-0 shadow-lg">
+      <div class="modal-header border-0 pb-0">
+        <h5 class="modal-title fw-bold">Arrange Lecture</h5>
+        <button type="button" class="btn-close " (click)="closeArrangeModal()"></button>
+      </div>
+      <div class="modal-body px-4 py-4">
+        <div class="text-center mb-4">
+          <h6 class="fw-normal">
+            Candidates <span class="fw-bold">({{ selectedCandidatesCount }})</span> 
+            Subject Name will Appear here.
+          </h6>
+        </div>
+
+        <form>
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label class="form-label fw-semibold">Topic</label>
+              <select class="form-select form-select-lg" [(ngModel)]="arrangeData.topic" name="topic">
+                <option value="">Select Topic</option>
+                <option value="Google Data Analytics">Google Data Analytics</option>
+                <option value="Python">Python</option>
+                <option value="User Research">User Research</option>
+                <option value="Machine Learning">Machine Learning</option>
+              </select>
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label fw-semibold">Seats</label>
+              <input type="text" class="form-control form-control-lg" 
+                     [(ngModel)]="arrangeData.seats" name="seats"
+                     placeholder="Seats (Label) 32/40">
+            </div>
+          </div>
+
+          <div class="mt-4">
+            <button type="button" class="btn darkBlue btn-lg w-100 text-white" 
+                    (click)="arrangeLecture()">
+              Arrange
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Backdrop -->
+<div class="modal-backdrop fade" [class.show]="showArrangeModal" 
+     *ngIf="showArrangeModal"
+     (click)="closeArrangeModal()"></div>

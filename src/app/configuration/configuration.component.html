@@ -1,0 +1,185 @@
+<div class="bg-light min-vh-100 py-4">
+  <div class="container-fluid">
+    <!-- Tabs and Search -->
+    <div class="card border-0 shadow-sm mb-4">
+      <div class="card-body">
+        <div class="row align-items-center">
+          <div class="col-md-6">
+            <div class="btn-group" role="group">
+              <button type="button" 
+                      class="btn px-4 py-2 "
+                      [class.darkBlue]="activeTab === 'subjects'"
+                      [class.btn-light]="activeTab !== 'subjects'"
+                      (click)="switchTab('subjects')">
+                Subjects({{ subjects.length }})
+              </button>
+              <button type="button" 
+                      class="btn px-4 py-2 "
+                      [class.darkBlue]="activeTab === 'topics'"
+                      [class.btn-light]="activeTab !== 'topics'"
+                      (click)="switchTab('topics')">
+                Topics({{ topics.length }})
+              </button>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="d-flex align-items-center gap-2">
+              <div class="input-group flex-grow-1">
+                <span class="input-group-text bg-white border-end-0">
+                  <i class="bi bi-search text-muted"></i>
+                </span>
+                <input type="text" 
+                       class="form-control border-start-0 ps-0" 
+                       placeholder="Search here..."
+                       [(ngModel)]="searchQuery">
+              </div>
+           
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Subjects View -->
+    <div *ngIf="activeTab === 'subjects'">
+      <!-- Add Subject Form -->
+      <div class="card border-0 shadow-sm mb-4">
+        <div class="card-body">
+          <div class="row align-items-center g-3">
+            <div class="col-md-9">
+              <input type="text" 
+                     class="form-control form-control-lg" 
+                     placeholder="Subject Name"
+                     [(ngModel)]="newSubjectName">
+            </div>
+            <div class="col-md-3">
+              <button class="btn darkBlue  text-white btn-lg w-100" (click)="addSubject()">
+                Add Subject
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Subjects Table -->
+      <div class="card border-0 shadow-sm">
+        <div class="table-responsive">
+          <table class="table table-hover mb-0">
+            <thead class="darkBlue text-white">
+              <tr>
+                <th scope="col" class="py-3">Subjects</th>
+                <th scope="col" class="py-3 text-end">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let subject of filteredSubjects">
+                <td class="align-middle">{{ subject.name }}</td>
+                <td class="align-middle text-end">
+                  <button class="btn btn-danger btn-sm rounded-circle me-2" 
+                          (click)="deleteSubject(subject)"
+                          style="width: 32px; height: 32px;">
+                    <i class="bi bi-trash"></i>
+                  </button>
+                  <button class="btn btn-info btn-sm rounded-circle text-white" 
+                          (click)="editSubject(subject)"
+                          style="width: 32px; height: 32px;">
+                    <i class="bi bi-pencil"></i>
+                  </button>
+                </td>
+              </tr>
+              <tr *ngIf="filteredSubjects.length === 0">
+                <td colspan="2" class="text-center py-4 text-muted">
+                  No subjects found
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Topics View -->
+    <div *ngIf="activeTab === 'topics'">
+      <!-- Add Topic Form -->
+      <div class="card border-0 shadow-sm mb-4">
+        <div class="card-body">
+          <div class="row align-items-center g-3">
+            <div class="col-md-4">
+              <select class="form-select form-select-lg" 
+                      [(ngModel)]="newTopic.subjectId">
+                <option value="" disabled selected>Select Subject</option>
+                <option *ngFor="let subject of subjects" [value]="subject.id">
+                  {{ subject.name }}
+                </option>
+              </select>
+            </div>
+            <div class="col-md-5">
+              <input type="text" 
+                     class="form-control form-control-lg" 
+                     placeholder="Topic Name"
+                     [(ngModel)]="newTopic.name">
+            </div>
+            <div class="col-md-3">
+              <button class="btn darkBlue text-white btn-lg w-100" (click)="addTopic()">
+                Add Topic
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Topics Table -->
+      <div class="card border-0 shadow-sm">
+        <div class="table-responsive">
+          <table class="table table-hover mb-0">
+            <thead class="darkBlue text-white">
+              <tr>
+                <th scope="col" class="py-3">Subject</th>
+                <th scope="col" class="py-3">Topic</th>
+                <th scope="col" class="py-3 text-end">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let topic of filteredTopics">
+                <td class="align-middle">{{ getSubjectName(topic.subjectId) }}</td>
+                <td class="align-middle">{{ topic.name }}</td>
+                <td class="align-middle text-end">
+                  <button class="btn btn-danger btn-sm rounded-circle me-2" 
+                          (click)="deleteTopic(topic)"
+                          style="width: 32px; height: 32px;">
+                    <i class="bi bi-trash"></i>
+                  </button>
+                  <button class="btn btn-info btn-sm rounded-circle text-white" 
+                          (click)="editTopic(topic)"
+                          style="width: 32px; height: 32px;">
+                    <i class="bi bi-pencil"></i>
+                  </button>
+                </td>
+              </tr>
+              <tr *ngIf="filteredTopics.length === 0">
+                <td colspan="3" class="text-center py-4 text-muted">
+                  No topics found
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pagination -->
+    <div class="d-flex justify-content-end align-items-end gap-2 mt-4">
+      <button class="btn btn-outline-secondary" [disabled]="currentPage === 1">
+        <i class="bi bi-chevron-left me-2"></i>Previous
+      </button>
+      <button class="btn" [class.btn-light]="currentPage === 1" 
+              [class.btn-outline-secondary]="currentPage !== 1">1</button>
+      <button class="btn btn-outline-secondary">2</button>
+      <button class="btn btn-outline-secondary">3</button>
+      <span class="text-muted">...</span>
+      <button class="btn btn-outline-secondary">
+        Next<i class="bi bi-chevron-right ms-2"></i>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,32 +1,35 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
-import { MosqueComponent } from './mosque/mosque.component';
-import { MosqueRegisterationComponent } from './mosque-registeration/mosque-registeration.component';
-import { ContactUsComponent } from './contact-us/contact-us.component';
+import { HowItWorkComponent } from './how-it-work/how-it-work.component';
+import { SubjectsCoveredComponent } from './subjects-covered/subjects-covered.component';
+import { UpcomingTopicsComponent } from './upcoming-topics/upcoming-topics.component';
+import { RegistrationFormComponent } from './registration-form/registration-form.component';
+import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
+import { SpeakerComponent } from './speaker/speaker.component';
+import { AppliedCandidatesComponent } from './applied-candidates/applied-candidates.component';
+import { config } from 'rxjs';
+import { ConfigurationComponent } from './configuration/configuration.component';
+import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
+import { SpeakerListComponent } from './speaker-list/speaker-list.component';
 import { LoginComponent } from './login/login.component';
-import { MotherMosqueDashboardComponent } from './mother-mosque-dashboard/mother-mosque-dashboard.component';
-import { StockDetailsComponent } from './stock-details/stock-details.component';
-import { DistributionDetailsComponent } from './distribution-details/distribution-details.component';
-import { MotherMosqueProfileComponent } from './mother-mosque-profile/mother-mosque-profile.component';
-import { DaughterMosqueDashboardComponent } from './daughter-mosque-dashboard/daughter-mosque-dashboard.component';
-import { RecivedItemsComponent } from './recived-items/recived-items.component';
-import { DaughterMosqueProfileComponent } from './daughter-mosque-profile/daughter-mosque-profile.component';
+
 
 const routes: Routes = [
 
   { path: '', component: HomeComponent },
-  {path: 'mosques', component: MosqueComponent},
-  {path: 'registeration', component: MosqueRegisterationComponent},
-  {path: 'contactus', component:ContactUsComponent}, 
-  {path:'login',component:LoginComponent},
-   {path:'motherMosqueDashboard',component:MotherMosqueDashboardComponent},
-   {path:'stockDetails',component:StockDetailsComponent},
-   {path:'distributionDetails',component:DistributionDetailsComponent},
-   {path: 'motherMosqueProfile', component: MotherMosqueProfileComponent}, 
-   {path:'daughterMosqueDashboard',component:DaughterMosqueDashboardComponent},
-   {path:'recivedItems',component:RecivedItemsComponent},
-   {path: 'daughterMosqueProfile', component: DaughterMosqueProfileComponent}, 
+  {path:'works',component:HowItWorkComponent},
+  {path:'subjetsCovered',component:SubjectsCoveredComponent},
+  {path:'UpcomingTopics',component:UpcomingTopicsComponent},
+  {path:'registration',component:RegistrationFormComponent},
+  {path:'adminDashboard',component:AdminDashboardComponent},
+  {path:'speaker',component:SpeakerComponent},
+  {path:'appliedCandidates',component:AppliedCandidatesComponent},
+  {path:'configuration',component:ConfigurationComponent},
+  {path:'userDashboard',component:UserDashboardComponent},
+  {path:'speakerList',component:SpeakerListComponent},
+  {path:'login',component:LoginComponent}
+ 
     
    
 

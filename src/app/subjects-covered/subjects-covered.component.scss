@@ -1,0 +1,58 @@
+// Subject card styling
+.subject-card {
+  transition: all 0.3s ease;
+  cursor: pointer;
+  
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3) !important;
+  }
+}
+
+// Icon container hover
+.bg-primary.bg-opacity-10 {
+  transition: all 0.3s ease;
+}
+
+.subject-card:hover .bg-primary.bg-opacity-10 {
+  background-color: rgba(59, 130, 246, 0.2) !important;
+  transform: scale(1.1);
+}
+
+// Pagination dots animation
+.rounded-circle {
+  transition: all 0.3s ease;
+  cursor: pointer;
+  
+  &:hover {
+    opacity: 1 !important;
+    transform: scale(1.2);
+  }
+}
+
+// Responsive
+@media (max-width: 991px) {
+  .subject-card {
+    h6 {
+      font-size: 0.85rem !important;
+    }
+  }
+  
+  .bg-primary.bg-opacity-10 {
+    padding: 0.5rem !important;
+    
+    i {
+      font-size: 1.25rem !important;
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .subject-card {
+    padding: 0.75rem !important;
+    
+    h6 {
+      font-size: 0.8rem !important;
+    }
+  }
+}

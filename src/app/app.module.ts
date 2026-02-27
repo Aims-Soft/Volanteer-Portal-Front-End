@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
+import { MatIconModule } from '@angular/material/icon';
 
 
 import { LocationStrategy, HashLocationStrategy, DatePipe } from '@angular/common';
@@ -11,50 +13,66 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ToastrModule } from 'ngx-toastr';
 import { TopNavComponent } from './top-nav/top-nav.component';
-import { MosqueComponent } from './mosque/mosque.component';
+
 import { HomeComponent } from './home/home.component';
 import { HeroSectionComponent } from './hero-section/hero-section.component';
-import { RegisterMosqueComponent } from './register-mosque/register-mosque.component';
-import { PurposeComponent } from './purpose/purpose.component';
-import { SimpleStepsComponent } from './simple-steps/simple-steps.component';
+
+
 import { FooterComponent } from './footer/footer.component';
-import { MosqueRegisterationComponent } from './mosque-registeration/mosque-registeration.component';
+
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { LoginComponent } from './login/login.component';
-import { MotherMosqueDashboardComponent } from './mother-mosque-dashboard/mother-mosque-dashboard.component';
-import { StockDetailsComponent } from './stock-details/stock-details.component';
-import { DistributionDetailsComponent } from './distribution-details/distribution-details.component';
-import { MotherMosqueProfileComponent } from './mother-mosque-profile/mother-mosque-profile.component';
-import { DaughterMosqueDashboardComponent } from './daughter-mosque-dashboard/daughter-mosque-dashboard.component';
-import { RecivedItemsComponent } from './recived-items/recived-items.component';
-import { DaughterMosqueProfileComponent } from './daughter-mosque-profile/daughter-mosque-profile.component';
+
+
+import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
+import { HowItWorkComponent } from './how-it-work/how-it-work.component';
+import { SubjectsCoveredComponent } from './subjects-covered/subjects-covered.component';
+import { UpcomingTopicsComponent } from './upcoming-topics/upcoming-topics.component';
+import { RegistrationFormComponent } from './registration-form/registration-form.component';
+import { SpeakerComponent } from './speaker/speaker.component';
+import { AppliedCandidatesComponent } from './applied-candidates/applied-candidates.component';
+import { ConfigurationComponent } from './configuration/configuration.component';
+import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
+import { SpeakerListComponent } from './speaker-list/speaker-list.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+
 
 @NgModule({
   declarations: [
     AppComponent,
     TopNavComponent,
-    MosqueComponent,
+  
     HomeComponent,
     HeroSectionComponent,
-    RegisterMosqueComponent,
-    PurposeComponent,
-    SimpleStepsComponent,
+
+
     FooterComponent,
-    MosqueRegisterationComponent,
+   
     ContactUsComponent,
     LoginComponent,
-    MotherMosqueDashboardComponent,
-    StockDetailsComponent,
-    DistributionDetailsComponent,
-    MotherMosqueProfileComponent,
-    DaughterMosqueDashboardComponent,
-    RecivedItemsComponent,
-    DaughterMosqueProfileComponent
+  
+    AdminDashboardComponent,
+    HowItWorkComponent,
+    SubjectsCoveredComponent,
+    UpcomingTopicsComponent,
+    RegistrationFormComponent,
+    SpeakerComponent,
+    AppliedCandidatesComponent,
+    ConfigurationComponent,
+    UserDashboardComponent,
+    SpeakerListComponent,
+
+
+
     
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
+    HttpClientModule,
+        MatIconModule,
 
  
       ToastrModule.forRoot({ // Configure toastr here
@@ -64,6 +82,7 @@ import { DaughterMosqueProfileComponent } from './daughter-mosque-profile/daught
       closeButton: true,
       progressBar: true,
     }),
+         BrowserAnimationsModule,
 
    
 

@@ -1,0 +1,257 @@
+<div class="bg-light min-vh-100 py-4">
+  <div class="container-fluid">
+    
+    <!-- Statistics Cards -->
+    <div class="row g-3 mb-4">
+      <div class="col-lg-4 col-md-6">
+        <div class="card border-0 shadow-sm h-100" style="background-color: #e3f2fd;">
+          <div class="card-body d-flex justify-content-between align-items-center">
+            <div>
+              <h6 class="text-muted mb-1">Applied Topics</h6>
+              <h2 class="fw-bold mb-0">{{ statistics.applied }}</h2>
+            </div>
+            <div class="rounded-circle bg-white p-3" style="width: 60px; height: 60px;">
+              <i class="bi bi-briefcase fs-3 text-primary"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6">
+        <div class="card border-0 shadow-sm h-100" style="background-color: #fff8e1;">
+          <div class="card-body d-flex justify-content-between align-items-center">
+            <div>
+              <h6 class="text-muted mb-1">Pending Topics</h6>
+              <h2 class="fw-bold mb-0">{{ statistics.pending }}</h2>
+            </div>
+            <div class="rounded-circle bg-white p-3" style="width: 60px; height: 60px;">
+              <i class="bi bi-bookmark fs-3 text-warning"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6">
+        <div class="card border-0 shadow-sm h-100" style="background-color: #e8f5e9;">
+          <div class="card-body d-flex justify-content-between align-items-center">
+            <div>
+              <h6 class="text-muted mb-1">Attended Topics</h6>
+              <h2 class="fw-bold mb-0">{{ statistics.attended }}</h2>
+            </div>
+            <div class="rounded-circle bg-white p-3" style="width: 60px; height: 60px;">
+              <i class="bi bi-bell fs-3 text-success"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pending Topics Section -->
+    <div class="card border-0 shadow-sm mb-4">
+      <div class="card-body">
+        <div class="row align-items-center mb-3">
+          <div class="col-md-6">
+            <h5 class="fw-bold mb-0">
+              Pending Topics 
+              <span class="text-muted fs-6 ms-2">
+                Scheduled ({{ scheduledCount }}) Pending ({{ pendingCount }})
+              </span>
+            </h5>
+          </div>
+          <div class="col-md-6 text-end">
+            <button class="btn btn-outline-dark" (click)="openRequestLectureModal()">
+              <i class="bi bi-send me-2"></i>Request a Lecture
+            </button>
+          </div>
+        </div>
+
+        <div class="table-responsive">
+          <table class="table table-hover mb-0">
+            <thead class="darkBlue text-white">
+              <tr>
+                <th scope="col" class="py-3">Subject</th>
+                <th scope="col" class="py-3">Topic</th>
+                <th scope="col" class="py-3 text-center">Candidates</th>
+                <th scope="col" class="py-3 text-center">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let topic of pendingTopics">
+                <td class="align-middle">{{ topic.subject }}</td>
+                <td class="align-middle">{{ topic.topicDescription }}</td>
+                <td class="align-middle text-center">
+                  <span class="badge bg-light text-dark">{{ topic.candidates }}</span>
+                </td>
+                <td class="align-middle text-center">
+                  <span class="badge px-3 py-2" 
+                        [class.bg-primary]="topic.status === 'Pending'"
+                        [class.bg-info]="topic.status === 'Scheduled'"
+                        [class.text-white]="true">
+                    {{ topic.status }}
+                  </span>
+                  <button class="btn btn-sm ms-2" 
+                          *ngIf="topic.status === 'Scheduled'"
+                          style="background-color: #6c757d;">
+                    <i class="bi bi-calendar-check text-white"></i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Upcoming Topics Section -->
+    <div class="card border-0 shadow-sm mb-4">
+      <div class="card-body">
+        <div class="row align-items-center mb-3">
+          <div class="col-md-6">
+            <h5 class="fw-bold mb-0">Upcoming Topics</h5>
+          </div>
+          <div class="col-md-6 text-end">
+            <select class="form-select d-inline-block" style="width: auto;">
+              <option selected>Subject</option>
+              <option>Computer Science</option>
+              <option>Mathematics</option>
+              <option>Physics</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="row g-4">
+          <div class="col-lg-4 col-md-6" *ngFor="let lecture of upcomingLectures">
+            <div class="card border-0 shadow-sm h-100">
+              <div class="position-relative">
+                <img src="../../assets/lcons/banner.png" class="card-img-top" alt="Lecture venue" 
+                     style="height: 200px; object-fit: cover;">
+                <span class="badge bg-primary position-absolute top-0 end-0 m-2">
+                  {{ lecture.statusBadge }}
+                </span>
+              </div>
+              <div class="card-body">
+                <h6 class="card-title fw-bold mb-2">{{ lecture.venue }}</h6>
+                <p class="text-muted small mb-1">
+                  <span class="fw-semibold">Subject #</span> {{ lecture.subject }}
+                </p>
+                <p class="text-muted small mb-1">
+                  <span class="fw-semibold">Topic #</span> {{ lecture.topic }}
+                </p>
+                <p class="text-muted small mb-2">
+                  <span class="fw-semibold">Speaker #</span> {{ lecture.speaker }}
+                </p>
+                <div class="d-flex align-items-center text-primary">
+                  <i class="bi bi-calendar3 me-2"></i>
+                  <span class="small">{{ lecture.dateTime }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pagination -->
+    <div class="d-flex justify-content-end align-items-end gap-2">
+      <button class="btn btn-outline-secondary" [disabled]="currentPage === 1">
+        <i class="bi bi-chevron-left me-2"></i>Previous
+      </button>
+      <button class="btn" [class.btn-light]="currentPage === 1" 
+              [class.btn-outline-secondary]="currentPage !== 1">1</button>
+      <button class="btn btn-outline-secondary">2</button>
+      <button class="btn btn-outline-secondary">3</button>
+      <span class="text-muted">...</span>
+      <button class="btn btn-outline-secondary">
+        Next<i class="bi bi-chevron-right ms-2"></i>
+      </button>
+    </div>
+
+  </div>
+</div>
+
+<!-- Request Lecture Modal -->
+<div class="modal fade" id="requestLectureModal" tabindex="-1" 
+     [class.show]="showRequestModal" 
+     [style.display]="showRequestModal ? 'block' : 'none'">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content border-0 shadow-lg">
+      <div class="modal-header border-0">
+        <h5 class="modal-title fw-bold">Request a Lecture</h5>
+        <button type="button" class="btn-close" (click)="closeRequestModal()"></button>
+      </div>
+      <div class="modal-body px-4 py-4">
+        <form>
+          <div class="row g-4">
+            <!-- Subject -->
+            <div class="col-md-6">
+              <label class="form-label fw-semibold">Subject</label>
+              <select class="form-select form-select-lg" [(ngModel)]="requestData.subject" name="subject">
+                <option value="" selected>Select Subject</option>
+                <option value="Computer Science">Computer Science</option>
+                <option value="Mathematics">Mathematics</option>
+                <option value="Physics">Physics</option>
+              </select>
+            </div>
+
+            <!-- Candidates -->
+            <div class="col-md-6">
+              <label class="form-label fw-semibold">Candidates</label>
+              <input type="number" class="form-control form-control-lg" 
+                     [(ngModel)]="requestData.candidates" name="candidates"
+                     placeholder="How many candidates are you ?">
+            </div>
+
+            <!-- Topic -->
+            <div class="col-md-6">
+              <label class="form-label fw-semibold">Topic</label>
+              <select class="form-select form-select-lg" [(ngModel)]="requestData.topic" name="topic">
+                <option value="" selected>Select Topic</option>
+                <option value="Data Structures">Data Structures</option>
+                <option value="Algorithms">Algorithms</option>
+                <option value="Machine Learning">Machine Learning</option>
+              </select>
+            </div>
+
+            <!-- Others -->
+            <div class="col-md-6">
+              <label class="form-label fw-semibold">Others</label>
+              <input type="text" class="form-control form-control-lg" 
+                     [(ngModel)]="requestData.others" name="others"
+                     placeholder="Write topic name here">
+            </div>
+          </div>
+
+          <!-- Note Section -->
+          <div class="mt-4 p-3 bg-light rounded">
+            <h6 class="fw-bold mb-3">Note:</h6>
+            <ul class="mb-0 ps-3">
+              <li class="mb-2">
+                If you are applying in a group enter total number of candidates in above field 
+                <strong>(otherwise enter 1)</strong>.
+              </li>
+              <li class="mb-2">
+                The lecture will be scheduled once the class strength reaches the required number of students.
+              </li>
+              <li class="mb-0">
+                If you don't find your topic in list, select other and write topic name in the mentioned field.
+              </li>
+            </ul>
+          </div>
+
+          <!-- Request Button -->
+          <div class="mt-4">
+            <button type="button" class="btn darkBlue btn-lg w-100" 
+                    (click)="submitRequest()">
+              Request
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Backdrop -->
+<div class="modal-backdrop fade" [class.show]="showRequestModal" 
+     *ngIf="showRequestModal"
+     (click)="closeRequestModal()"></div>

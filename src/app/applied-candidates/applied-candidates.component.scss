@@ -1,0 +1,53 @@
+/* Minimal custom CSS */
+
+.table-dark {
+  background-color: #1e3a5f;
+  color: white;
+}
+
+.table-dark th {
+  font-weight: 600;
+  border: none;
+}
+
+.table-hover tbody tr:hover {
+  background-color: rgba(0, 0, 0, 0.02);
+}
+
+.modal.show {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-backdrop.show {
+  opacity: 0.5;
+}
+
+/* Smooth animations */
+.modal.fade .modal-dialog {
+  transition: transform 0.3s ease-out;
+  transform: translateY(-50px);
+}
+
+.modal.show .modal-dialog {
+  transform: none;
+}
+
+/* Button styles */
+.btn-danger.rounded-circle {
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Table row selection */
+.table-active {
+  background-color: rgba(13, 110, 253, 0.05);
+}
+
+/* Form controls sizing */
+.form-select-lg,
+.form-control-lg {
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+}

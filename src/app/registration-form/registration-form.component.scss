@@ -1,0 +1,16 @@
+.subject-tag {
+    border: 1.5px solid #2563eb;
+    color: #2563eb;
+    background: white;
+    padding: 8px 16px;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+  .form-control:focus, .form-select:focus {
+    box-shadow: none;
+    border-color: #2563eb;
+  }

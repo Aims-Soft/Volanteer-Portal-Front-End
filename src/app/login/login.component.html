@@ -1,63 +1,72 @@
-<div class="min-vh-100 d-flex align-items-center justify-content-center py-5 greymuted" 
-    >
-  <div class="container px-3">
+<div class="container-fluid rounded-lg p-0 overflow-hidden">
+  <div class="row">
+    <!-- Left Section: Login Form -->
+    <div class="col-5 d-flex flex-column px-5 pt-0 mt-2"> <!-- Removed min-vh-100 and justify-content-center, added py-4 and pt-0 -->
     
-    <!-- Login Card -->
-    <div class="card border-0 shadow-lg rounded-4 mx-auto" style="max-width: 450px;">
-      <div class="card-body p-4 p-md-5">
-        
-        <!-- Header -->
-        <div class="text-center mb-4">
-          <h2 class="fw-bold mb-2" style="font-size: clamp(1.5rem, 4vw, 2rem);">
-            Welcome Back
-          </h2>
-          <p class="text-muted mb-0">Login to your Mosque account</p>
-        </div>
-        
-        <!-- Login Form -->
-        <form>
-          <!-- Email Field -->
-          <div class="mb-3">
-            <label class="form-label fw-semibold">Email</label>
-            <input type="email" 
-                   class="form-control form-control-lg" 
-                   placeholder="your@email.com" 
-                   required>
-          </div>
-          
-          <!-- Password Field -->
-          <div class="mb-4">
-            <label class="form-label fw-semibold">Password</label>
-            <div class="position-relative">
-              <input type="password" 
-                     class="form-control form-control-lg" 
-                     placeholder="Enter your password" 
-                     id="password"
-                     required>
-              <button type="button" 
-                      class="btn btn-link position-absolute end-0 top-50 translate-middle-y text-muted"
-                      onclick="togglePassword()">
-                <i class="bi bi-eye" id="toggleIcon"></i>
-              </button>
-            </div>
-          </div>
-          
-          <!-- Submit Button -->
-          <button type="submit" 
-                  class="btn themecolor btn-lg text-white rounded-pill w-100 mb-1 py-2 fw-semibold">
-             Login
-          </button>
-          
-          <!-- Sign Up Link -->
-          <!-- <p class="text-center mb-0">
-            Don't have an account? 
-            <a href="#" class="text-warning text-decoration-none fw-semibold">Sign up</a>
-          </p> -->
-        </form>
-        
+      <a class="logo mb-2 mt-2 offset-5 " href="#" routerLink="''"></a>
+      <h3 class="  mb-1  ms-2 text-center">Log in</h3>
+
+      <div class="btn-group bg-light rounded w-100 mb-2" role="group" style="max-width: 320px;">
+
       </div>
+
+      <label class="form-label mb-1 ">Email</label>
+      <input
+        type="email"
+        [(ngModel)]="email"
+        placeholder="Enter Email"
+        class="form-control form-control-lg mb-2"
+      />
+
+      <div class="mb-4 position-relative">
+  <label class="form-label mb-2">Password</label>
+
+  <input
+    [type]="hidePassword ? 'password' : 'text'"
+    [(ngModel)]="password"
+    placeholder="Enter your Password"
+    class="form-control form-control-lg pe-5"
+  />
+
+  <mat-icon
+    class="position-absolute top-50 end-0 translate-middle-y me-3 mt-3 cursorPointer"
+    (click)="togglePassword()"
+  >
+    {{ hidePassword ?  'visibility_off' : 'visibility' }}
+  </mat-icon>
+</div>
+
+
+      <a
+        routerLink="/forget-password"
+        routerLinkActive="active-link"
+        href="#"
+        class="text-primary mb-4 text-decoration-none"
+      >
+        Forgot password?
+      </a>
+
+      <button
+        class="btn darkBlue  btn-lg w-100 mb-1"
+        (click)="onLogin()"
+      >
+        Login
+      </button>
+
+      <div class="d-flex align-items-center my-1">
+        <hr class="flex-grow-1">
+        <span class="mx-3 text-muted">OR</span>
+        <hr class="flex-grow-1">
+      </div>
+
+   
+      <div #googleButton class="w-auto d-flex justify-content-center round-4"></div>
+
+    
     </div>
+
+    <!-- Right Section: Background with Grid -->
+     <div class=" col-md-7 loginbg"></div>
     
   </div>
 </div>
-<app-footer></app-footer>
