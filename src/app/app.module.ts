@@ -40,6 +40,7 @@ import { PageLoaderComponent } from './page-loader/page-loader.component';
 import { WhyChoseComponent } from './why-chose/why-chose.component';
 import { AboutComponent } from './about/about.component';
 import { RequestLectureComponent } from './request-lecture/request-lecture.component';
+import { RecomendedBooksComponent } from './recomended-books/recomended-books.component';
 
 
 
@@ -72,6 +73,7 @@ import { RequestLectureComponent } from './request-lecture/request-lecture.compo
     WhyChoseComponent,
     AboutComponent,
     RequestLectureComponent,
+    RecomendedBooksComponent,
 
 
 

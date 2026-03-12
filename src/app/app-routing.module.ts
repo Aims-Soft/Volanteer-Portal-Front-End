@@ -16,6 +16,7 @@ import { LoginComponent } from './login/login.component';
 import { WhyChoseComponent } from './why-chose/why-chose.component';
 import { AboutComponent } from './about/about.component';
 import { RequestLectureComponent } from './request-lecture/request-lecture.component';
+import { RecomendedBooksComponent } from './recomended-books/recomended-books.component';
 
 
 const routes: Routes = [
@@ -34,7 +35,8 @@ const routes: Routes = [
   {path:'login',component:LoginComponent},
   {path:'whychose',component: WhyChoseComponent},
   {path:'about',component: AboutComponent},
-   {path:'requestLecture',component: RequestLectureComponent},
+  {path:'requestLecture',component: RequestLectureComponent},
+  {path:'books',component: RecomendedBooksComponent},
 
  
     
