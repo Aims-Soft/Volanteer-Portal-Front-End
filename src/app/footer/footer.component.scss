@@ -1,0 +1,103 @@
+// Footer Links Hover
+.darkBlue a {
+  transition: all 0.3s ease;
+  
+  &:hover {
+    color: #fff !important;
+  }
+}
+
+// Social Icons
+.social-icon {
+  transition: all 0.3s ease;
+  
+  &:hover {
+    transform: scale(1.15);
+    opacity: 0.8;
+  }
+}
+
+// Map Styling
+// .map {
+//   width: 100%;
+//   height: 200px;
+//   background: url('../../assets/images/map.png') center/cover;
+//   border-radius: 0.5rem;
+//   transition: all 0.3s ease;
+  
+//   &:hover {
+//     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+//   }
+// }
+
+// Responsive Adjustments
+@media (max-width: 991px) {
+  .darkBlue {
+    .col-lg-5 {
+      margin-bottom: 2rem;
+    }
+  }
+  
+  .map {
+    height: 180px;
+  }
+}
+
+@media (max-width: 767px) {
+  // Stack contact info vertically on mobile
+  .row.g-3 .col-12.col-sm-6 {
+    width: 100% !important;
+  }
+  
+  // Reduce map height on mobile
+  .map {
+    height: 150px;
+  }
+  
+  // Center align text on mobile
+  .text-white-50 {
+    font-size: 0.9rem;
+  }
+  
+  // Adjust footer bottom spacing
+  .bg-primary {
+    padding: 1rem 0 !important;
+  }
+}
+
+@media (max-width: 576px) {
+  // Logo size
+  img[src*="whiteLogo"] {
+    max-width: 150px !important;
+  }
+  
+  // Font sizes
+  h5.text-white {
+    font-size: 1.1rem;
+  }
+  
+  .text-white.small {
+    font-size: 0.8rem !important;
+  }
+  
+  // Social icons spacing
+  .d-flex.gap-3 {
+    gap: 1rem !important;
+  }
+  
+  .social-icon i {
+    font-size: 1.25rem !important;
+  }
+}
+
+// Extra small devices
+@media (max-width: 400px) {
+  .bg-primary.bg-opacity-25 {
+    width: 35px !important;
+    height: 35px !important;
+  }
+  
+  .text-white.small {
+    font-size: 0.75rem !important;
+  }
+}
