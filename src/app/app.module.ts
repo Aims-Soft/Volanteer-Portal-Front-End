@@ -39,6 +39,7 @@ import { SideNavComponent } from './side-nav/side-nav.component';
 import { PageLoaderComponent } from './page-loader/page-loader.component';
 import { WhyChoseComponent } from './why-chose/why-chose.component';
 import { AboutComponent } from './about/about.component';
+import { RequestLectureComponent } from './request-lecture/request-lecture.component';
 
 
 
@@ -70,6 +71,7 @@ import { AboutComponent } from './about/about.component';
     PageLoaderComponent,
     WhyChoseComponent,
     AboutComponent,
+    RequestLectureComponent,
 
 
 

@@ -15,6 +15,7 @@ import { SpeakerListComponent } from './speaker-list/speaker-list.component';
 import { LoginComponent } from './login/login.component';
 import { WhyChoseComponent } from './why-chose/why-chose.component';
 import { AboutComponent } from './about/about.component';
+import { RequestLectureComponent } from './request-lecture/request-lecture.component';
 
 
 const routes: Routes = [
@@ -33,6 +34,7 @@ const routes: Routes = [
   {path:'login',component:LoginComponent},
   {path:'whychose',component: WhyChoseComponent},
   {path:'about',component: AboutComponent},
+   {path:'requestLecture',component: RequestLectureComponent},
 
  
     
