@@ -1,43 +1,186 @@
-// Form controls
-.form-control,
-.form-select {
-  border: 1px solid #e5e7eb;
-  border-radius: 0.5rem;
-  
-  &:focus {
-    border-color: #3b82f6;
-    box-shadow: 0 0 0 0.2rem rgba(59, 130, 246, 0.25);
-  }
-}
-
-.form-control-lg,
-.form-select-lg {
-  padding: 0.75rem 1rem;
-}
-
-// Topic cards hover
-.card {
+// Stat Card Dashboard
+.stat-card-dash {
+  background: white;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
   transition: all 0.3s ease;
   
   &:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15) !important;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
   }
 }
 
-// Badge styling
-.badge {
-  font-weight: 500;
-  padding: 0.375rem 0.875rem;
+.stat-icon-dash {
+  width: 45px;
+  height: 45px;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  i {
+    font-size: 1.25rem;
+  }
+}
+
+.stat-label-dash {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.stat-value-dash {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #1e293b;
+  margin: 0;
+}
+
+// Chart Card
+.chart-card {
+  background: white;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  height: 100%;
+}
+
+.chart-container {
+  position: relative;
+  height: 300px;
+}
+
+// List Card
+.list-card {
+  background: white;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+// Registration Item
+.registration-item {
+  padding: 1rem;
+  border-radius: 0.75rem;
+  background: #f8f9fa;
+  margin-bottom: 0.75rem;
+  transition: all 0.3s ease;
+  
+  &:last-child {
+    margin-bottom: 0;
+  }
+  
+  &:hover {
+    background: #f1f5f9;
+  }
+}
+
+.avatar-circle {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+// Crisis Item
+.crisis-item {
+  padding: 1rem;
+  border-radius: 0.75rem;
+  background: #f8f9fa;
+  margin-bottom: 0.75rem;
+  transition: all 0.3s ease;
+  
+  &:last-child {
+    margin-bottom: 0;
+  }
+  
+  &:hover {
+    background: #f1f5f9;
+  }
+}
+
+// Toggle Switch
+.toggle-switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 26px;
+  
+  input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+    
+    &:checked + .toggle-slider {
+      background-color: #FF2056;
+    }
+    
+    &:checked + .toggle-slider:before {
+      transform: translateX(24px);
+    }
+  }
+}
+
+.toggle-slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #cbd5e0;
+  transition: 0.4s;
+  border-radius: 26px;
+  
+  &:before {
+    position: absolute;
+    content: "";
+    height: 20px;
+    width: 20px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: 0.4s;
+    border-radius: 50%;
+  }
 }
 
 // Responsive
-@media (max-width: 768px) {
-  .modal-dialog {
-    margin: 0.5rem;
+@media (max-width: 992px) {
+  .stat-value-dash {
+    font-size: 2rem;
   }
   
-  .modal-body {
-    padding: 1.5rem !important;
+  .chart-container {
+    height: 250px;
+  }
+}
+
+@media (max-width: 768px) {
+  .stat-card-dash {
+    padding: 1.25rem;
+  }
+  
+  .stat-value-dash {
+    font-size: 1.75rem;
+  }
+  
+  .stat-label-dash {
+    font-size: 0.7rem;
+  }
+  
+  .avatar-circle {
+    width: 40px;
+    height: 40px;
+    font-size: 1.1rem;
   }
 }

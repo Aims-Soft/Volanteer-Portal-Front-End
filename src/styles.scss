@@ -9,7 +9,7 @@
 
 ////////////////////////////custom variables ///////////////////////////
 :root{
-  --blue:#1E5F9E;
+  --blue:#EC003F;
   --blue-dark:#0F2C59;
   --green:#5DCE53;
 }
@@ -78,7 +78,7 @@
 
 
 html, body {
-  font-family: 'inter';
+  font-family: 'Nunito';
 }
 
 
@@ -90,22 +90,31 @@ html, body {
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    height: 58px;
-    width: 103px;
+    height: 42px;
+    width: 227px;
     // border-radius: 8px;  
 }
 
 
 .loginbg{
-    background: url('././assets/lcons/loginbg1.svg');
+    background: url('/assets/lcons/loginbg1.svg');
     background-repeat: no-repeat;
     // background-size:  900px  754px ;
-    background-size: 90% 90% !important;
-    // background-position: absolute; 
-    // height: 500px ;
-    // width: 700px;
+    // background-size: 90% 90% !important;
+    background-position: center ; 
+     background-size: cover;
+    //  width: 50%;
+    // height: 100%;
+    // background-position: center;
+    // height: 850px ;
+    // width: 720px;
     
 }
+
+//  background-position: center;
+//   background-size: cover;
+//    width: 50%;
+//     height: 100%;
 
 
 

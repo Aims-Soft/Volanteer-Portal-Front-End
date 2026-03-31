@@ -25,22 +25,25 @@ import { LoginComponent } from './login/login.component';
 
 
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
-import { HowItWorkComponent } from './how-it-work/how-it-work.component';
-import { SubjectsCoveredComponent } from './subjects-covered/subjects-covered.component';
-import { UpcomingTopicsComponent } from './upcoming-topics/upcoming-topics.component';
+// import { HowItWorkComponent } from './how-it-work/how-it-work.component';
+// import { SubjectsCoveredComponent } from './subjects-covered/subjects-covered.component';
+// import { UpcomingTopicsComponent } from './upcoming-topics/upcoming-topics.component';
 import { RegistrationFormComponent } from './registration-form/registration-form.component';
-import { SpeakerComponent } from './speaker/speaker.component';
+// import { SpeakerComponent } from './speaker/speaker.component';
 import { AppliedCandidatesComponent } from './applied-candidates/applied-candidates.component';
 import { ConfigurationComponent } from './configuration/configuration.component';
 import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
-import { SpeakerListComponent } from './speaker-list/speaker-list.component';
+// import { SpeakerListComponent } from './speaker-list/speaker-list.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SideNavComponent } from './side-nav/side-nav.component';
 import { PageLoaderComponent } from './page-loader/page-loader.component';
-import { WhyChoseComponent } from './why-chose/why-chose.component';
+// import { WhyChoseComponent } from './why-chose/why-chose.component';
 import { AboutComponent } from './about/about.component';
 import { RequestLectureComponent } from './request-lecture/request-lecture.component';
-import { RecomendedBooksComponent } from './recomended-books/recomended-books.component';
+import { HowItWorksComponent } from './how-it-works/how-it-works.component';
+import { RecentIncidentComponent } from './recent-incident/recent-incident.component';
+import { WhoWeNeedComponent } from './who-we-need/who-we-need.component';
+// import { RecomendedBooksComponent } from './recomended-books/recomended-books.component';
 
 
 
@@ -59,21 +62,24 @@ import { RecomendedBooksComponent } from './recomended-books/recomended-books.co
     LoginComponent,
   
     AdminDashboardComponent,
-    HowItWorkComponent,
-    SubjectsCoveredComponent,
-    UpcomingTopicsComponent,
+    // HowItWorkComponent,
+    // SubjectsCoveredComponent,
+    // UpcomingTopicsComponent,
     RegistrationFormComponent,
-    SpeakerComponent,
+    // SpeakerComponent,
     AppliedCandidatesComponent,
     ConfigurationComponent,
     UserDashboardComponent,
-    SpeakerListComponent,
+    // SpeakerListComponent,
     SideNavComponent,
     PageLoaderComponent,
-    WhyChoseComponent,
+    // WhyChoseComponent,
     AboutComponent,
     RequestLectureComponent,
-    RecomendedBooksComponent,
+    HowItWorksComponent,
+    RecentIncidentComponent,
+    WhoWeNeedComponent,
+    // RecomendedBooksComponent,
 
 
 
@@ -84,7 +90,7 @@ import { RecomendedBooksComponent } from './recomended-books/recomended-books.co
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-        MatIconModule,
+    MatIconModule,
 
  
       ToastrModule.forRoot({ // Configure toastr here

@@ -1,72 +1,99 @@
-<div class="container-fluid rounded-lg p-0 overflow-hidden">
-  <div class="row">
+<div class="container-fluid rounded-lg p-0 overflow-hidden vh-100 bg-light">
+  <div class="row h-100">
     <!-- Left Section: Login Form -->
-    <div class="col-5 d-flex flex-column px-5 pt-0 mt-2"> <!-- Removed min-vh-100 and justify-content-center, added py-4 and pt-0 -->
-    
-      <a class="logo mb-2 mt-2 offset-5 " href="#" routerLink="''"></a>
-      <h3 class="  mb-1  ms-2 text-center">Log in</h3>
-
-      <div class="btn-group bg-light rounded w-100 mb-2" role="group" style="max-width: 320px;">
-
+ <div class="col-12 col-lg-6 d-flex align-items-center justify-content-center ">
+      <div class="login-container p-3 p-md-4 mt-5 bg-white" style="max-width: 500px; width: 100%;">
+        
+        <!-- Logo -->
+        <div class="text-center mb-4">
+          <a href="#" routerLink="/" class="d-inline-block">
+            <img src="../../assets/lcons/Logo.svg" alt="Pakistan Volunteers" >
+          </a>
+        </div>
+        
+        <!-- Heading -->
+        <h2 class="fw-bold text-center mb-2" style="color: #1e293b; font-size: clamp(1.75rem, 3vw, 2rem);">
+          Login
+        </h2>
+        <p class="text-center text-secondary mb-4">
+          Please enter your login details
+        </p>
+        
+        <!-- Username Field -->
+        <div class="mb-3">
+          <label class="form-label fw-semibold" style="color: #475569;">Username</label>
+          <input
+            type="text"
+            [(ngModel)]="email"
+            placeholder="Enter Username"
+            class="form-control form-control-lg"
+            style="border-color: #e2e8f0; border-radius: 0.5rem;"
+          />
+        </div>
+        
+        <!-- Password Field -->
+        <div class="mb-3 position-relative">
+          <label class="form-label fw-semibold" style="color: #475569;">Password</label>
+          <input
+            [type]="hidePassword ? 'password' : 'text'"
+            [(ngModel)]="password"
+            placeholder="Enter Password"
+            class="form-control form-control-lg pe-5"
+            style="border-color: #e2e8f0; border-radius: 0.5rem;"
+          />
+          <button 
+            type="button"
+            class="btn btn-link position-absolute end-0 top-50 translate-middle-y mt-3 me-2"
+            (click)="togglePassword()"
+            style="text-decoration: none;">
+            <i class="bi" 
+               [ngClass]="hidePassword ? 'bi-eye-slash-fill' : 'bi-eye-fill'"
+               style="color: #FF2056; font-size: 1.25rem;"></i>
+          </button>
+        </div>
+        
+        <!-- Forgot Password -->
+        <!-- <div class="text-end mb-4">
+          <a routerLink="/forget-password" 
+             class="text-decoration-none fw-semibold" 
+             style="color: #FF2056;">
+            Forgot password?
+          </a>
+        </div> -->
+        
+        <!-- Login Button -->
+        <button
+          class="btn btn-lg w-100 mb-2 fw-semibold text-white"
+          (click)="onLogin()"
+          style="background-color: #FF2056; border: none; border-radius: 25px; padding: 0.875rem;">
+          Login
+        </button>
+        
+        <!-- Divider -->
+        <!-- <div class="d-flex align-items-center my-2">
+          <hr class="flex-grow-1" style="border-color: #e2e8f0;">
+          <span class="mx-3 text-secondary small">OR</span>
+          <hr class="flex-grow-1" style="border-color: #e2e8f0;">
+        </div> -->
+        
+        <!-- Google Sign In -->
+        <!-- <div #googleButton class="w-100 d-flex justify-content-center"></div> -->
+        
+        <!-- Sign Up Link -->
+        <!-- <div class="text-center mt-4">
+          <p class="text-secondary mb-0">
+            Don't have an account? 
+            <a routerLink="/register" class="text-decoration-none fw-semibold" style="color: #FF2056;">
+              Sign up
+            </a>
+          </p>
+        </div> -->
+        
       </div>
-
-      <label class="form-label mb-1 ">Email</label>
-      <input
-        type="email"
-        [(ngModel)]="email"
-        placeholder="Enter Email"
-        class="form-control form-control-lg mb-2"
-      />
-
-      <div class="mb-4 position-relative">
-  <label class="form-label mb-2">Password</label>
-
-  <input
-    [type]="hidePassword ? 'password' : 'text'"
-    [(ngModel)]="password"
-    placeholder="Enter your Password"
-    class="form-control form-control-lg pe-5"
-  />
-
-  <mat-icon
-    class="position-absolute top-50 end-0 translate-middle-y me-3 mt-3 cursorPointer"
-    (click)="togglePassword()"
-  >
-    {{ hidePassword ?  'visibility_off' : 'visibility' }}
-  </mat-icon>
-</div>
-
-
-      <a
-        routerLink="/forget-password"
-        routerLinkActive="active-link"
-        href="#"
-        class="text-primary mb-4 text-decoration-none"
-      >
-        Forgot password?
-      </a>
-
-      <button
-        class="btn darkBlue  btn-lg w-100 mb-1"
-        (click)="onLogin()"
-      >
-        Login
-      </button>
-
-      <div class="d-flex align-items-center my-1">
-        <hr class="flex-grow-1">
-        <span class="mx-3 text-muted">OR</span>
-        <hr class="flex-grow-1">
-      </div>
-
-   
-      <div #googleButton class="w-auto d-flex justify-content-center round-4"></div>
-
-    
     </div>
 
     <!-- Right Section: Background with Grid -->
-     <div class=" col-md-7 loginbg mt-5"></div>
+     <div class=" col-md-6  image-section loginbg "></div>
     
   </div>
 </div>

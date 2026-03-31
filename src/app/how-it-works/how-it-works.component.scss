@@ -1,0 +1,114 @@
+// How Card
+.how-card {
+  background: white;
+  border-radius: 1rem;
+  padding: 2.5rem 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s ease;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  
+  &:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+    border-color: #FF2056;
+    
+    .how-icon {
+      transform: scale(1.1);
+      background: linear-gradient(135deg, #FF2056 0%, #ff4578 100%);
+      
+      i {
+        color: white;
+      }
+    }
+  }
+}
+
+// How Icon
+.how-icon {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, #ffe0e8 0%, #ffc9d9 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  
+  i {
+    font-size: 2rem;
+    color: #FF2056;
+    transition: all 0.3s ease;
+  }
+}
+
+// Heading
+h4 {
+  font-size: 1.25rem;
+  line-height: 1.4;
+}
+
+// Description
+p {
+  font-size: 0.95rem;
+  color: #64748b;
+}
+
+// Responsive
+@media (max-width: 992px) {
+  .how-card {
+    padding: 2rem 1.25rem;
+  }
+  
+  .how-icon {
+    width: 70px;
+    height: 70px;
+    
+    i {
+      font-size: 1.75rem;
+    }
+  }
+  
+  h4 {
+    font-size: 1.15rem;
+  }
+  
+  p {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .how-card {
+    padding: 1.75rem 1rem;
+  }
+  
+  .how-icon {
+    width: 65px;
+    height: 65px;
+    margin-bottom: 1rem !important;
+    
+    i {
+      font-size: 1.5rem;
+    }
+  }
+  
+  h4 {
+    font-size: 1.1rem;
+    margin-bottom: 0.75rem !important;
+  }
+}
+
+@media (max-width: 576px) {
+  .how-icon {
+    width: 60px;
+    height: 60px;
+  }
+  
+  h4 {
+    font-size: 1rem;
+  }
+  
+  p {
+    font-size: 0.875rem;
+  }
+}

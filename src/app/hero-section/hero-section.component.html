@@ -1,35 +1,141 @@
+<section class="hero-carousel">
+  <div id="disasterCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
+    
+    <!-- Carousel Indicators -->
+    <div class="carousel-indicators">
+      <button *ngFor="let slide of slides; let i = index" 
+              type="button" 
+              [attr.data-bs-target]="'#disasterCarousel'" 
+              [attr.data-bs-slide-to]="i" 
+              [class.active]="i === 0">
+      </button>
+    </div>
+    
+    <!-- Carousel Inner -->
+    <div class="carousel-inner">
+      <div *ngFor="let slide of slides; let i = index" 
+           class="carousel-item" 
+           [class.active]="i === 0">
+        
+        <!-- Background Image with Overlay -->
+        <div class="hero-background" 
+             [style.background-image]="'url(' + slide.image + ')'">
+          <div class="hero-overlay"></div>
+        </div>
+        
+        <!-- Content -->
+        <div class="carousel-caption">
+          <div class="container">
+            <div class="row justify-content-center">
+              <div class="col-12 col-lg-10 text-center">
+                
+                <!-- Alert Badge -->
+                <div class="mb-4">
+                  <span class="alert-badge">
+                    <i class="bi bi-exclamation-circle-fill me-2"></i>
+                    Urgent: Volunteers needed for Flood Relief in Region 4
+                  </span>
+                </div>
+                
+                <!-- Main Heading -->
+                <h1 class="hero-heading mb-3">
+                  Ready to Help When <br>
+                  <span class="text-danger">Disaster Strikes.</span>
+                </h1>
+                
+                <!-- Dynamic Description -->
+                <p class="hero-description mb-5">
+                  {{ slide.description }}
+                </p>
+                
+                <!-- CTA Buttons -->
+                <div class="d-flex gap-3 justify-content-center flex-wrap">
+                  <a href="/register" class="btn btn-danger btn-lg rounded-pill px-5">
+                    Register as a Volunteer
+                    <i class="bi bi-arrow-right ms-2"></i>
+                  </a>
+                  <a href="/incidents" class="btn btn-outline-light btn-lg rounded-pill px-5">
+                    View Active Incidents
+                  </a>
+                </div>
+                
+              </div>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+    
+    <!-- Carousel Controls -->
+    <button class="carousel-control-prev" type="button" data-bs-target="#disasterCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#disasterCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+    
+  </div>
+</section>
+
 <section class="py-5 bg-light">
-  <div class="container py-4">
-    <div class="row align-items-center g-4">
+  <div class="container py-5">
+    <div class="row g-4">
       
-      <!-- Left Column - Text Content -->
-      <div class="col-12 col-lg-7">
-        <h3 class="fw-bold mb-3" style="color: #0F2C59; font-size: 42px; line-height: 62px; font-weight: 600;">
-          Struggling With a CSS Subject?<br>
-          <span >We've Got You Covered.</span>
-        </h3>
-        
-        <p class=" mb-4" style="font-size: 22px; line-height: 36px; color: #999999; font-weight: 500; width: 683px; height: 72px;">
-          Register your topic, and we'll arrange a focused lecture <br>session with expert guidance — designed around student needs.
-        </p>
-        
-        <div class="d-flex flex-column flex-sm-row gap-3">
-          <button class=" darkBlue  text-white rounded-pill px-4 py-2"  style="border: none;">
-            Request a Lecture
-          </button>
-          <button class="btn  border  rounded-pill px-4 py-2" style="color: #1E5F9E; border-color: #1E5F9E 1px solid;">
-            View Upcoming Sessions
-          </button>
+      <!-- Stat Card 1 -->
+      <div class="col-6 col-md-4 col-lg-2">
+        <div class="stat-card text-center">
+          <div class="stat-icon mx-auto mb-3">
+            <i class="bi bi-people-fill"></i>
+          </div>
+          <h2 class="stat-number mb-2">60+</h2>
+          <p class="stat-label mb-0">PUNJAB</p>
         </div>
       </div>
       
-      <!-- Right Column - Image -->
-      <div class="col-12 col-lg-5">
-        <div class="position-relative">
-          <img src="../../assets/lcons/css-support-hub.png" 
-               class="img-fluid  rounded-4" 
-               alt="CSS Support Hub"
-               style="max-height: 409px; width: 614px; object-fit: cover;">
+      <!-- Stat Card 2 -->
+      <div class="col-6 col-md-4 col-lg-2">
+        <div class="stat-card text-center">
+          <div class="stat-icon mx-auto mb-3">
+            <i class="bi bi-people-fill"></i>
+          </div>
+          <h2 class="stat-number mb-2">80+</h2>
+          <p class="stat-label mb-0">SINGH</p>
+        </div>
+      </div>
+      
+      <!-- Stat Card 3 -->
+      <div class="col-6 col-md-4 col-lg-2">
+        <div class="stat-card text-center">
+          <div class="stat-icon mx-auto mb-3">
+            <i class="bi bi-people-fill"></i>
+          </div>
+          <h2 class="stat-number mb-2">80+</h2>
+          <p class="stat-label mb-0">KHYBER </p>
+        </div>
+      </div>
+      
+      <!-- Stat Card 4 -->
+      <div class="col-6 col-md-4 col-lg-2">
+        <div class="stat-card text-center">
+          <div class="stat-icon mx-auto mb-3">
+            <i class="bi bi-people-fill"></i>
+          </div>
+          <h2 class="stat-number mb-2">40+</h2>
+          <p class="stat-label mb-0">BALOCHISTAN</p>
+        </div>
+      </div>
+      
+      <!-- Stat Card 5 -->
+      <div class="col-6 col-md-4 col-lg-2">
+        <div class="stat-card text-center">
+          <div class="stat-icon mx-auto mb-3">
+            <i class="bi bi-people-fill"></i>
+          </div>
+          <h2 class="stat-number mb-2">200+</h2>
+          <p class="stat-label mb-0">ISLAMABAD</p>
         </div>
       </div>
       
