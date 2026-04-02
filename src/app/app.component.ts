@@ -24,7 +24,7 @@ export class AppComponent {
     const url = this.router.url.split('?')[0].split('#')[0];
 
     const hideTopNavRoutes = [
-      '/register', '/login', '/admin-dashboard', '/employees', '/applicants',
+    '/login', '/admin-dashboard', '/employees', '/skill', '/incident', '/volunteerRegistration', '/candidateprofile'
   
     ];
 
@@ -33,7 +33,7 @@ export class AppComponent {
     
     ];
 
-    this.showNav = !(url.startsWith('/applicationdetails') ||
+    this.showNav = !(url.startsWith('/admin-dashboard') ||
                      url.startsWith('/candidateprofile') ||
                      hideTopNavRoutes.includes(url));
 

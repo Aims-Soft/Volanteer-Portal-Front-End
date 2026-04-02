@@ -1,0 +1,430 @@
+<div class="inc-page">
+  <div class="container-fluid px-4 pt-4 pb-5">
+ 
+    <!-- Page Header -->
+    <div class="d-flex justify-content-between align-items-start mb-4">
+      <div>
+        <h2 class="inc-page-title mb-1">Incidents</h2>
+        <p class="inc-page-sub mb-0">Manage and view skills for volunteers</p>
+      </div>
+      <button
+        class="btn inc-btn-primary d-flex align-items-center gap-2"
+        data-bs-toggle="modal"
+        data-bs-target="#createIncidentModal">
+        <i class="bi bi-plus-lg"></i> Add New Incident
+      </button>
+    </div>
+ 
+    <!-- Table -->
+    <div class="inc-table-wrap">
+      <table class="table inc-table mb-0">
+        <thead>
+          <tr class="inc-thead-row">
+            <th class="inc-th">Incidents</th>
+            <th class="inc-th">States</th>
+            <th class="inc-th">Volunteers</th>
+            <th class="inc-th">Priority</th>
+            <th class="inc-th">Status</th>
+            <th class="inc-th">Domains</th>
+            <th class="inc-th text-end">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+ 
+          <!-- Row 1 -->
+          <tr class="inc-tr">
+            <td class="inc-td">
+              <div class="inc-name">Flood Relief</div>
+              <div class="inc-loc">Karachi, Pakistan</div>
+            </td>
+            <td class="inc-td inc-state">Sindh</td>
+            <td class="inc-td inc-vol">10</td>
+            <td class="inc-td"><span class="inc-badge badge-critical"><i class="bi bi-exclamation-triangle-fill me-1"></i>Critical Priority</span></td>
+            <td class="inc-td">
+              <div class="form-check form-switch inc-switch mb-0">
+                <input class="form-check-input" type="checkbox" checked>
+              </div>
+            </td>
+            <td class="inc-td">
+              <div class="d-flex gap-1 flex-wrap">
+                <span class="inc-domain-tag">Medical</span>
+                <span class="inc-domain-tag">General</span>
+                <span class="inc-domain-tag">Engineering</span>
+              </div>
+            </td>
+            <td class="inc-td">
+              <div class="d-flex gap-2 justify-content-end align-items-center">
+                <button class="inc-action-btn"><i class="bi bi-check-circle inc-icon-check"></i></button>
+                <button class="inc-action-btn"><i class="bi bi-trash inc-icon-del"></i></button>
+              </div>
+            </td>
+          </tr>
+ 
+          <!-- Row 2 -->
+          <tr class="inc-tr">
+            <td class="inc-td">
+              <div class="inc-name">Food Distribution</div>
+              <div class="inc-loc">Lahore, Pakistan</div>
+            </td>
+            <td class="inc-td inc-state">Punjab</td>
+            <td class="inc-td inc-vol">50</td>
+            <td class="inc-td"><span class="inc-badge badge-medium"><i class="bi bi-exclamation-triangle-fill me-1"></i>Medium Priority</span></td>
+            <td class="inc-td">
+              <div class="form-check form-switch inc-switch mb-0">
+                <input class="form-check-input" type="checkbox" checked>
+              </div>
+            </td>
+            <td class="inc-td">
+              <div class="d-flex gap-1 flex-wrap">
+                <span class="inc-domain-tag">Medical</span>
+                <span class="inc-domain-tag">General</span>
+                <span class="inc-domain-tag">Engineering</span>
+              </div>
+            </td>
+            <td class="inc-td">
+              <div class="d-flex gap-2 justify-content-end align-items-center">
+                <button class="inc-action-btn"><i class="bi bi-trash inc-icon-del"></i></button>
+              </div>
+            </td>
+          </tr>
+ 
+          <!-- Row 3 -->
+          <tr class="inc-tr">
+            <td class="inc-td">
+              <div class="inc-name">Medical Aid</div>
+              <div class="inc-loc">Quetta, Pakistan</div>
+            </td>
+            <td class="inc-td inc-state">Baluchistan</td>
+            <td class="inc-td inc-vol">20</td>
+            <td class="inc-td"><span class="inc-badge badge-low"><i class="bi bi-exclamation-triangle-fill me-1"></i>Low Priority</span></td>
+            <td class="inc-td">
+              <div class="form-check form-switch inc-switch mb-0">
+                <input class="form-check-input" type="checkbox" checked>
+              </div>
+            </td>
+            <td class="inc-td">
+              <div class="d-flex gap-1 flex-wrap">
+                <span class="inc-domain-tag">Medical</span>
+                <span class="inc-domain-tag">General</span>
+                <span class="inc-domain-tag">Engineering</span>
+              </div>
+            </td>
+            <td class="inc-td">
+              <div class="d-flex gap-2 justify-content-end align-items-center">
+                <button class="inc-action-btn"><i class="bi bi-check-circle inc-icon-check"></i></button>
+                <button class="inc-action-btn"><i class="bi bi-trash inc-icon-del"></i></button>
+              </div>
+            </td>
+          </tr>
+ 
+          <!-- Row 4 -->
+          <tr class="inc-tr">
+            <td class="inc-td">
+              <div class="inc-name">Shelter Support</div>
+              <div class="inc-loc">Islamabad, Pakistan</div>
+            </td>
+            <td class="inc-td inc-state">Islamabad</td>
+            <td class="inc-td inc-vol">75</td>
+            <td class="inc-td"><span class="inc-badge badge-critical"><i class="bi bi-exclamation-triangle-fill me-1"></i>Critical Priority</span></td>
+            <td class="inc-td">
+              <div class="form-check form-switch inc-switch mb-0">
+                <input class="form-check-input" type="checkbox">
+              </div>
+            </td>
+            <td class="inc-td">
+              <div class="d-flex gap-1 flex-wrap">
+                <span class="inc-domain-tag">Medical</span>
+                <span class="inc-domain-tag">General</span>
+                <span class="inc-domain-tag">Engineering</span>
+              </div>
+            </td>
+            <td class="inc-td">
+              <div class="d-flex gap-2 justify-content-end align-items-center">
+                <button class="inc-action-btn"><i class="bi bi-trash inc-icon-del"></i></button>
+              </div>
+            </td>
+          </tr>
+ 
+          <!-- Row 5 -->
+          <tr class="inc-tr">
+            <td class="inc-td">
+              <div class="inc-name">Education Initiatives</div>
+              <div class="inc-loc">Lahore, Pakistan</div>
+            </td>
+            <td class="inc-td inc-state">Punjab</td>
+            <td class="inc-td inc-vol">15</td>
+            <td class="inc-td"><span class="inc-badge badge-medium"><i class="bi bi-exclamation-triangle-fill me-1"></i>Medium Priority</span></td>
+            <td class="inc-td">
+              <div class="form-check form-switch inc-switch mb-0">
+                <input class="form-check-input" type="checkbox">
+              </div>
+            </td>
+            <td class="inc-td">
+              <div class="d-flex gap-1 flex-wrap">
+                <span class="inc-domain-tag">Medical</span>
+                <span class="inc-domain-tag">General</span>
+                <span class="inc-domain-tag">Engineering</span>
+              </div>
+            </td>
+            <td class="inc-td">
+              <div class="d-flex gap-2 justify-content-end align-items-center">
+                <button class="inc-action-btn"><i class="bi bi-check-circle inc-icon-check"></i></button>
+                <button class="inc-action-btn"><i class="bi bi-trash inc-icon-del"></i></button>
+              </div>
+            </td>
+          </tr>
+ 
+          <!-- Row 6 -->
+          <tr class="inc-tr">
+            <td class="inc-td">
+              <div class="inc-name">Water Sanitation</div>
+              <div class="inc-loc">Multan, Pakistan</div>
+            </td>
+            <td class="inc-td inc-state">Punjab</td>
+            <td class="inc-td inc-vol">100</td>
+            <td class="inc-td"><span class="inc-badge badge-low"><i class="bi bi-exclamation-triangle-fill me-1"></i>Low Priority</span></td>
+            <td class="inc-td">
+              <div class="form-check form-switch inc-switch mb-0">
+                <input class="form-check-input" type="checkbox">
+              </div>
+            </td>
+            <td class="inc-td">
+              <div class="d-flex gap-1 flex-wrap">
+                <span class="inc-domain-tag">Medical</span>
+                <span class="inc-domain-tag">General</span>
+                <span class="inc-domain-tag">Engineering</span>
+              </div>
+            </td>
+            <td class="inc-td">
+              <div class="d-flex gap-2 justify-content-end align-items-center">
+                <button class="inc-action-btn"><i class="bi bi-trash inc-icon-del"></i></button>
+              </div>
+            </td>
+          </tr>
+ 
+          <!-- Row 7 -->
+          <tr class="inc-tr">
+            <td class="inc-td">
+              <div class="inc-name">Community Health Services</div>
+              <div class="inc-loc">Islamabad, Pakistan</div>
+            </td>
+            <td class="inc-td inc-state">Islamabad</td>
+            <td class="inc-td inc-vol">25</td>
+            <td class="inc-td"><span class="inc-badge badge-critical"><i class="bi bi-exclamation-triangle-fill me-1"></i>Critical Priority</span></td>
+            <td class="inc-td">
+              <div class="form-check form-switch inc-switch mb-0">
+                <input class="form-check-input" type="checkbox">
+              </div>
+            </td>
+            <td class="inc-td">
+              <div class="d-flex gap-1 flex-wrap">
+                <span class="inc-domain-tag">Medical</span>
+                <span class="inc-domain-tag">General</span>
+                <span class="inc-domain-tag">Engineering</span>
+              </div>
+            </td>
+            <td class="inc-td">
+              <div class="d-flex gap-2 justify-content-end align-items-center">
+                <button class="inc-action-btn"><i class="bi bi-check-circle inc-icon-check"></i></button>
+                <button class="inc-action-btn"><i class="bi bi-trash inc-icon-del"></i></button>
+              </div>
+            </td>
+          </tr>
+ 
+          <!-- Row 8 -->
+          <tr class="inc-tr">
+            <td class="inc-td">
+              <div class="inc-name">Psychosocial Support</div>
+              <div class="inc-loc">Islamabad, Pakistan</div>
+            </td>
+            <td class="inc-td inc-state">Islamabad</td>
+            <td class="inc-td inc-vol">25</td>
+            <td class="inc-td"><span class="inc-badge badge-medium"><i class="bi bi-exclamation-triangle-fill me-1"></i>Medium Priority</span></td>
+            <td class="inc-td">
+              <div class="form-check form-switch inc-switch mb-0">
+                <input class="form-check-input" type="checkbox">
+              </div>
+            </td>
+            <td class="inc-td">
+              <div class="d-flex gap-1 flex-wrap">
+                <span class="inc-domain-tag">Medical</span>
+                <span class="inc-domain-tag">General</span>
+                <span class="inc-domain-tag">Engineering</span>
+              </div>
+            </td>
+            <td class="inc-td">
+              <div class="d-flex gap-2 justify-content-end align-items-center">
+                <button class="inc-action-btn"><i class="bi bi-trash inc-icon-del"></i></button>
+              </div>
+            </td>
+          </tr>
+ 
+          <!-- Row 9 -->
+          <tr class="inc-tr">
+            <td class="inc-td">
+              <div class="inc-name">Youth Empowerment Programs</div>
+              <div class="inc-loc">Islamabad, Pakistan</div>
+            </td>
+            <td class="inc-td inc-state">Islamabad</td>
+            <td class="inc-td inc-vol">25</td>
+            <td class="inc-td"><span class="inc-badge badge-low"><i class="bi bi-exclamation-triangle-fill me-1"></i>Low Priority</span></td>
+            <td class="inc-td">
+              <div class="form-check form-switch inc-switch mb-0">
+                <input class="form-check-input" type="checkbox">
+              </div>
+            </td>
+            <td class="inc-td">
+              <div class="d-flex gap-1 flex-wrap">
+                <span class="inc-domain-tag">Medical</span>
+                <span class="inc-domain-tag">General</span>
+                <span class="inc-domain-tag">Engineering</span>
+              </div>
+            </td>
+            <td class="inc-td">
+              <div class="d-flex gap-2 justify-content-end align-items-center">
+                <button class="inc-action-btn"><i class="bi bi-check-circle inc-icon-check"></i></button>
+                <button class="inc-action-btn"><i class="bi bi-trash inc-icon-del"></i></button>
+              </div>
+            </td>
+          </tr>
+ 
+        </tbody>
+      </table>
+    </div>
+ 
+  </div>
+</div>
+
+<!-- modal window -->
+<div class="modal fade" id="createIncidentModal" tabindex="-1" aria-labelledby="createIncidentLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable inc-modal-dialog">
+    <div class="modal-content inc-modal">
+ 
+      <!-- Header -->
+      <div class="modal-header inc-modal-header">
+        <h5 class="inc-modal-title" id="createIncidentLabel">Create New Incident</h5>
+        <button type="button" class="btn inc-modal-close" data-bs-dismiss="modal">
+          <i class="bi bi-x-lg"></i>
+        </button>
+      </div>
+ 
+      <!-- Body -->
+      <div class="modal-body inc-modal-body">
+ 
+        <!-- Incident Title -->
+        <div class="mb-3">
+          <label class="inc-label">Incident Title</label>
+          <input type="text" class="inc-input" placeholder="e.g. Flood Relief">
+        </div>
+ 
+        <!-- Incident Image -->
+        <div class="mb-3">
+          <label class="inc-label">Incident Image</label>
+          <div class="inc-upload-zone">
+            <i class="bi bi-file-earmark-arrow-up inc-upload-icon"></i>
+            <p class="inc-upload-text mb-0">Supported formats : Png, Jpg</p>
+          </div>
+        </div>
+ 
+        <!-- Province + City -->
+        <div class="row g-3 mb-3">
+          <div class="col-6">
+            <label class="inc-label">Province</label>
+            <div class="inc-select-wrap">
+              <select class="inc-select">
+                <option value="" disabled selected hidden>Select Province</option>
+                <option>Punjab</option>
+                <option>Sindh</option>
+                <option>Baluchistan</option>
+                <option>KPK</option>
+              </select>
+              <i class="bi bi-chevron-down inc-sel-icon"></i>
+            </div>
+          </div>
+          <div class="col-6">
+            <label class="inc-label">City</label>
+            <div class="inc-select-wrap">
+              <select class="inc-select">
+                <option value="" disabled selected hidden>Select City</option>
+                <option>Karachi</option>
+                <option>Lahore</option>
+                <option>Islamabad</option>
+                <option>Quetta</option>
+                <option>Multan</option>
+              </select>
+              <i class="bi bi-chevron-down inc-sel-icon"></i>
+            </div>
+          </div>
+        </div>
+ 
+        <!-- Location -->
+        <div class="mb-3">
+          <label class="inc-label">Location</label>
+          <input type="text" class="inc-input" placeholder="e.g. Region 4, Coastal District">
+        </div>
+ 
+        <!-- Category + Domain -->
+        <div class="row g-3 mb-3">
+          <div class="col-6">
+            <label class="inc-label">Category</label>
+            <div class="inc-select-wrap">
+              <select class="inc-select">
+                <option value="" disabled selected hidden>Select Category</option>
+                <option>Medical</option>
+                <option>Engineering</option>
+                <option>General</option>
+              </select>
+              <i class="bi bi-chevron-down inc-sel-icon"></i>
+            </div>
+          </div>
+          <div class="col-6">
+            <label class="inc-label">Domain</label>
+            <div class="inc-select-wrap">
+              <select class="inc-select">
+                <option value="" disabled selected hidden>Select Domain</option>
+                <option>Investment analysts</option>
+                <option>Risk managers</option>
+                <option>Accountants</option>
+              </select>
+              <i class="bi bi-chevron-down inc-sel-icon"></i>
+            </div>
+          </div>
+        </div>
+ 
+        <!-- Volunteers Needed + Priority -->
+        <div class="row g-3 mb-3">
+          <div class="col-6">
+            <label class="inc-label">Volunteers Needed</label>
+            <input type="number" class="inc-input" placeholder="Enter no of Volunteers">
+          </div>
+          <div class="col-6">
+            <label class="inc-label">Priority</label>
+            <div class="inc-select-wrap">
+              <select class="inc-select">
+                <option value="" disabled selected hidden>Select priority</option>
+                <option>Critical Priority</option>
+                <option>Medium Priority</option>
+                <option>Low Priority</option>
+              </select>
+              <i class="bi bi-chevron-down inc-sel-icon"></i>
+            </div>
+          </div>
+        </div>
+ 
+        <!-- Description -->
+        <div class="mb-1">
+          <label class="inc-label">Description</label>
+          <textarea class="inc-textarea" rows="4" placeholder="Brief description of the crisis..."></textarea>
+        </div>
+ 
+      </div>
+ 
+      <!-- Footer -->
+      <div class="modal-footer inc-modal-footer">
+        <button type="button" class="btn inc-btn-cancel" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn inc-btn-create">Create Incident</button>
+      </div>
+ 
+    </div>
+  </div>
+</div>

@@ -1,0 +1,203 @@
+/* Page */
+  .sk-page {
+    background-color: #f4f6f9;
+    min-height: 100vh;
+  }
+ 
+  .sk-page-title {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #0d1526;
+  }
+ 
+  .sk-page-sub {
+    font-size: 0.875rem;
+    color: #6b7280;
+  }
+ 
+  /* Add Skills button */
+  .sk-btn-primary {
+    background-color: #e8194b;
+    color: #ffffff;
+    font-size: 0.875rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    padding: 9px 18px;
+  }
+ 
+  .sk-btn-primary:hover {
+    background-color: #c41440;
+    color: #ffffff;
+  }
+ 
+  /* Skill Card */
+  .sk-card {
+    background-color: #131c30;
+    border-radius: 14px;
+    padding: 1.1rem 1.25rem 1.25rem;
+    border: none;
+  }
+ 
+  .sk-card-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #edf2fb;
+  }
+ 
+  /* Icon buttons */
+  .sk-icon-btn {
+    background-color: rgba(255,255,255,0.08);
+    border: none;
+    border-radius: 7px;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+ 
+  .sk-icon-btn:hover {
+    background-color: rgba(255,255,255,0.15);
+  }
+ 
+  .sk-icon-edit {
+    color: #5b9ef8;
+    font-size: 0.8rem;
+  }
+ 
+  .sk-icon-delete {
+    color: #e8194b;
+    font-size: 0.8rem;
+  }
+ 
+  /* Tags */
+  .sk-tag {
+    display: inline-block;
+    font-size: 0.73rem;
+    color: #b8cce4;
+    border: 1px solid #263d5e;
+    border-radius: 999px;
+    padding: 3px 11px;
+    white-space: nowrap;
+    background-color: transparent;
+  }
+ 
+  /* ── MODAL ── */
+  .sk-modal {
+    border-radius: 16px;
+    border: none;
+    overflow: hidden;
+  }
+ 
+  .sk-modal-header {
+    border-bottom: 1px solid #e5e7eb;
+    padding: 1.25rem 1.5rem 1rem;
+  }
+ 
+  .sk-modal-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #0d1526;
+  }
+ 
+  .sk-modal-close {
+    background: none;
+    border: none;
+    color: #9ca3af;
+    font-size: 1rem;
+    padding: 4px 8px;
+    line-height: 1;
+  }
+ 
+  .sk-modal-close:hover {
+    color: #374151;
+  }
+ 
+  .sk-modal-body {
+    padding: 1.5rem;
+    background-color: #f9fafb;
+  }
+ 
+  .sk-form-label {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: #374151;
+    margin-bottom: 6px;
+    display: block;
+  }
+ 
+  /* Custom select */
+  .sk-select-wrapper {
+    position: relative;
+  }
+ 
+  .sk-select {
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+    background-color: #ffffff;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    padding: 10px 40px 10px 14px;
+    font-size: 0.875rem;
+    color: #6b7280;
+    cursor: pointer;
+    outline: none;
+  }
+ 
+  .sk-select:focus {
+    border-color: #e8194b;
+    box-shadow: 0 0 0 3px rgba(232,25,75,0.1);
+  }
+ 
+  .sk-select-icon {
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #9ca3af;
+    font-size: 0.8rem;
+    pointer-events: none;
+  }
+ 
+  /* Modal footer */
+  .sk-modal-footer {
+    border-top: 1px solid #e5e7eb;
+    padding: 1rem 1.5rem;
+    background-color: #ffffff;
+    justify-content: flex-end;
+    gap: 10px;
+  }
+ 
+  .sk-btn-cancel {
+    background-color: #ffffff;
+    color: #374151;
+    font-size: 0.875rem;
+    font-weight: 500;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    padding: 8px 20px;
+  }
+ 
+  .sk-btn-cancel:hover {
+    background-color: #f3f4f6;
+  }
+ 
+  .sk-btn-add {
+    background-color: #e8194b;
+    color: #ffffff;
+    font-size: 0.875rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 22px;
+  }
+ 
+  .sk-btn-add:hover {
+    background-color: #c41440;
+    color: #ffffff;
+  }

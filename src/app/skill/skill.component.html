@@ -1,0 +1,103 @@
+<div class="modal fade" id="addSkillsModal" tabindex="-1" aria-labelledby="addSkillsModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content sk-modal">
+ 
+      <!-- Modal Header -->
+      <div class="modal-header sk-modal-header">
+        <h5 class="sk-modal-title" id="addSkillsModalLabel">Add Skills</h5>
+        <button type="button" class="btn sk-modal-close" data-bs-dismiss="modal" aria-label="Close">
+          <i class="bi bi-x-lg"></i>
+        </button>
+      </div>
+ 
+      <!-- Modal Body -->
+      <div class="modal-body sk-modal-body">
+ 
+        <div class="mb-4">
+          <label class="sk-form-label">Category</label>
+          <div class="sk-select-wrapper">
+            <select class="sk-select">
+              <option value="" disabled selected hidden>Select Category</option>
+              <option>Financial Analysis</option>
+              <option>Search & Rescue</option>
+              <option>Engineering</option>
+              <option>Medical Support</option>
+            </select>
+            <i class="bi bi-chevron-down sk-select-icon"></i>
+          </div>
+        </div>
+ 
+        <div class="mb-2">
+          <label class="sk-form-label">Domain</label>
+          <div class="sk-select-wrapper">
+            <select class="sk-select">
+              <option value="" disabled selected hidden>Select Domain</option>
+              <option>Investment analysts</option>
+              <option>Risk managers</option>
+              <option>Accountants</option>
+              <option>Financial planners</option>
+            </select>
+            <i class="bi bi-chevron-down sk-select-icon"></i>
+          </div>
+        </div>
+ 
+      </div>
+ 
+      <!-- Modal Footer -->
+      <div class="modal-footer sk-modal-footer">
+        <button type="button" class="btn sk-btn-cancel" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn sk-btn-add">Add Skill</button>
+      </div>
+ 
+    </div>
+  </div>
+</div>
+ 
+ 
+<!-- ── PAGE ── -->
+<div class="sk-page">
+  <div class="container-fluid px-4 py-4">
+ 
+    <!-- Page Header -->
+    <div class="d-flex justify-content-between align-items-start mb-4 pb-3 border-bottom border-secondary-subtle">
+      <div>
+        <h2 class="sk-page-title mb-1">Skills</h2>
+        <p class="sk-page-sub mb-0">Manage and view skills for volunteers</p>
+      </div>
+      <button
+        class="btn sk-btn-primary d-flex align-items-center gap-2"
+        data-bs-toggle="modal"
+        data-bs-target="#addSkillsModal">
+        <i class="bi bi-plus-lg"></i> Add Skills
+      </button>
+    </div>
+ 
+    <!-- Skills Grid -->
+    <div class="row g-3">
+ 
+      <div class="col-12 col-md-6 col-xl-4" *ngFor="let i of [1,2,3,4,5,6,7,8,9,10,11,12]">
+        <div class="sk-card">
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <h6 class="sk-card-title mb-0">Financial Analysis</h6>
+            <div class="d-flex gap-2">
+              <button class="sk-icon-btn">
+                <i class="bi bi-pencil sk-icon-edit"></i>
+              </button>
+              <button class="sk-icon-btn">
+                <i class="bi bi-trash sk-icon-delete"></i>
+              </button>
+            </div>
+          </div>
+          <div class="d-flex flex-wrap gap-2">
+            <span class="sk-tag">Investment analysts</span>
+            <span class="sk-tag">Risk managers</span>
+            <span class="sk-tag">Accountants</span>
+            <span class="sk-tag">Financial planners</span>
+          </div>
+        </div>
+      </div>
+ 
+    </div>
+  </div>
+</div>
+ 

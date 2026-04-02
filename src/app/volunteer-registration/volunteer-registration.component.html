@@ -1,0 +1,288 @@
+<section class="py-4 bg-light">
+  <div class="container-fluid px-4">
+    
+    <!-- Table Card -->
+    <div class="card border-0 shadow-sm rounded-4">
+      <div class="card-body p-0">
+        
+        <!-- Table -->
+        <div class="table-responsive">
+          <table class="table table-hover align-middle mb-0">
+            <thead >
+              <tr>
+                <th class="py-3 px-4 fw-semibold text-secondary small">Volunteer</th>
+                <th class="py-3 px-4 fw-semibold text-secondary small">Email</th>
+                <th class="py-3 px-4 fw-semibold text-secondary small">CNIC</th>
+                <th class="py-3 px-4 fw-semibold text-secondary small">Role & Location</th>
+                <th class="py-3 px-4 fw-semibold text-secondary small">Domains</th>
+                <th class="py-3 px-4 fw-semibold text-secondary small">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              
+              <!-- Volunteer Row 1 -->
+              <tr *ngFor="let volunteer of volunteers">
+
+    <td class="py-3 px-4">
+      <div class="d-flex align-items-center gap-3">
+        <div class="avatar-circle">
+          {{ volunteer.initials }}
+        </div>
+        <div>
+          <h6 class="mb-0 fw-semibold">{{ volunteer.name }}</h6>
+          <small class="text-muted">{{ volunteer.phone }}</small>
+        </div>
+      </div>
+    </td>
+
+    <td class="py-3 px-4">
+      {{ volunteer.email }}
+    </td>
+
+    <td class="py-3 px-4">
+      {{ volunteer.cnic }}
+    </td>
+
+    <td class="py-3 px-4">
+      <span class="fw-semibold">{{ volunteer.role }}</span>
+      <small class="text-muted d-block">
+        {{ volunteer.location }}
+      </small>
+    </td>
+
+    <td class="py-3 px-4">
+      <span class=" badge  rounded-pill">
+        {{ volunteer.domains[0] }}
+      </span>
+    </td>
+
+    <td class="py-3 px-4">
+      <button
+        class="btn btn-sm btn-link text-primary p-0"
+        data-bs-toggle="modal"
+        data-bs-target="#volunteerModal"
+        (click)="viewVolunteer(volunteer)">
+        View
+      </button>
+       <!-- <button
+        class="btn btn-sm btn-link text-danger p-0"
+        (click)="deleteVolunteer(volunteer.id)">
+       <i class="bi bi-pencil-square text-primary"></i>
+      </button> -->
+
+      <button
+        class="btn btn-sm btn-link text-danger p-0"
+        (click)="deleteVolunteer(volunteer.id)">
+        <i class="bi bi-trash"></i>
+      </button>
+    </td>
+
+  </tr>
+              
+              <!-- More rows... (repeat pattern) -->
+              <!-- <tr>
+                <td class="py-3 px-4">
+                  <div class="d-flex align-items-center gap-3">
+                    <div class="avatar-circle" style="background-color: #ffe0e8; color: #FF2056;">MS</div>
+                    <div>
+                      <h6 class="mb-0 fw-semibold" style="font-size: 0.95rem;">Maya Sharif</h6>
+                      <small class="text-muted">03005178890</small>
+                    </div>
+                  </div>
+                </td>
+                <td class="py-3 px-4">
+                  <span class="text-secondary" style="font-size: 0.9rem;">maaz131126@gmail.com</span>
+                </td>
+                <td class="py-3 px-4">
+                  <span class="text-secondary" style="font-size: 0.9rem;">36603-8345677-9</span>
+                </td>
+                <td class="py-3 px-4">
+                  <div>
+                    <span class="d-block fw-semibold mb-1" style="font-size: 0.9rem;">Business</span>
+                    <small class="text-muted">Lahore, Pakistan</small>
+                  </div>
+                </td>
+                <td class="py-3 px-4">
+                  <span class="badge rounded-pill px-3 py-2" style="background-color: #e0e7ff; color: #4338ca; font-weight: 500;">
+                    Engineering
+                  </span>
+                </td>
+                <td class="py-3 px-4">
+                  <div class="d-flex gap-2">
+                    <button class="btn btn-sm btn-link text-primary p-0" 
+                            data-bs-toggle="modal" 
+                            data-bs-target="#volunteerModal">
+                      <i class="bi bi-eye me-1"></i>View
+                    </button>
+                    <button class="btn btn-sm btn-link text-danger p-0">
+                      <i class="bi bi-trash"></i>
+                    </button>
+                  </div>
+                </td>
+              </tr> -->
+              
+            </tbody>
+          </table>
+        </div>
+        
+      </div>
+    </div>
+    
+  </div>
+</section>
+
+<!-- Volunteer Profile Modal -->
+<div class="modal fade" id="volunteerModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content border-0 rounded-4 overflow-hidden">
+      
+      <!-- Modal Header with Gradient -->
+      <div class="modal-header border-0 position-relative p-0" 
+           style="background: linear-gradient(135deg, #1e293b 0%, #334155 100%); height: 180px;">
+        <button type="button" class="btn-close btn-close-white position-absolute top-0 end-0 m-3" 
+                data-bs-dismiss="modal"></button>
+        
+        <div class="position-absolute bottom-0 start-0 w-100 px-4 pb-3">
+          <div class="d-flex align-items-end gap-3">
+            <div class="avatar-large" style="background-color: #475569; color: white;">FS</div>
+            <div class="mb-2">
+              <h4 class="text-white fw-bold mb-1">Farhan Sabir</h4>
+              <div class="d-flex gap-3 text-white-50 small">
+                <span><i class="bi bi-briefcase me-1"></i>General</span>
+                <span><i class="bi bi-geo-alt me-1"></i>Vehari, Punjab, Pakistan</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Modal Body -->
+      <div class="modal-body p-4">
+        
+        <!-- Tabs -->
+        <ul class="nav nav-tabs border-0 mb-4" role="tablist">
+          <li class="nav-item">
+            <button class="nav-link active px-4 fw-semibold" 
+                    data-bs-toggle="tab" 
+                    data-bs-target="#contactTab">
+              Contact Information
+            </button>
+          </li>
+          <li class="nav-item">
+            <button class="nav-link px-4 fw-semibold" 
+                    data-bs-toggle="tab" 
+                    data-bs-target="#skillsTab">
+              Skills & Availability
+            </button>
+          </li>
+        </ul>
+        
+        <!-- Tab Content -->
+        <div class="tab-content">
+          
+          <!-- Contact Information Tab -->
+          <div class="tab-pane fade show active" id="contactTab">
+            <div class="row g-4">
+              
+              <!-- Email Address -->
+              <div class="col-12">
+                <div class="d-flex align-items-start gap-3">
+                  <div class="icon-box">
+                    <i class="bi bi-envelope"></i>
+                  </div>
+                  <div>
+                    <small class="text-muted d-block mb-1">Email Address</small>
+                    <a href="mailto:farhan343@gmail.com" class="text-decoration-none fw-semibold" style="color: #3b82f6;">
+                      farhan343@gmail.com
+                    </a>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Phone Number -->
+              <div class="col-12">
+                <div class="d-flex align-items-start gap-3">
+                  <div class="icon-box">
+                    <i class="bi bi-telephone"></i>
+                  </div>
+                  <div>
+                    <small class="text-muted d-block mb-1">Phone Number</small>
+                    <a href="tel:03005178889" class="text-decoration-none fw-semibold" style="color: #3b82f6;">
+                      03005178889
+                    </a>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Demographics -->
+              <div class="col-12">
+                <div class="d-flex align-items-start gap-3">
+                  <div class="icon-box">
+                    <i class="bi bi-person"></i>
+                  </div>
+                  <div>
+                    <small class="text-muted d-block mb-1">Demographics</small>
+                    <span class="fw-semibold">10 years old • Male</span>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Registered On -->
+              <div class="col-12">
+                <div class="d-flex align-items-start gap-3">
+                  <div class="icon-box">
+                    <i class="bi bi-calendar"></i>
+                  </div>
+                  <div>
+                    <small class="text-muted d-block mb-1">Registered On</small>
+                    <span class="fw-semibold">17 March 2026</span>
+                  </div>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+          
+          <!-- Skills & Availability Tab -->
+          <div class="tab-pane fade" id="skillsTab">
+            <div class="row g-4">
+              
+              <!-- Physical Fitness -->
+              <div class="col-12">
+                <div class="d-flex align-items-start gap-3">
+                  <div class="icon-box">
+                    <i class="bi bi-activity"></i>
+                  </div>
+                  <div>
+                    <small class="text-muted d-block mb-1">Physical Fitness</small>
+                    <span class="fw-semibold">Fit for demanding tasks</span>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Domains -->
+              <div class="col-12">
+                <div class="d-flex align-items-start gap-3">
+                  <div class="icon-box">
+                    <i class="bi bi-layers"></i>
+                  </div>
+                  <div>
+                    <small class="text-muted d-block mb-2">Domains</small>
+                    <span class="badge rounded-pill px-3 py-2" 
+                          style="background-color: #e0e7ff; color: #4338ca; font-weight: 500;">
+                      Engineering
+                    </span>
+                  </div>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+          
+        </div>
+        
+      </div>
+      
+    </div>
+  </div>
+</div>

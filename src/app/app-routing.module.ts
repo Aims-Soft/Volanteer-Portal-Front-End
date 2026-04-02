@@ -10,7 +10,7 @@ import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.compo
 import { AppliedCandidatesComponent } from './applied-candidates/applied-candidates.component';
 import { config } from 'rxjs';
 import { ConfigurationComponent } from './configuration/configuration.component';
-import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
+// import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
 // import { SpeakerListComponent } from './speaker-list/speaker-list.component';
 import { LoginComponent } from './login/login.component';
 // import { WhyChoseComponent } from './why-chose/why-chose.component';
@@ -18,6 +18,9 @@ import { AboutComponent } from './about/about.component';
 import { RequestLectureComponent } from './request-lecture/request-lecture.component';
 import { HowItWorksComponent } from './how-it-works/how-it-works.component';
 import { RecentIncidentComponent } from './recent-incident/recent-incident.component';
+import { VolunteerRegistrationComponent } from './volunteer-registration/volunteer-registration.component';
+import { SkillComponent } from './skill/skill.component';
+import { IncidentComponent } from './incident/incident.component';
 // import { RecomendedBooksComponent } from './recomended-books/recomended-books.component';
 
 
@@ -32,7 +35,7 @@ const routes: Routes = [
   // {path:'speaker',component:SpeakerComponent},
   {path:'appliedCandidates',component:AppliedCandidatesComponent},
   {path:'configuration',component:ConfigurationComponent},
-  {path:'userDashboard',component:UserDashboardComponent},
+  // {path:'userDashboard',component:UserDashboardComponent},
   // {path:'speakerList',component:SpeakerListComponent},
   {path:'login',component:LoginComponent},
   // {path:'whychose',component: WhyChoseComponent},
@@ -40,7 +43,10 @@ const routes: Routes = [
   {path:'requestLecture',component: RequestLectureComponent},
   // {path:'books',component: RecomendedBooksComponent},
   {path:'howitworks', component: HowItWorksComponent},
-  {path:'recent-incidents', component: RecentIncidentComponent},
+  {path:'recentIncidents', component: RecentIncidentComponent},
+  {path:'volunteerRegistration', component: VolunteerRegistrationComponent},
+    {path:'skill', component: SkillComponent},
+    {path:'incident', component: IncidentComponent},
  
     
    

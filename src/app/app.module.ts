@@ -43,6 +43,9 @@ import { RequestLectureComponent } from './request-lecture/request-lecture.compo
 import { HowItWorksComponent } from './how-it-works/how-it-works.component';
 import { RecentIncidentComponent } from './recent-incident/recent-incident.component';
 import { WhoWeNeedComponent } from './who-we-need/who-we-need.component';
+import { VolunteerRegistrationComponent } from './volunteer-registration/volunteer-registration.component';
+import { SkillComponent } from './skill/skill.component';
+import { IncidentComponent } from './incident/incident.component';
 // import { RecomendedBooksComponent } from './recomended-books/recomended-books.component';
 
 
@@ -79,6 +82,9 @@ import { WhoWeNeedComponent } from './who-we-need/who-we-need.component';
     HowItWorksComponent,
     RecentIncidentComponent,
     WhoWeNeedComponent,
+    VolunteerRegistrationComponent,
+    SkillComponent,
+    IncidentComponent,
     // RecomendedBooksComponent,
 
 
