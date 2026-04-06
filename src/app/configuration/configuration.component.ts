@@ -1,16 +1,20 @@
-import { Component,OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
+import { SharedDataService } from '../../shared/services/shared-data.service';
+import { SharedGlobalService  } from '../../shared/services/shared-global.service';
 
-export interface Subject {
-  id: number;
-  name: string;
+declare var bootstrap: any;
+
+interface Category {
+  categoryID: number;
+  categoryTitle: string;
 }
 
-export interface Topic {
-  id: number;
-  subjectId: number;
-  name: string;
+interface Domain {
+  domainID: number;
+  domainTitle: string;
+  categoryID: number;
 }
-
 
 @Component({
   selector: 'app-configuration',
@@ -18,140 +22,180 @@ export interface Topic {
   styleUrls: ['./configuration.component.scss']
 })
 export class ConfigurationComponent implements OnInit {
-  activeTab: 'subjects' | 'topics' = 'subjects';
-  subjects: Subject[] = [];
-  topics: Topic[] = [];
-  searchQuery: string = '';
-  currentPage = 1;
+
+  // ── Category ──────────────────────────────────────────────────────────────
+  categoryList: Category[]        = [];
+  selectedCategoryID: number | null = null;
+  newCategoryName: string         = '';
+
+  // ── Domain ────────────────────────────────────────────────────────────────
+  allDomains: Domain[]     = [];
+  filteredDomains: Domain[] = [];
+  domainTitle: string      = '';
+  editMode: boolean        = false;
+  editingDomainID: number  = 0;
+
+  // ── Search ────────────────────────────────────────────────────────────────
+  searchTerm: string = '';
+
+  constructor(
+    private dataService: SharedDataService,
+    private toastr: ToastrService,
   
-  newSubjectName: string = '';
-  newTopic = {
-    subjectId: '',
-    name: ''
-  };
+    private userSession: SharedGlobalService
+  ) {}
 
   ngOnInit(): void {
-    this.loadData();
+    this.loadCategories();
+    this.loadDomains();
   }
 
-  loadData(): void {
-    // Mock data - replace with API calls
-    this.subjects = [
-      { id: 1, name: 'Data Scientist' },
-      { id: 2, name: 'Programmer' },
-      { id: 3, name: 'Designer' },
-      { id: 4, name: 'Ai Engineer' }
-    ];
+  // ── Load ───────────────────────────────────────────────────────────────────
 
-    this.topics = [
-      { id: 1, subjectId: 1, name: 'Google Data Analytics' },
-      { id: 2, subjectId: 2, name: 'Python' },
-      { id: 3, subjectId: 3, name: 'user research, wireframing' },
-      { id: 4, subjectId: 4, name: 'Python, machine learning (ML)' }
-    ];
-  }
-
-  switchTab(tab: 'subjects' | 'topics'): void {
-    this.activeTab = tab;
-    this.searchQuery = '';
-  }
-
-  get filteredSubjects(): Subject[] {
-    if (!this.searchQuery) {
-      return this.subjects;
-    }
-    return this.subjects.filter(subject => 
-      subject.name.toLowerCase().includes(this.searchQuery.toLowerCase())
-    );
-  }
-
-  get filteredTopics(): Topic[] {
-    if (!this.searchQuery) {
-      return this.topics;
-    }
-    return this.topics.filter(topic => {
-      const subjectName = this.getSubjectName(topic.subjectId);
-      return topic.name.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
-             subjectName.toLowerCase().includes(this.searchQuery.toLowerCase());
+  loadCategories(): void {
+    this.dataService.getHttp('admin-api/Admin/GetCategory').subscribe({
+      next: (res: any) => { this.categoryList = res?.data ?? res ?? []; },
+      error: (err: any) => { console.error('Categories error:', err); }
     });
   }
 
-  addSubject(): void {
-    if (!this.newSubjectName.trim()) {
-      alert('Please enter a subject name');
+  loadDomains(): void {
+    this.dataService.getHttp('admin-api/Admin/getConfigration').subscribe({
+      next: (res: any) => {
+        this.allDomains = res?.data ?? res ?? [];
+        this.applyFilters();
+      },
+      error: (err: any) => { console.error('Domains error:', err); }
+    });
+  }
+
+  // ── Filter ─────────────────────────────────────────────────────────────────
+
+  onCategoryChange(): void {
+    this.applyFilters();
+    this.resetDomainForm();
+  }
+
+  applyFilters(): void {
+    let result = this.selectedCategoryID
+      ? this.allDomains.filter(d => d.categoryID === this.selectedCategoryID)
+      : this.allDomains;
+
+    if (this.searchTerm.trim()) {
+      const q = this.searchTerm.toLowerCase();
+      result = result.filter(d => d.domainTitle.toLowerCase().includes(q));
+    }
+
+    this.filteredDomains = result;
+  }
+
+  onSearch(): void {
+    this.applyFilters();
+  }
+
+  // ── Category CRUD ──────────────────────────────────────────────────────────
+
+  addCategory(): void {
+    if (!this.newCategoryName.trim()) {
+      this.toastr.warning('Please enter a category name');
       return;
     }
 
-    const newSubject: Subject = {
-      id: this.subjects.length + 1,
-      name: this.newSubjectName
+    const payload = {
+      categoryID:    0,
+      categoryTitle: this.newCategoryName.trim(),
+      userID:           this.userSession.getUserID(),
+      spType:           'Insert'
     };
 
-    this.subjects.push(newSubject);
-    this.newSubjectName = '';
-    
-    // TODO: Add API call to save subject
-    console.log('Added subject:', newSubject);
-  }
-
-  addTopic(): void {
-    if (!this.newTopic.subjectId || !this.newTopic.name.trim()) {
-      alert('Please select a subject and enter a topic name');
-      return;
-    }
-
-    const newTopicData: Topic = {
-      id: this.topics.length + 1,
-      subjectId: parseInt(this.newTopic.subjectId),
-      name: this.newTopic.name
-    };
-
-    this.topics.push(newTopicData);
-    this.newTopic = { subjectId: '', name: '' };
-    
-    // TODO: Add API call to save topic
-    console.log('Added topic:', newTopicData);
-  }
-
-  deleteSubject(subject: Subject): void {
-    if (confirm(`Are you sure you want to delete "${subject.name}"?`)) {
-      // Check if any topics exist for this subject
-      const hasTopics = this.topics.some(t => t.subjectId === subject.id);
-      if (hasTopics) {
-        alert('Cannot delete subject. Topics exist for this subject.');
-        return;
+    this.dataService.postDirect('admin-api/Admin/saveCategory', payload).subscribe({
+      next: (res: any) => {
+        this.toastr.success('Category added successfully!');
+        this.newCategoryName = '';
+        this.loadCategories();
+        // close modal
+        const el = document.getElementById('addCategoryModal');
+        if (el) bootstrap.Modal.getInstance(el)?.hide();
+      },
+      error: (err: any) => {
+        console.error(err);
+        this.toastr.error('Failed to add category. Please try again.');
       }
-      
-      this.subjects = this.subjects.filter(s => s.id !== subject.id);
-      // TODO: Add API call to delete subject
-    }
+    });
   }
 
-  deleteTopic(topic: Topic): void {
-    if (confirm(`Are you sure you want to delete "${topic.name}"?`)) {
-      this.topics = this.topics.filter(t => t.id !== topic.id);
-      // TODO: Add API call to delete topic
+  // ── Domain CRUD ────────────────────────────────────────────────────────────
+
+  addOrUpdateDomain(): void {
+    if (!this.selectedCategoryID) {
+      this.toastr.warning('Please select a category first');
+      return;
     }
+    if (!this.domainTitle.trim()) {
+      this.toastr.warning('Please enter a domain name');
+      return;
+    }
+
+    const payload = {
+      domainID:      this.editMode ? this.editingDomainID : 0,
+      domainTitle:   this.domainTitle.trim(),
+      categoryID: this.selectedCategoryID,
+      userID:        this.userSession.getUserID(),
+      spType:        this.editMode ? 'Update' : 'Insert'
+    };
+
+    this.dataService.postDirect('admin-api/Admin/saveConfigration', payload).subscribe({
+      next: (res: any) => {
+        this.toastr.success(this.editMode ? 'Domain updated!' : 'Domain added!');
+        this.resetDomainForm();
+        this.loadDomains();
+      },
+      error: (err: any) => {
+        console.error(err);
+        this.toastr.error('Failed to save domain. Please try again.');
+      }
+    });
   }
 
-  editSubject(subject: Subject): void {
-    const newName = prompt('Edit Subject Name:', subject.name);
-    if (newName && newName.trim()) {
-      subject.name = newName.trim();
-      // TODO: Add API call to update subject
-    }
+  editDomain(domain: Domain): void {
+    this.editMode        = true;
+    this.editingDomainID = domain.domainID;
+    this.domainTitle     = domain.domainTitle;
+    this.selectedCategoryID = domain.categoryID;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
-  editTopic(topic: Topic): void {
-    const newName = prompt('Edit Topic Name:', topic.name);
-    if (newName && newName.trim()) {
-      topic.name = newName.trim();
-      // TODO: Add API call to update topic
-    }
+  deleteDomain(domain: Domain): void {
+    if (!confirm(`Delete "${domain.domainTitle}"?`)) return;
+
+    const payload = {
+      domainID:      domain.domainID,
+      domainTitle:   domain.domainTitle,
+      categoryID: domain.categoryID,
+      userID:        this.userSession.getUserID(),
+      spType:        'Delete'
+    };
+    console.log('Deleting domain with payload:', payload);
+
+    this.dataService.postDirect('admin-api/Admin/saveConfigration', payload).subscribe({
+      next: (res: any) => {
+        this.toastr.success('Domain deleted!');
+        this.loadDomains();
+      },
+      error: (err: any) => {
+        console.error(err);
+        this.toastr.error('Failed to delete domain. Please try again.');
+      }
+    });
   }
 
-  getSubjectName(subjectId: number): string {
-    const subject = this.subjects.find(s => s.id === subjectId);
-    return subject ? subject.name : 'Unknown';
+  resetDomainForm(): void {
+    this.domainTitle     = '';
+    this.editingDomainID = 0;
+    this.editMode        = false;
+  }
+
+  getCategoryName(id: number): string {
+    return this.categoryList.find(c => c.categoryID === id)?.categoryTitle ?? 'Unknown';
   }
 }

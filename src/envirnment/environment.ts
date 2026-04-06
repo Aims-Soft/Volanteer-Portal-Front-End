@@ -5,19 +5,19 @@
 export const environment = {
   production: false,
   envName: 'prod',
-  // apiUrlauth: 'http://localhost:2000/',
-  apiUrlauth: 'http://159.69.174.28:18000/',
+  apiUrlauth: 'http://localhost:9091/',
+  // apiUrlauth: 'http://159.69.174.28:9091/',
   
   // apiUrljob:'https://pakistanjobsportal.com:16000/',
 
-  //  apiUrl: 'http://localhost:2000/',
-  apiUrl: 'http://159.69.174.28:18000/',
+   apiUrl: 'http://localhost:9091/',
+  // apiUrl: 'http://159.69.174.28:9091/',
 
   imageUrl: 'C:/inetpub/wwwroot/',
 
   //  apijob:'https://pakistanjobsportal.com',
  
-    productUrl: 'http://159.69.174.28:2010/',
+    productUrl: 'http://159.69.174.28:9095/',
     //  googleClientId: '51129007656-7853v1j76s30u7cnne2b10nlg9r2ku3l.apps.googleusercontent.com'
 };
 

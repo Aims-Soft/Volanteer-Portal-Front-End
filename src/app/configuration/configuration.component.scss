@@ -1,224 +1,403 @@
+/* ── Configuration Component Styles ──────────────────────────────────────── */
+
 .cfg-page {
-    background-color: #f0f2f5;
-    min-height: 100vh;
-    padding: 2rem;
+  padding: 24px;
+  min-height: 100vh;
+  background: #f8fafc;
+}
+
+.cfg-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 32px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+}
+
+/* ── Header ─────────────────────────────────────────────────────────────── */
+.cfg-page-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 0;
+}
+
+.cfg-page-sub {
+  font-size: 0.875rem;
+  color: #64748b;
+}
+
+/* ── Search Box ─────────────────────────────────────────────────────────── */
+.cfg-search-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #f1f5f9;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 8px 14px;
+  min-width: 260px;
+  transition: border-color 0.2s;
+
+  &:focus-within {
+    border-color: #EC003F;
+    background: #fff;
   }
- 
-  .cfg-card {
-    background: #ffffff;
-    border-radius: 16px;
-    padding: 2rem;
-    border: 1px solid #e5e7eb;
+}
+
+.cfg-search-icon {
+  color: #94a3b8;
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.cfg-search-input {
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 0.875rem;
+  color: #1e293b;
+  width: 100%;
+
+  &::placeholder {
+    color: #94a3b8;
   }
- 
-  .cfg-page-title {
-    font-size: 1.65rem;
-    font-weight: 700;
-    color: #0d1526;
-  }
- 
-  .cfg-page-sub {
-    font-size: 0.875rem;
-    color: #6b7280;
-  }
- 
-  /* Label */
-  .cfg-label {
-    display: block;
-    font-size: 0.82rem;
-    font-weight: 600;
-    color: #374151;
-  }
- 
-  /* Select */
-  .cfg-select-wrap {
-    position: relative;
-  }
- 
+}
+
+/* ── Labels ─────────────────────────────────────────────────────────────── */
+.cfg-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #374151;
+  display: block;
+}
+
+/* ── Select wrapper (native) ────────────────────────────────────────────── */
+.cfg-select-wrap {
+  position: relative;
+
   .cfg-select {
     width: 100%;
-    appearance: none;
-    -webkit-appearance: none;
-    background: #ffffff;
-    border: 1px solid #d1d5db;
-    border-radius: 8px;
-    padding: 10px 36px 10px 14px;
+    height: 46px;
+    padding: 0 40px 0 14px;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 10px;
+    background: #fafafa;
     font-size: 0.875rem;
-    color: #9ca3af;
+    color: #1e293b;
+    appearance: none;
     outline: none;
     cursor: pointer;
+    transition: border-color 0.2s;
+
+    &:focus {
+      border-color: #EC003F;
+      background: #fff;
+    }
   }
- 
-  .cfg-select:focus {
-    border-color: #e8194b;
-    box-shadow: 0 0 0 3px rgba(232,25,75,0.1);
-  }
- 
+
   .cfg-sel-icon {
     position: absolute;
-    right: 13px;
+    right: 12px;
     top: 50%;
     transform: translateY(-50%);
-    color: #9ca3af;
-    font-size: 0.75rem;
+    color: #94a3b8;
     pointer-events: none;
+    font-size: 0.8rem;
   }
- 
-  /* Plus button */
-  .cfg-plus-btn {
-    width: 42px;
-    height: 42px;
-    min-width: 42px;
+}
+
+/* ── ng-select overrides ────────────────────────────────────────────────── */
+.cfg-ng-select {
+  ::ng-deep .ng-select-container {
+    height: 46px !important;
+    min-height: 46px !important;
+    border: 1.5px solid #e2e8f0 !important;
+    border-radius: 10px !important;
+    background: #fafafa !important;
+    font-size: 0.875rem !important;
+    box-shadow: none !important;
+    transition: border-color 0.2s;
+  }
+
+  ::ng-deep &.ng-select-focused .ng-select-container {
+    border-color: #EC003F !important;
+    background: #fff !important;
+    box-shadow: 0 0 0 3px rgba(185, 141, 70, 0.12) !important;
+  }
+
+  ::ng-deep .ng-placeholder {
+    color: #94a3b8 !important;
+  }
+
+  ::ng-deep .ng-dropdown-panel {
+    border: 1.5px solid #e2e8f0 !important;
+    border-radius: 10px !important;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1) !important;
+  }
+
+  ::ng-deep .ng-option {
+    font-size: 0.875rem !important;
+    padding: 10px 14px !important;
+
+    &.ng-option-selected {
+      background: #fdf6ec !important;
+      color: #EC003F !important;
+    }
+
+    &.ng-option-highlighted {
+      background: #f8fafc !important;
+    }
+  }
+}
+
+/* ── Input ──────────────────────────────────────────────────────────────── */
+.cfg-input {
+  width: 100%;
+  height: 46px;
+  padding: 0 14px;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 10px;
+  background: #fafafa;
+  font-size: 0.875rem;
+  color: #1e293b;
+  outline: none;
+  transition: border-color 0.2s, background 0.2s;
+
+  &::placeholder {
+    color: #94a3b8;
+  }
+
+  &:focus {
+    border-color: #EC003F;
     background: #fff;
-    border: 1px solid #d1d5db;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #374151;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: all 0.15s;
+    box-shadow: 0 0 0 3px rgba(185, 141, 70, 0.1);
   }
- 
-  .cfg-plus-btn:hover {
-    background: #f3f4f6;
-    border-color: #9ca3af;
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
   }
- 
-  /* Input */
+}
+
+/* ── Plus Button ────────────────────────────────────────────────────────── */
+.cfg-plus-btn {
+  width: 46px;
+  height: 46px;
+  flex-shrink: 0;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 10px;
+  background: #fff;
+  color: #64748b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.2s;
+
+  &:hover {
+    border-color: #EC003F;
+    color: #EC003F;
+    background: #fdf6ec;
+  }
+}
+
+/* ── Primary Button ─────────────────────────────────────────────────────── */
+.cfg-btn-primary {
+  height: 46px;
+  background-color: #EC003F !important;
+  color: #ffffff !important;
+  border: none;
+  border-radius: 10px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: all 0.2s;
+
+  &:hover:not(:disabled) {
+    background-color: #EC003F !important;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(185, 141, 70, 0.3);
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+/* ── Cancel edit button ─────────────────────────────────────────────────── */
+.cfg-btn-cancel-edit {
+  height: 46px;
+  width: 46px;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 10px;
+  background: #fff;
+  color: #64748b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  flex-shrink: 0;
+
+  &:hover {
+    border-color: #ef4444;
+    color: #ef4444;
+    background: #fff5f5;
+  }
+}
+
+/* ── Domain Cards ───────────────────────────────────────────────────────── */
+.cfg-domain-card {
+  background: #fff;
+  border: 1.5px solid #f1f5f9;
+  border-radius: 12px;
+  padding: 14px 16px;
+  transition: all 0.2s;
+
+  &:hover {
+    border-color: #e2e8f0;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+  }
+}
+
+.cfg-domain-name {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.cfg-domain-badge {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 600;
+  background: #fdf6ec;
+  color: #EC003F;
+  border-radius: 100px;
+  padding: 2px 8px;
+  vertical-align: middle;
+}
+
+/* ── Icon Buttons ───────────────────────────────────────────────────────── */
+.cfg-icon-btn {
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 8px;
+  background: #f8fafc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.15s;
+  padding: 0;
+
+  &:hover .cfg-icon-edit {
+    color: #3b82f6;
+  }
+
+  &:hover .cfg-icon-del {
+    color: #ef4444;
+  }
+
+  &:hover {
+    background: #f1f5f9;
+  }
+}
+
+.cfg-icon-edit {
+  color: #94a3b8;
+  font-size: 0.9rem;
+  transition: color 0.15s;
+}
+
+.cfg-icon-del {
+  color: #94a3b8;
+  font-size: 0.9rem;
+  transition: color 0.15s;
+}
+
+/* ── Empty State ────────────────────────────────────────────────────────── */
+.cfg-empty-icon {
+  font-size: 3rem;
+  color: #cbd5e1;
+  display: block;
+}
+
+.cfg-empty-text {
+  color: #94a3b8;
+  font-size: 0.9rem;
+}
+
+/* ── Modal ──────────────────────────────────────────────────────────────── */
+.cfg-modal-dialog {
+  max-width: 440px;
+}
+
+.cfg-modal {
+  border: none;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+}
+
+.cfg-modal-header {
+  border-bottom: 1px solid #f1f5f9;
+  padding: 20px 24px 16px;
+}
+
+.cfg-modal-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 0;
+}
+
+.cfg-modal-body {
+  padding: 20px 24px;
+
+  .cfg-label {
+    margin-bottom: 8px;
+  }
+
   .cfg-input {
-    background: #fff;
-    border: 1px solid #d1d5db;
-    border-radius: 8px;
-    padding: 10px 14px;
-    font-size: 0.875rem;
-    color: #374151;
-    outline: none;
     width: 100%;
   }
- 
-  .cfg-input::placeholder { color: #9ca3af; }
- 
-  .cfg-input:focus {
-    border-color: #e8194b;
-    box-shadow: 0 0 0 3px rgba(232,25,75,0.1);
-  }
- 
-  /* Primary button */
-  .cfg-btn-primary {
-    background: #e8194b;
-    color: #fff;
-    font-size: 0.875rem;
-    font-weight: 600;
-    border: none;
-    border-radius: 8px;
-    padding: 10px 20px;
-    white-space: nowrap;
-  }
- 
-  .cfg-btn-primary:hover {
-    background: #c41440;
-    color: #fff;
-  }
- 
-  /* Domain cards */
-  .cfg-domain-card {
-    background: #fff;
-    border: 1px solid #e5e7eb;
-    border-radius: 10px;
-    padding: 14px 16px;
-    transition: box-shadow 0.15s;
-  }
- 
-  .cfg-domain-card:hover {
-    box-shadow: 0 2px 10px rgba(0,0,0,0.07);
-  }
- 
-  .cfg-domain-name {
-    font-size: 0.9rem;
-    font-weight: 500;
-    color: #111827;
-  }
- 
-  /* Icon buttons */
-  .cfg-icon-btn {
-    background: none;
-    border: none;
-    padding: 3px 5px;
-    cursor: pointer;
-    line-height: 1;
-  }
- 
-  .cfg-icon-del {
-    color: #e8194b;
-    font-size: 1rem;
-  }
- 
-  .cfg-icon-edit {
-    color: #e8194b;
-    font-size: 1rem;
-  }
- 
-  .cfg-icon-btn:hover .cfg-icon-del,
-  .cfg-icon-btn:hover .cfg-icon-edit {
-    color: #c41440;
-  }
- 
-  /* ── MODAL ── */
-  .cfg-modal-dialog {
-    max-width: 480px;
-  }
- 
-  .cfg-modal {
-    border-radius: 16px;
-    border: none;
-    overflow: hidden;
-  }
- 
-  .cfg-modal-header {
-    padding: 1.25rem 1.5rem 1rem;
-    border-bottom: 1px solid #e5e7eb;
-    background: #fff;
-  }
- 
-  .cfg-modal-title {
-    font-size: 1.1rem;
-    font-weight: 700;
-    color: #0d1526;
-  }
- 
-  .cfg-modal-close {
-    background: none;
-    border: none;
-    color: #9ca3af;
-    font-size: 1rem;
-    padding: 4px 8px;
-  }
- 
-  .cfg-modal-close:hover { color: #374151; }
- 
-  .cfg-modal-body {
-    padding: 1.5rem;
-    background: #f9fafb;
-  }
- 
-  .cfg-modal-footer {
-    padding: 1rem 1.5rem;
-    border-top: 1px solid #e5e7eb;
-    background: #fff;
-    justify-content: flex-end;
-    gap: 10px;
-  }
- 
-  .cfg-btn-cancel {
-    background: #fff;
+}
+
+.cfg-modal-footer {
+  border-top: 1px solid #f1f5f9;
+  padding: 16px 24px 20px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.cfg-btn-cancel {
+  height: 40px;
+  padding: 0 20px;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 8px;
+  background: transparent;
+  color: #64748b;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all 0.2s;
+
+  &:hover {
+    border-color: #94a3b8;
     color: #374151;
-    font-size: 0.875rem;
-    font-weight: 500;
-    border: 1px solid #d1d5db;
-    border-radius: 8px;
-    padding: 8px 20px;
   }
- 
-  .cfg-btn-cancel:hover { background: #f3f4f6; }
+}
+
+/* ── Responsive ─────────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .cfg-card {
+    padding: 20px 16px;
+  }
+
+  .cfg-search-wrap {
+    min-width: 100%;
+    width: 100%;
+  }
+}

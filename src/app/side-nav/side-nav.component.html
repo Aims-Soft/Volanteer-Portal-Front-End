@@ -4,15 +4,15 @@
     <!-- Logo Section - Col 2 with Dropdown -->
     <div class="col-md-2 d-flex align-items-center justify-content-center border position-relative">
       <div class="w-100 d-flex justify-content-center position-relative">
-        <div class="website-logo" style="height: 65px; width: 300px"></div>
-        <!-- <img
-          src="public/logo.svg"
+        <!-- <div class="website-logo" style="height: 65px; width: 300px"></div> -->
+        <img
+          src="../../assets/lcons/logo.svg"
           class="img-fluid "
           width="300px"
           alt="Logo"
           style="cursor: pointer"
          
-        /> -->
+        />
       </div>
     </div>
 
@@ -115,10 +115,10 @@
             <span class="ms-3">Settings</span>
           </a>
           <a
-            class="d-flex align-items-center text-decoration-none bg-dark text-white px-3 py-2 rounded"
+            class="d-flex align-items-center  text-danger  px-3 py-2 rounded"
             routerLink="/signIn"
             (click)="logout()"
-            style="cursor: pointer"
+            style="cursor: pointer; background-color: #FFE9EF !important; "
           >
             <i class="bi bi-box-arrow-right fs-5"></i>
             <span class="ms-3">Logout</span>
@@ -129,7 +129,7 @@
 
     <!-- Main Content Area - Col 10 with offset -->
     <div
-      class="col-md-10 offset-md-2 bg-white"
+      class="col-md-10 offset-md-2 bg-light"
       style="height: calc(100vh - 70px); overflow-y: auto; padding: 20px"
     >
       <router-outlet />

@@ -5,6 +5,8 @@
 
 @import "bootstrap/dist/css/bootstrap.min.css";
 
+@import "~@ng-select/ng-select/themes/material.theme.css";
+
 
 
 ////////////////////////////custom variables ///////////////////////////
@@ -111,11 +113,15 @@ html, body {
     
 }
 
-//  background-position: center;
-//   background-size: cover;
-//    width: 50%;
-//     height: 100%;
-
+.website-logo{
+    background: url('././assets/lcons/logo.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    // height: 2.7em;
+    // width: 9em;
+//     border-radius: 5px;  
+}
 
 
 .footerlogo{

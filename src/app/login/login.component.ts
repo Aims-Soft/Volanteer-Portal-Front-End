@@ -256,11 +256,11 @@ export class LoginComponent implements OnInit, AfterViewInit {
     // Role-based redirect
     setTimeout(() => {
       if (roleId === 1) {
-        this.router.navigate(['/overview']);
+        this.router.navigate(['/adminDashboard']);
       } else if (roleId === 2) {
         this.router.navigate(['/trainings']);
       } else if (roleId === 3) {
-        this.router.navigate(['/admin-dashboard']);
+        this.router.navigate(['/adminDashboard']);
       } else {
         this.router.navigate(['/']);
       }
@@ -301,11 +301,11 @@ export class LoginComponent implements OnInit, AfterViewInit {
 
             // Role-based redirect
             if (roleId === 1) {
-              this.router.navigate(['/overview']);
+              this.router.navigate(['/adminDashboard']);
             } else if (roleId === 2) {
               this.router.navigate(['/trainings']);
             } else if (roleId === 3) {
-              this.router.navigate(['/admin-dashboard']);
+              this.router.navigate(['/adminDashboard']);
             } else {
               this.router.navigate(['/']);
             }

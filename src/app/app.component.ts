@@ -24,20 +24,20 @@ export class AppComponent {
     const url = this.router.url.split('?')[0].split('#')[0];
 
     const hideTopNavRoutes = [
-    '/login', '/admin-dashboard', '/employees', '/skill', '/incident', '/volunteerRegistration', '/candidateprofile'
+    '/login', '/adminDashboard', '/employees', '/skill', '/incident', '/volunteerReg', '/configuration'
   
     ];
 
     const showSideNavRoutes = [
-      '/admin-dashboard', 
+      '/adminDashboard', '/employees', '/skill', '/incident', '/volunteerReg', '/configuration'
     
     ];
 
-    this.showNav = !(url.startsWith('/admin-dashboard') ||
+    this.showNav = !(url.startsWith('/adminDashboard') ||
                      url.startsWith('/candidateprofile') ||
                      hideTopNavRoutes.includes(url));
 
-    this.showSideNav = url.startsWith('/applicationdetails') ||
+    this.showSideNav = url.startsWith('/adminDashboard') ||
                        url.startsWith('/candidateprofile') ||
                        showSideNavRoutes.includes(url);
   }

@@ -9,6 +9,8 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LoaderInterceptor } from '../../src/shared/interceptors/loader.interceptor';
 import { AuthInterceptor } from '../../src/shared/interceptors/auth.interceptor';
 
+import { NgSelectModule } from '@ng-select/ng-select';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ToastrModule } from 'ngx-toastr';
@@ -97,6 +99,7 @@ import { IncidentComponent } from './incident/incident.component';
     FormsModule,
     HttpClientModule,
     MatIconModule,
+    NgSelectModule,
 
  
       ToastrModule.forRoot({ // Configure toastr here

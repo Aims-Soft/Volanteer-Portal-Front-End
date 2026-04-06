@@ -1,15 +1,15 @@
 // * Keep or update to this: */
 .active-link {
-  background-color: #16BC88 !important;
-  color: white !important; /* Changed from rgb(255, 255, 255) to white */
+  background-color: #b2b6b2 !important;
+  color: rgb(14, 12, 12) !important; /* Changed from rgb(255, 255, 255) to white */
 }
 
 .active-link i {
-  color: white !important; /* Changed from rgb(255, 252, 252) to white */
+  color: rgb(12, 11, 11) !important; /* Changed from rgb(255, 252, 252) to white */
 }
 
 .active-link .text-dark { /* Target the text inside */
-  color: white !important;
+  color: rgb(20, 19, 19) !important;
 }
 
 /* Alternative: Target the span element */

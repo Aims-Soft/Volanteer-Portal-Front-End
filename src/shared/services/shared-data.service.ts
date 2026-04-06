@@ -32,9 +32,14 @@ export class SharedDataService {
     }
 
     public saveHttp(pageInterface: any,formFields: MyFormField[],url: string): Observable<any> {
-       console.log('validateToastr result:', this.valid.validateToastr(formFields));
+    //    console.log('validateToastr result:', this.valid.validateToastr(formFields));
 
-    if (this.valid.validateToastr(formFields) == true) {
+    // if (this.valid.validateToastr(formFields) == true) {
+    const isValid = this.valid.validateToastr(formFields);
+
+console.log('validateToastr result:', isValid);
+
+if (isValid === true) {
       // set page interface
       pageInterface = this.setInterface(pageInterface, formFields);
 
@@ -122,7 +127,8 @@ export class SharedDataService {
 
     if (error.error instanceof ErrorEvent) {
       // client side error
-      errorMessage = 'Error: ${error.error.message}';
+      // errorMessage = 'Error: ${error.error.message}';
+      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
     } else {
       // server side error
       errorMessage = 'Error Code: ${error.status}\nMessage: ${error.message}';

@@ -127,7 +127,7 @@ export class SideNavComponent implements OnInit, OnDestroy {
     localStorage.removeItem('authToken');
     sessionStorage.removeItem('userData');
 
-    this.router.navigate(['/signIn']);
+    this.router.navigate(['/login']);
   }
   // Toggle logo dropdown
   toggleLogoDropdown() {
