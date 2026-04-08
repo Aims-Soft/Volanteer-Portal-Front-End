@@ -7,162 +7,43 @@
         <h2 class="incidents-title mb-1">Recent Incidents</h2>
         <p class="incidents-subtitle mb-0">Urgent situations requiring immediate volunteer and professional support</p>
       </div>
-      <a href="#" class="view-all-link d-flex align-items-center gap-1">
-        View All Incidents <span>&rarr;</span>
+      <a href="javascript:void(0)" (click)="toggleViewAll()" class="view-all-link d-flex align-items-center gap-1">
+        {{ showAll ? 'Show Less' : 'View All Incidents' }} <span>&rarr;</span>
       </a>
     </div>
  
     <!-- Cards Grid -->
     <div class="row g-3">
  
-      <!-- Card 1 - High Priority -->
-      <div class="col-12 col-md-6 col-xl-4">
+      <!-- Dynamic Card -->
+      <div class="col-12 col-md-6 col-xl-4" *ngFor="let incident of displayedIncidents">
         <div class="incident-card h-100">
           <div class="d-flex justify-content-between align-items-center mb-3">
-            <span class="priority-badge priority-high">
-              <i class="bi bi-exclamation-triangle-fill me-1"></i> High Priority
+            <span class="priority-badge" [ngClass]="getPriorityClass(incident.priortyTypeTitle)">
+              <i [class]="getPriorityIcon(incident.priortyTypeTitle)" class="me-1"></i> {{ incident.priortyTypeTitle }}
             </span>
             <span class="time-label">
-              <i class="bi bi-clock me-1"></i> Started 2 days ago
+              <i class="bi bi-calendar me-1"></i> {{ formatDate(incident.date) }}
             </span>
           </div>
-          <h5 class="incident-name mb-1">Flood Relief</h5>
+          <h5 class="incident-name mb-1">{{ incident.incidentTitle }}</h5>
           <p class="incident-location mb-3">
-            <i class="bi bi-geo-alt me-1"></i> Region 4, Coastal District
+            <i class="bi bi-geo-alt me-1"></i> {{ incident.cityName }}, {{ incident.provinceName }}
           </p>
           <div class="d-flex flex-wrap gap-2 mb-3">
-            <span class="role-tag">Engineering (05)</span>
-            <span class="role-tag">Search &amp; Rescue (12)</span>
+            <span class="role-tag" *ngFor="let domain of getParsedDomains(incident.domains)">
+              {{ domain.domainTitle }} ({{ incident.volunteerNeeded }})
+            </span>
           </div>
-          <button class="btn btn-volunteer w-100">
+          <button class="btn btn-volunteer w-100" (click)="volunteerForIncident(incident.incidentID)">
             Volunteer for this <i class="bi bi-chevron-right ms-1"></i>
           </button>
         </div>
       </div>
  
-      <!-- Card 2 - Medium Priority -->
-      <div class="col-12 col-md-6 col-xl-4">
-        <div class="incident-card h-100">
-          <div class="d-flex justify-content-between align-items-center mb-3">
-            <span class="priority-badge priority-medium">
-              <i class="bi bi-exclamation-triangle-fill me-1"></i> Medium Priority
-            </span>
-            <span class="time-label">
-              <i class="bi bi-clock me-1"></i> Started 2 days ago
-            </span>
-          </div>
-          <h5 class="incident-name mb-1">Flood Relief</h5>
-          <p class="incident-location mb-3">
-            <i class="bi bi-geo-alt me-1"></i> Region 4, Coastal District
-          </p>
-          <div class="d-flex flex-wrap gap-2 mb-3">
-            <span class="role-tag">Engineering (05)</span>
-            <span class="role-tag">Search &amp; Rescue (12)</span>
-          </div>
-          <button class="btn btn-volunteer w-100">
-            Volunteer for this <i class="bi bi-chevron-right ms-1"></i>
-          </button>
-        </div>
-      </div>
- 
-      <!-- Card 3 - High Priority -->
-      <div class="col-12 col-md-6 col-xl-4">
-        <div class="incident-card h-100">
-          <div class="d-flex justify-content-between align-items-center mb-3">
-            <span class="priority-badge priority-high">
-              <i class="bi bi-exclamation-triangle-fill me-1"></i> High Priority
-            </span>
-            <span class="time-label">
-              <i class="bi bi-clock me-1"></i> Started 2 days ago
-            </span>
-          </div>
-          <h5 class="incident-name mb-1">Flood Relief</h5>
-          <p class="incident-location mb-3">
-            <i class="bi bi-geo-alt me-1"></i> Region 4, Coastal District
-          </p>
-          <div class="d-flex flex-wrap gap-2 mb-3">
-            <span class="role-tag">Engineering (05)</span>
-            <span class="role-tag">Search &amp; Rescue (12)</span>
-          </div>
-          <button class="btn btn-volunteer w-100">
-            Volunteer for this <i class="bi bi-chevron-right ms-1"></i>
-          </button>
-        </div>
-      </div>
- 
-      <!-- Card 4 - Low Priority -->
-      <div class="col-12 col-md-6 col-xl-4">
-        <div class="incident-card h-100">
-          <div class="d-flex justify-content-between align-items-center mb-3">
-            <span class="priority-badge priority-low">
-              <i class="bi bi-exclamation-triangle-fill me-1"></i> Low Priority
-            </span>
-            <span class="time-label">
-              <i class="bi bi-clock me-1"></i> Started 2 days ago
-            </span>
-          </div>
-          <h5 class="incident-name mb-1">Flood Relief</h5>
-          <p class="incident-location mb-3">
-            <i class="bi bi-geo-alt me-1"></i> Region 4, Coastal District
-          </p>
-          <div class="d-flex flex-wrap gap-2 mb-3">
-            <span class="role-tag">Engineering (05)</span>
-            <span class="role-tag">Search &amp; Rescue (12)</span>
-          </div>
-          <button class="btn btn-volunteer w-100">
-            Volunteer for this <i class="bi bi-chevron-right ms-1"></i>
-          </button>
-        </div>
-      </div>
- 
-      <!-- Card 5 - High Priority -->
-      <div class="col-12 col-md-6 col-xl-4">
-        <div class="incident-card h-100">
-          <div class="d-flex justify-content-between align-items-center mb-3">
-            <span class="priority-badge priority-high">
-              <i class="bi bi-exclamation-triangle-fill me-1"></i> High Priority
-            </span>
-            <span class="time-label">
-              <i class="bi bi-clock me-1"></i> Started 2 days ago
-            </span>
-          </div>
-          <h5 class="incident-name mb-1">Flood Relief</h5>
-          <p class="incident-location mb-3">
-            <i class="bi bi-geo-alt me-1"></i> Region 4, Coastal District
-          </p>
-          <div class="d-flex flex-wrap gap-2 mb-3">
-            <span class="role-tag">Engineering (05)</span>
-            <span class="role-tag">Search &amp; Rescue (12)</span>
-          </div>
-          <button class="btn btn-volunteer w-100">
-            Volunteer for this <i class="bi bi-chevron-right ms-1"></i>
-          </button>
-        </div>
-      </div>
- 
-      <!-- Card 6 - Low Priority -->
-      <div class="col-12 col-md-6 col-xl-4">
-        <div class="incident-card h-100">
-          <div class="d-flex justify-content-between align-items-center mb-3">
-            <span class="priority-badge priority-low">
-              <i class="bi bi-exclamation-triangle-fill me-1"></i> Low Priority
-            </span>
-            <span class="time-label">
-              <i class="bi bi-clock me-1"></i> Started 2 days ago
-            </span>
-          </div>
-          <h5 class="incident-name mb-1">Flood Relief</h5>
-          <p class="incident-location mb-3">
-            <i class="bi bi-geo-alt me-1"></i> Region 4, Coastal District
-          </p>
-          <div class="d-flex flex-wrap gap-2 mb-3">
-            <span class="role-tag">Engineering (05)</span>
-            <span class="role-tag">Search &amp; Rescue (12)</span>
-          </div>
-          <button class="btn btn-volunteer w-100">
-            Volunteer for this <i class="bi bi-chevron-right ms-1"></i>
-          </button>
-        </div>
+      <!-- Empty state when no incidents -->
+      <div *ngIf="displayedIncidents.length === 0" class="col-12 text-center py-5">
+        <p class="text-muted">No incidents available at the moment.</p>
       </div>
  
     </div>

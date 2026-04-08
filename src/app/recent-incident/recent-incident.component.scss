@@ -1,109 +1,108 @@
+.incidents-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #0d1b2a;
+}
 
- 
-  .incidents-title {
-    font-size: 1.75rem;
-    font-weight: 700;
-    color: #0d1b2a;
-  }
- 
-  .incidents-subtitle {
-    font-size: 0.95rem;
-    color: #6b7280;
-  }
- 
-  .view-all-link {
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: #c0304a;
-    text-decoration: none;
-    white-space: nowrap;
-  }
- 
-  .view-all-link:hover {
-    color: #9b1c33;
-  }
- 
-  /* Card */
-  .incident-card {
-    background: #ffffff;
-    border-radius: 14px;
-    border: 1px solid #e5e7eb;
-    padding: 1.25rem;
-    display: flex;
-    flex-direction: column;
-  }
- 
-  /* Priority badges */
-  .priority-badge {
-    display: inline-flex;
-    align-items: center;
-    font-size: 0.78rem;
-    font-weight: 600;
-    padding: 4px 10px;
-    border-radius: 20px;
-  }
- 
-  .priority-high {
-    background-color: #ffe4e8;
-    color: #c0304a;
-  }
- 
-  .priority-medium {
-    background-color: #dbeafe;
-    color: #2563eb;
-  }
- 
-  .priority-low {
-    background-color: #fef3c7;
-    color: #d97706;
-  }
- 
-  /* Time label */
-  .time-label {
-    font-size: 0.8rem;
-    color: #9ca3af;
-    display: flex;
-    align-items: center;
-  }
- 
-  /* Incident name */
-  .incident-name {
-    font-size: 1.15rem;
-    font-weight: 700;
-    color: #0d1b2a;
-  }
- 
-  /* Location */
-  .incident-location {
-    font-size: 0.85rem;
-    color: #6b7280;
-    display: flex;
-    align-items: center;
-  }
- 
-  /* Role tags */
-  .role-tag {
-    font-size: 0.78rem;
-    color: #374151;
-    background-color: #f3f4f6;
-    border: 1px solid #e5e7eb;
-    border-radius: 6px;
-    padding: 3px 10px;
-  }
- 
-  /* Volunteer button */
-  .btn-volunteer {
-    background-color: #0d1b2a;
-    color: #ffffff;
-    font-size: 0.9rem;
-    font-weight: 500;
-    border-radius: 8px;
-    padding: 10px 16px;
-    border: none;
-    margin-top: auto;
-  }
- 
-  .btn-volunteer:hover {
-    background-color: #1e3450;
-    color: #ffffff;
-  }
+.incidents-subtitle {
+  font-size: 0.95rem;
+  color: #6b7280;
+}
+
+.view-all-link {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #c0304a;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.view-all-link:hover {
+  color: #9b1c33;
+}
+
+/* Card */
+.incident-card {
+  background: #ffffff;
+  border-radius: 14px;
+  border: 1px solid #e5e7eb;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Priority badges */
+.priority-badge {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 20px;
+}
+
+.priority-high {
+  background-color: #ffe4e8;
+  color: #c0304a;
+}
+
+.priority-medium {
+  background-color: #dbeafe;
+  color: #2563eb;
+}
+
+.priority-low {
+  background-color: #fef3c7;
+  color: #d97706;
+}
+
+/* Time label */
+.time-label {
+  font-size: 0.8rem;
+  color: #9ca3af;
+  display: flex;
+  align-items: center;
+}
+
+/* Incident name */
+.incident-name {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #0d1b2a;
+}
+
+/* Location */
+.incident-location {
+  font-size: 0.85rem;
+  color: #6b7280;
+  display: flex;
+  align-items: center;
+}
+
+/* Role tags */
+.role-tag {
+  font-size: 0.78rem;
+  color: #374151;
+  background-color: #f3f4f6;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  padding: 3px 10px;
+}
+
+/* Volunteer button */
+.btn-volunteer {
+  background-color: #0d1b2a;
+  color: #ffffff;
+  font-size: 0.9rem;
+  font-weight: 500;
+  border-radius: 8px;
+  padding: 10px 16px;
+  border: none;
+  margin-top: auto;
+}
+
+.btn-volunteer:hover {
+  background-color: #1e3450;
+  color: #ffffff;
+}

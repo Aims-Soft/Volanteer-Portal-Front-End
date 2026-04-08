@@ -12,55 +12,59 @@
     <!-- Stats Cards Row -->
     <div class="row g-3 g-md-4 mb-4">
       
-      <!-- Total Volunteers -->
+      <!-- Total Volunteers Card -->
       <div class="col-12 col-sm-6 col-lg-3">
-        <div class="stat-card-dash">
+        <div class="stat-card-dash" style="cursor: pointer;" (click)="openVolunteersModal()">
           <div class="d-flex align-items-center gap-3 mb-3">
             <div class="stat-icon-dash" style="background-color: #ffe0e8;">
               <i class="bi bi-clipboard-check-fill" style="color: #FF2056;"></i>
             </div>
             <span class="stat-label-dash">TOTAL VOLUNTEERS</span>
           </div>
-          <h3 class="stat-value-dash">55</h3>
+          <h3 class="stat-value-dash">{{ totalVolunteers }}</h3>
+          <!-- <small class="text-muted">Click to view all</small> -->
         </div>
       </div>
       
-      <!-- Total Incidents -->
+      <!-- Total Incidents Card -->
       <div class="col-12 col-sm-6 col-lg-3">
-        <div class="stat-card-dash">
+        <div class="stat-card-dash" style="cursor: pointer;" (click)="openIncidentsModal()">
           <div class="d-flex align-items-center gap-3 mb-3">
             <div class="stat-icon-dash" style="background-color: #ffe0e8;">
               <i class="bi bi-shield-exclamation" style="color: #FF2056;"></i>
             </div>
             <span class="stat-label-dash">TOTAL INCIDENTS</span>
           </div>
-          <h3 class="stat-value-dash">20</h3>
+          <h3 class="stat-value-dash">{{ totalIncidents }}</h3>
+          <!-- <small class="text-muted">Click to view all</small> -->
         </div>
       </div>
       
-      <!-- Active Incidents -->
+      <!-- Active Incidents Card -->
       <div class="col-12 col-sm-6 col-lg-3">
-        <div class="stat-card-dash">
+        <div class="stat-card-dash" style="cursor: pointer;" (click)="openActiveIncidentsModal()">
           <div class="d-flex align-items-center gap-3 mb-3">
             <div class="stat-icon-dash" style="background-color: #ffe0e8;">
               <i class="bi bi-exclamation-triangle-fill" style="color: #FF2056;"></i>
             </div>
             <span class="stat-label-dash">ACTIVE INCIDENTS</span>
           </div>
-          <h3 class="stat-value-dash">12</h3>
+          <h3 class="stat-value-dash">{{ activeIncidents }}</h3>
+          <!-- <small class="text-muted">Click to view all</small> -->
         </div>
       </div>
       
-      <!-- Active Volunteers -->
+      <!-- Active Volunteers Card -->
       <div class="col-12 col-sm-6 col-lg-3">
-        <div class="stat-card-dash">
+        <div class="stat-card-dash" style="cursor: pointer;" (click)="openActiveVolunteersModal()">
           <div class="d-flex align-items-center gap-3 mb-3">
             <div class="stat-icon-dash" style="background-color: #ffe0e8;">
               <i class="bi bi-people-fill" style="color: #FF2056;"></i>
             </div>
             <span class="stat-label-dash">ACTIVE VOLUNTEERS</span>
           </div>
-          <h3 class="stat-value-dash">04</h3>
+          <h3 class="stat-value-dash">{{ activeVolunteers }}</h3>
+          <!-- <small class="text-muted">Click to view all</small> -->
         </div>
       </div>
       
@@ -72,7 +76,7 @@
       <!-- Volunteers by Domains Chart -->
       <div class="col-12 col-lg-6">
         <div class="chart-card">
-          <h5 class="fw-bold mb-4" style="color: #1e293b;">Volunteers by Domains</h5>
+          <h3 class="fw-bold mb-4" style="color: #1e293b;">Volunteers by Domains</h3>
           <div class="chart-container">
             <canvas id="volunteersChart"></canvas>
           </div>
@@ -82,7 +86,7 @@
       <!-- Crises by Priority Chart -->
       <div class="col-12 col-lg-6">
         <div class="chart-card">
-          <h5 class="fw-bold mb-4" style="color: #1e293b;">Crises by Priority</h5>
+          <h3 class="fw-bold mb-4" style="color: #1e293b;">Crises by Priority</h3>
           <div class="chart-container d-flex justify-content-center">
             <canvas id="priorityChart" style="max-width: 400px;"></canvas>
           </div>
@@ -98,44 +102,28 @@
       <div class="col-12 col-lg-6">
         <div class="list-card">
           <div class="d-flex justify-content-between align-items-center mb-4">
-            <h5 class="fw-bold mb-0" style="color: #1e293b;">Recent Registrations</h5>
+            <h3 class="fw-bold mb-0" style="color: #1e293b;">Recent Registrations</h3>
             <a href="#" class="text-decoration-none fw-semibold" style="color: #FF2056;">View All</a>
           </div>
           
-          <!-- Registration Item -->
-          <div class="registration-item">
+          <div *ngFor="let volunteer of volunteersList.slice(0, 3)" class="registration-item">
             <div class="d-flex align-items-center gap-3">
-              <div class="avatar-circle" style="background-color: #ffe0e8; color: #FF2056;">F</div>
-              <div class="flex-grow-1">
-                <h6 class="mb-0 fw-semibold">Farhan Sabir</h6>
-                <small class="text-muted">General</small>
+              <div class="avatar-circle" style="background-color: #ffe0e8; color: #FF2056;">
+                {{ volunteer.firstName?.charAt(0) || 'U' }}
               </div>
-              <button class="btn btn-outline-secondary btn-sm rounded-pill px-3">Profile</button>
+              <div class="flex-grow-1">
+                <h4 class="mb-0 fw-semibold">{{ volunteer.userName }} </h4>
+                <small class="text-muted">{{ volunteer.domain || 'General' }}</small>
+              </div>
+              <button class="btn btn-outline-secondary btn-sm rounded-pill px-3" (click)="viewProfile(volunteer.userID)">
+                Profile
+              </button>
             </div>
           </div>
           
-          <div class="registration-item">
-            <div class="d-flex align-items-center gap-3">
-              <div class="avatar-circle" style="background-color: #ffe0e8; color: #FF2056;">M</div>
-              <div class="flex-grow-1">
-                <h6 class="mb-0 fw-semibold">Muhammmad Maaz Ali</h6>
-                <small class="text-muted">Sar</small>
-              </div>
-              <button class="btn btn-outline-secondary btn-sm rounded-pill px-3">Profile</button>
-            </div>
+          <div *ngIf="volunteersList.length === 0" class="text-center py-4">
+            <p class="text-muted mb-0">No recent registrations</p>
           </div>
-          
-          <div class="registration-item">
-            <div class="d-flex align-items-center gap-3">
-              <div class="avatar-circle" style="background-color: #ffe0e8; color: #FF2056;">M</div>
-              <div class="flex-grow-1">
-                <h6 class="mb-0 fw-semibold">Muhammad Amad Ali</h6>
-                <small class="text-muted">Medical</small>
-              </div>
-              <button class="btn btn-outline-secondary btn-sm rounded-pill px-3">Profile</button>
-            </div>
-          </div>
-          
         </div>
       </div>
       
@@ -143,50 +131,26 @@
       <div class="col-12 col-lg-6">
         <div class="list-card">
           <div class="d-flex justify-content-between align-items-center mb-4">
-            <h5 class="fw-bold mb-0" style="color: #1e293b;">Recent Crises</h5>
+            <h3 class="fw-bold mb-0" style="color: #1e293b;">Recent Crises</h3>
             <a href="#" class="text-decoration-none fw-semibold" style="color: #FF2056;">View All</a>
           </div>
           
-          <!-- Crisis Item -->
-          <div class="crisis-item">
+          <div *ngFor="let incident of incidentsList.slice(0, 3)" class="crisis-item">
             <div class="d-flex justify-content-between align-items-center">
               <div>
-                <h6 class="mb-1 fw-semibold">Flood Releif</h6>
-                <small class="text-muted">Karachi, Pakistan</small>
+                <h4 class="mb-1 fw-semibold">{{ incident.incidentTitle }}</h4>
+                <small class="text-muted">{{ incident.cityName }}, {{ incident.provinceName }}</small>
               </div>
               <label class="toggle-switch">
-                <input type="checkbox" checked>
+                <input type="checkbox" [checked]="incident.status === 1">
                 <span class="toggle-slider"></span>
               </label>
             </div>
           </div>
           
-          <div class="crisis-item">
-            <div class="d-flex justify-content-between align-items-center">
-              <div>
-                <h6 class="mb-1 fw-semibold">Flood Releif</h6>
-                <small class="text-muted">Karachi, Pakistan</small>
-              </div>
-              <label class="toggle-switch">
-                <input type="checkbox" checked>
-                <span class="toggle-slider"></span>
-              </label>
-            </div>
+          <div *ngIf="incidentsList.length === 0" class="text-center py-4">
+            <p class="text-muted mb-0">No recent crises</p>
           </div>
-          
-          <div class="crisis-item">
-            <div class="d-flex justify-content-between align-items-center">
-              <div>
-                <h6 class="mb-1 fw-semibold">Flood Releif</h6>
-                <small class="text-muted">Karachi, Pakistan</small>
-              </div>
-              <label class="toggle-switch">
-                <input type="checkbox" checked>
-                <span class="toggle-slider"></span>
-              </label>
-            </div>
-          </div>
-          
         </div>
       </div>
       
@@ -194,3 +158,217 @@
     
   </div>
 </section>
+
+<!-- ==================== MODALS ==================== -->
+
+<!-- Total Volunteers Modal -->
+<div class="modal fade" id="volunteersModal" tabindex="-1" aria-labelledby="volunteersModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color: #FF2056; color: white;">
+        <h5 class="modal-title fw-bold" id="volunteersModalLabel">
+          <i class="bi bi-clipboard-check-fill me-2"></i> All Volunteers ({{ totalVolunteers }})
+        </h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="table-responsive">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Domain</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let volunteer of volunteersList; let i = index">
+                <td>{{ i + 1 }}</td>
+                <td>{{ volunteer.firstName }} {{ volunteer.lastName }}</td>
+                <td>{{ volunteer.email }}</td>
+                <td>{{ volunteer.domain || 'General' }}</td>
+                <td>
+                  <span class="badge" [ngClass]="volunteer.isActive ? 'bg-success' : 'bg-secondary'">
+                    {{ volunteer.isActive ? 'Active' : 'Inactive' }}
+                  </span>
+                </td>
+                <td>
+                  <button class="btn btn-sm btn-outline-primary" (click)="viewProfile(volunteer.userID)">
+                    View
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Total Incidents Modal -->
+<div class="modal fade" id="incidentsModal" tabindex="-1" aria-labelledby="incidentsModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color: #FF2056; color: white;">
+        <h5 class="modal-title fw-bold" id="incidentsModalLabel">
+          <i class="bi bi-shield-exclamation me-2"></i> All Incidents ({{ totalIncidents }})
+        </h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="table-responsive">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Title</th>
+                <th>Location</th>
+                <th>Priority</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let incident of incidentsList; let i = index">
+                <td>{{ i + 1 }}</td>
+                <td>{{ incident.incidentTitle }}</td>
+                <td>{{ incident.cityName }}, {{ incident.provinceName }}</td>
+                <td>
+                  <span class="badge" [ngClass]="{
+                    'bg-danger': incident.priortyTypeTitle?.includes('High'),
+                    'bg-warning': incident.priortyTypeTitle?.includes('Medium'),
+                    'bg-info': incident.priortyTypeTitle?.includes('Low')
+                  }">
+                    {{ incident.priortyTypeTitle }}
+                  </span>
+                </td>
+                <td>
+                  <span class="badge" [ngClass]="incident.status === 1 ? 'bg-success' : 'bg-secondary'">
+                    {{ incident.status === 1 ? 'Active' : 'Inactive' }}
+                  </span>
+                </td>
+                <td>
+                  <button class="btn btn-sm btn-outline-primary" (click)="viewIncident(incident.incidentID)">
+                    View
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Active Incidents Modal -->
+<div class="modal fade" id="activeIncidentsModal" tabindex="-1" aria-labelledby="activeIncidentsModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color: #FF2056; color: white;">
+        <h5 class="modal-title fw-bold" id="activeIncidentsModalLabel">
+          <i class="bi bi-exclamation-triangle-fill me-2"></i> Active Incidents ({{ activeIncidents }})
+        </h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="table-responsive">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Title</th>
+                <th>Location</th>
+                <th>Priority</th>
+                <th>Volunteers Needed</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let incident of activeIncidentsList; let i = index">
+                <td>{{ i + 1 }}</td>
+                <td>{{ incident.incidentTitle }}</td>
+                <td>{{ incident.cityName }}, {{ incident.provinceName }}</td>
+                <td>
+                  <span class="badge" [ngClass]="{
+                    'bg-danger': incident.priortyTypeTitle?.includes('High'),
+                    'bg-warning': incident.priortyTypeTitle?.includes('Medium'),
+                    'bg-info': incident.priortyTypeTitle?.includes('Low')
+                  }">
+                    {{ incident.priortyTypeTitle }}
+                  </span>
+                </td>
+                <td>{{ incident.volunteerNeeded || 0 }}</td>
+                <td>
+                  <button class="btn btn-sm btn-outline-primary" (click)="viewIncident(incident.incidentID)">
+                    View
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Active Volunteers Modal -->
+<div class="modal fade" id="activeVolunteersModal" tabindex="-1" aria-labelledby="activeVolunteersModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color: #FF2056; color: white;">
+        <h5 class="modal-title fw-bold" id="activeVolunteersModalLabel">
+          <i class="bi bi-people-fill me-2"></i> Active Volunteers ({{ activeVolunteers }})
+        </h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="table-responsive">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Domain</th>
+                <th>Joined Date</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let volunteer of activeVolunteersList; let i = index">
+                <td>{{ i + 1 }}</td>
+                <td>{{ volunteer.firstName }} {{ volunteer.lastName }}</td>
+                <td>{{ volunteer.email }}</td>
+                <td>{{ volunteer.domain || 'General' }}</td>
+                <td>{{ volunteer.createdDate | date:'mediumDate' }}</td>
+                <td>
+                  <button class="btn btn-sm btn-outline-primary" (click)="viewProfile(volunteer.userID)">
+                    View
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

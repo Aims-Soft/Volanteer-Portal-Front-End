@@ -1,203 +1,370 @@
-/* Page */
-  .sk-page {
-    background-color: #f4f6f9;
-    min-height: 100vh;
-  }
- 
-  .sk-page-title {
-    font-size: 1.6rem;
-    font-weight: 700;
-    color: #0d1526;
-  }
- 
-  .sk-page-sub {
-    font-size: 0.875rem;
-    color: #6b7280;
-  }
- 
-  /* Add Skills button */
-  .sk-btn-primary {
-    background-color: #e8194b;
-    color: #ffffff;
-    font-size: 0.875rem;
-    font-weight: 600;
-    border: none;
-    border-radius: 8px;
-    padding: 9px 18px;
-  }
- 
-  .sk-btn-primary:hover {
-    background-color: #c41440;
-    color: #ffffff;
-  }
- 
-  /* Skill Card */
-  .sk-card {
-    background-color: #131c30;
-    border-radius: 14px;
-    padding: 1.1rem 1.25rem 1.25rem;
-    border: none;
-  }
- 
-  .sk-card-title {
-    font-size: 1rem;
-    font-weight: 600;
-    color: #edf2fb;
-  }
- 
-  /* Icon buttons */
-  .sk-icon-btn {
-    background-color: rgba(255,255,255,0.08);
-    border: none;
-    border-radius: 7px;
-    width: 32px;
-    height: 32px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0;
-    cursor: pointer;
-    transition: background 0.15s;
-  }
- 
-  .sk-icon-btn:hover {
-    background-color: rgba(255,255,255,0.15);
-  }
- 
-  .sk-icon-edit {
-    color: #5b9ef8;
-    font-size: 0.8rem;
-  }
- 
-  .sk-icon-delete {
-    color: #e8194b;
-    font-size: 0.8rem;
-  }
- 
-  /* Tags */
-  .sk-tag {
-    display: inline-block;
-    font-size: 0.73rem;
-    color: #b8cce4;
-    border: 1px solid #263d5e;
-    border-radius: 999px;
-    padding: 3px 11px;
-    white-space: nowrap;
-    background-color: transparent;
-  }
- 
-  /* ── MODAL ── */
-  .sk-modal {
-    border-radius: 16px;
-    border: none;
-    overflow: hidden;
-  }
- 
-  .sk-modal-header {
-    border-bottom: 1px solid #e5e7eb;
-    padding: 1.25rem 1.5rem 1rem;
-  }
- 
-  .sk-modal-title {
-    font-size: 1.1rem;
-    font-weight: 700;
-    color: #0d1526;
-  }
- 
-  .sk-modal-close {
-    background: none;
-    border: none;
-    color: #9ca3af;
-    font-size: 1rem;
-    padding: 4px 8px;
-    line-height: 1;
-  }
- 
-  .sk-modal-close:hover {
-    color: #374151;
-  }
- 
-  .sk-modal-body {
-    padding: 1.5rem;
-    background-color: #f9fafb;
-  }
- 
-  .sk-form-label {
-    font-size: 0.82rem;
-    font-weight: 600;
-    color: #374151;
-    margin-bottom: 6px;
-    display: block;
-  }
- 
-  /* Custom select */
-  .sk-select-wrapper {
-    position: relative;
-  }
- 
-  .sk-select {
-    width: 100%;
-    appearance: none;
-    -webkit-appearance: none;
-    background-color: #ffffff;
-    border: 1px solid #d1d5db;
-    border-radius: 8px;
-    padding: 10px 40px 10px 14px;
-    font-size: 0.875rem;
-    color: #6b7280;
-    cursor: pointer;
-    outline: none;
-  }
- 
-  .sk-select:focus {
+/* ── Skill Component Styles ───────────────────────────────────────────────── */
+
+/* ── Page ── */
+.sk-page {
+  min-height: 100vh;
+  background: #f8fafc;
+}
+
+.sk-page-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #0d1526;
+}
+
+.sk-page-sub {
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+/* ── Search Box ── */
+.sk-search-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 7px 14px;
+  min-width: 220px;
+  transition: border-color 0.2s;
+
+  &:focus-within {
     border-color: #e8194b;
-    box-shadow: 0 0 0 3px rgba(232,25,75,0.1);
+    box-shadow: 0 0 0 3px rgba(232, 25, 75, 0.08);
   }
- 
-  .sk-select-icon {
-    position: absolute;
-    right: 14px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #9ca3af;
-    font-size: 0.8rem;
-    pointer-events: none;
-  }
- 
-  /* Modal footer */
-  .sk-modal-footer {
-    border-top: 1px solid #e5e7eb;
-    padding: 1rem 1.5rem;
-    background-color: #ffffff;
-    justify-content: flex-end;
-    gap: 10px;
-  }
- 
-  .sk-btn-cancel {
-    background-color: #ffffff;
-    color: #374151;
-    font-size: 0.875rem;
-    font-weight: 500;
-    border: 1px solid #d1d5db;
-    border-radius: 8px;
-    padding: 8px 20px;
-  }
- 
-  .sk-btn-cancel:hover {
-    background-color: #f3f4f6;
-  }
- 
-  .sk-btn-add {
-    background-color: #e8194b;
-    color: #ffffff;
-    font-size: 0.875rem;
-    font-weight: 600;
-    border: none;
-    border-radius: 8px;
-    padding: 8px 22px;
-  }
- 
-  .sk-btn-add:hover {
+}
+
+.sk-search-icon {
+  color: #9ca3af;
+  font-size: 0.9rem;
+  flex-shrink: 0;
+}
+
+.sk-search-input {
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 0.875rem;
+  color: #374151;
+  width: 100%;
+
+  &::placeholder { color: #9ca3af; }
+}
+
+/* ── Add Button ── */
+.sk-btn-primary {
+  background-color: #e8194b;
+  color: #fff;
+  font-size: 0.875rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  padding: 9px 18px;
+  white-space: nowrap;
+  transition: background 0.2s;
+
+  &:hover {
     background-color: #c41440;
-    color: #ffffff;
+    color: #fff;
   }
+}
+
+/* ── Skill Cards ── */
+.sk-card {
+  background: #1D293D;           /* black background */
+  border: 1px solid #1f2937;
+  border-radius: 14px;
+  padding: 18px;
+  height: 180px;                 /* fixed height */
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow 0.2s;
+
+  &:hover {
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.35);
+  }
+}
+
+.sk-card-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #FFFFFF;               /* white text on black */
+}
+
+/* Domain tags area — scrollable if overflow */
+.sk-card-domains {
+  flex: 1;
+  overflow-y: auto;
+  margin-top: 4px;
+
+  &::-webkit-scrollbar {
+    width: 3px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #374151;
+    border-radius: 4px;
+  }
+}
+
+/* ── Domain tag — plain display tag (used on cards) ── */
+.sk-tag {
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: #432DD7;
+  white-space: nowrap;
+  background: #EEF2FF;          /* dark pill on black card */
+  border-radius: 6px;
+  padding: 4px 10px;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* ── Domain tag wrapper (used inside modal only) ── */
+.sk-tag-wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: #f3f4f6;
+  border-radius: 6px;
+  padding: 3px 6px 3px 10px;
+  transition: background 0.15s;
+
+  .sk-tag {
+    background: transparent;
+    padding: 0;
+    color: #374151;
+  }
+
+  &:hover {
+    background: #e9eaec;
+
+    .sk-tag-actions {
+      opacity: 1;
+      width: auto;
+    }
+  }
+}
+
+/* Hidden until hover (card tags) */
+.sk-tag-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  opacity: 0;
+  width: 0;
+  overflow: hidden;
+  transition: opacity 0.15s, width 0.15s;
+}
+
+.sk-tag-btn {
+  width: 20px !important;
+  height: 20px !important;
+  padding: 0 !important;
+  background: transparent !important;
+
+  i { font-size: 0.65rem !important; }
+}
+
+/* ── Card action buttons — white circular pills ── */
+.sk-icon-btn {
+  width: 30px;
+  height: 30px;
+  border: none;
+  border-radius: 50%;            /* circular */
+  background: #ffffff;           /* white pill */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.15s, transform 0.15s;
+
+  &:hover {
+    background: #f3f4f6;
+    transform: scale(1.1);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+}
+
+/* Edit icon — blue */
+.sk-icon-edit {
+  color: #2563eb;
+  font-size: 0.75rem;
+}
+
+/* Delete icon — red */
+.sk-icon-delete {
+  color: #e8194b;
+  font-size: 0.75rem;
+}
+
+/* ══════════════════════════════════════
+   MODAL
+══════════════════════════════════════ */
+.sk-modal {
+  border: none;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
+}
+
+.sk-modal-header {
+  padding: 20px 24px 16px;
+  border-bottom: 1px solid #f3f4f6;
+  background: #fff;
+}
+
+.sk-modal-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #0d1526;
+  margin: 0;
+}
+
+.sk-modal-close {
+  background: none;
+  border: none;
+  color: #9ca3af;
+  font-size: 1rem;
+  padding: 4px 8px;
+  line-height: 1;
+
+  &:hover { color: #374151; }
+}
+
+.sk-modal-body {
+  padding: 24px;
+  background: #f9fafb;
+
+  /* Modal selected domain tags — always show × */
+  .sk-tag-wrap {
+    background: #e8f0fe;
+    padding: 4px 6px 4px 10px;
+
+    .sk-tag {
+      color: #1d4ed8;
+      background: transparent;
+      padding: 0;
+    }
+
+    .sk-tag-actions {
+      opacity: 1;
+      width: auto;
+      overflow: visible;
+    }
+
+    .sk-tag-btn {
+      background: transparent !important;
+
+      i {
+        color: #1d4ed8;
+        font-size: 0.75rem !important;
+      }
+
+      &:hover i { color: #e8194b; }
+    }
+
+    &:hover { background: #dbeafe; }
+  }
+}
+
+/* Form label */
+.sk-form-label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 6px;
+}
+
+/* Select wrapper */
+.sk-select-wrapper {
+  position: relative;
+}
+
+.sk-select {
+  width: 100%;
+  appearance: none;
+  -webkit-appearance: none;
+  background: #fff;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  padding: 10px 36px 10px 14px;
+  font-size: 0.875rem;
+  color: #374151;
+  outline: none;
+  cursor: pointer;
+  transition: border-color 0.2s;
+
+  &:focus {
+    border-color: #e8194b;
+    box-shadow: 0 0 0 3px rgba(232, 25, 75, 0.1);
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  option[value=""][disabled] { color: #9ca3af; }
+}
+
+.sk-select-icon {
+  position: absolute;
+  right: 13px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #9ca3af;
+  font-size: 0.75rem;
+  pointer-events: none;
+}
+
+/* Modal footer */
+.sk-modal-footer {
+  padding: 16px 24px;
+  border-top: 1px solid #f3f4f6;
+  background: #fff;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.sk-btn-cancel {
+  background: #fff;
+  color: #374151;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  padding: 8px 20px;
+  transition: background 0.15s;
+
+  &:hover { background: #f3f4f6; }
+}
+
+.sk-btn-add {
+  background: #e8194b;
+  color: #fff;
+  font-size: 0.875rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 22px;
+  transition: background 0.2s;
+
+  &:hover:not(:disabled) { background: #c41440; color: #fff; }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+/* ── Responsive ── */
+@media (max-width: 576px) {
+  .sk-search-wrap { min-width: 100%; }
+}
