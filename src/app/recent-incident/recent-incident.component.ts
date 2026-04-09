@@ -28,6 +28,21 @@ interface Domain {
   domainTitle: string;
 }
 
+interface Gender {
+  genderID: number;
+  genderName: string;
+}
+
+interface Degree {
+  degreeID: number;
+  degreeName: string;
+}
+
+interface Experience {
+  experienceID: number;
+  experienceTitle: string;
+}
+
 interface UserVerification {
   userID: number;
   userName: string;
@@ -40,7 +55,15 @@ interface UserVerification {
   cityName: string;
   provinceID: number;
   provinceName: string;
-  domains: string;
+  physicallyFit: number;
+  age: number;
+  genderID: number;
+  genderName: string;
+  degreeID: number;
+  degreeName: string;
+  experienceID: number;
+  experienceTitle: string;
+  domains?: string;
 }
 
 @Component({
@@ -54,32 +77,38 @@ export class RecentIncidentComponent implements OnInit {
   displayedIncidents: Incident[] = [];
   showAll = false;
 
-  // Modal state
+  // ── Modal state ────────────────────────────────────────────────────────────
   selectedIncident: Incident | null = null;
-  email: string          = '';
-  otpCode: string        = '';
-  isOtpSent: boolean     = false;
-  isOtpVerified: boolean = false;
-  isLoading: boolean     = false;
+  email: string           = '';
+  otpCode: string         = '';
+  isOtpSent: boolean      = false;
+  isOtpVerified: boolean  = false;
+  isLoading: boolean      = false;
   userData: UserVerification | null = null;
-
-  // true = existing user → fields are pre-filled & disabled
   isExistingUser: boolean = false;
 
-  // Registration form fields
-  fullName: string            = '';
-  cnic: string                = '';
-  phoneNumber: string         = '';
-  address: string             = '';
-  provinceID: number | null   = null;
-  cityID: number | null       = null;
-  selectedDomainID: number | null = null;
+  // ── Form fields (ALL editable regardless of existing/new user) ─────────────
+  fullName: string             = '';
+  cnic: string                 = '';
+  phoneNumber: string          = '';
+  address: string              = '';
+  age: number | null           = null;
+  genderID: number | null      = null;
+  physicallyFit: number | null = null;
+  degreeID: number | null      = null;
+  experienceID: number | null  = null;
+  provinceID: number | null    = null;
+  cityID: number | null        = null;
+  selectedDomains: number[]    = [];
 
-  // Lookups
-  provinceList: any[]   = [];
-  cityList: any[]       = [];
-  filteredCities: any[] = [];
-  domainList: Domain[]  = [];
+  // ── Lookups ────────────────────────────────────────────────────────────────
+  provinceList: any[]      = [];
+  cityList: any[]          = [];
+  filteredCities: any[]    = [];
+  domainList: Domain[]     = [];
+  genderList: Gender[]     = [];
+  degreeList: Degree[]     = [];
+  experienceList: Experience[] = [];
 
   constructor(
     private dataService: SharedDataService,
@@ -92,6 +121,9 @@ export class RecentIncidentComponent implements OnInit {
     this.loadProvinces();
     this.loadCities();
     this.loadDomains();
+    this.loadGenders();
+    this.loadDegrees();
+    this.loadExperiences();
   }
 
   // ── Fetch Incidents ────────────────────────────────────────────────────────
@@ -144,15 +176,53 @@ export class RecentIncidentComponent implements OnInit {
     });
   }
 
+  loadGenders(): void {
+    this.dataService.getHttp('trainer-api/Trainer/getGender').subscribe({
+      next: (res: any) => { this.genderList = res?.data ?? res ?? []; },
+      error: (err: any) => { console.error('Gender error:', err); }
+    });
+  }
+
+  loadDegrees(): void {
+    this.dataService.getHttp('user-api/User/getDegree').subscribe({
+      next: (res: any) => { this.degreeList = res?.data ?? res ?? []; },
+      error: (err: any) => { console.error('Degree error:', err); }
+    });
+  }
+
+  loadExperiences(): void {
+    this.dataService.getHttp('trainer-api/Job/getExperience').subscribe({
+      next: (res: any) => { this.experienceList = res?.data ?? res ?? []; },
+      error: (err: any) => { console.error('Experience error:', err); }
+    });
+  }
+
   onProvinceChange(): void {
-    if (this.isExistingUser) return; // locked for existing users
     this.filteredCities = this.provinceID
       ? this.cityList.filter((c: any) => c.provinceID === this.provinceID)
       : [];
     this.cityID = null;
   }
 
-  // ── Display ────────────────────────────────────────────────────────────────
+  // ── Domain multi-select ────────────────────────────────────────────────────
+
+  onDomainSelect(event: any): void {
+    const id = Number(event.target.value);
+    if (id && !this.selectedDomains.includes(id)) {
+      this.selectedDomains = [...this.selectedDomains, id];
+    }
+    event.target.value = '';
+  }
+
+  removeDomain(id: number): void {
+    this.selectedDomains = this.selectedDomains.filter(d => d !== id);
+  }
+
+  getDomainName(id: number): string {
+    return this.domainList.find(d => d.domainID === id)?.domainTitle ?? '';
+  }
+
+  // ── Display helpers ────────────────────────────────────────────────────────
 
   updateDisplayedIncidents(): void {
     this.displayedIncidents = this.showAll
@@ -251,50 +321,46 @@ export class RecentIncidentComponent implements OnInit {
 
   checkUserAndProceed(): void {
     this.isLoading = true;
-    this.dataService
-      .getHttp('auth-api/userVerification', { email: this.email })
-      .subscribe({
-        next: (res: any) => {
-          this.isLoading = false;
-          console.log('userVerification raw:', res);
+    this.dataService.getHttp('auth-api/userVerification', { email: this.email }).subscribe({
+      next: (res: any) => {
+        this.isLoading = false;
+        console.log('userVerification raw response:', res);
 
-          // API may return array OR single object OR wrapped in .data
-          let userData: UserVerification | null = null;
+        // Handle array / wrapped / direct object responses
+        let userData: UserVerification | null = null;
+        if (Array.isArray(res) && res.length > 0) {
+          userData = res[0]?.userID ? res[0] : null;
+        } else if (Array.isArray(res?.data) && res.data.length > 0) {
+          userData = res.data[0]?.userID ? res.data[0] : null;
+        } else if (res?.userID) {
+          userData = res;
+        }
 
-          if (Array.isArray(res) && res.length > 0) {
-            // ← your API returns an array
-            userData = res[0]?.userID ? res[0] : null;
-          } else if (Array.isArray(res?.data) && res.data.length > 0) {
-            userData = res.data[0]?.userID ? res.data[0] : null;
-          } else if (res?.userID) {
-            userData = res;
-          }
-
-          if (userData) {
-            // ── EXISTING USER ──────────────────────────────────────────────
-            this.userData       = userData;
-            this.isExistingUser = true;
-            this.populateFormWithUserData(userData);
-            this.toastr.info('Welcome back! Your information has been loaded.');
-          } else {
-            // ── NEW USER ───────────────────────────────────────────────────
-            this.userData       = null;
-            this.isExistingUser = false;
-            this.resetRegistrationForm();
-            this.toastr.info('Please complete your registration details.');
-          }
-
-          this.switchToRegistrationModal();
-        },
-        error: (err: any) => {
-          this.isLoading      = false;
+        if (userData) {
+          console.log('Existing user found:', userData);
+          this.userData       = userData;
+          this.isExistingUser = true;
+          this.populateFormWithUserData(userData);
+          this.toastr.info('Welcome back! Your information has been loaded. You can edit if needed.');
+        } else {
+          console.log('No existing user — new registration');
           this.userData       = null;
           this.isExistingUser = false;
           this.resetRegistrationForm();
-          console.error('userVerification error:', err);
-          this.switchToRegistrationModal();
+          this.toastr.info('Please fill in your details to register.');
         }
-      });
+
+        this.switchToRegistrationModal();
+      },
+      error: (err: any) => {
+        this.isLoading      = false;
+        this.userData       = null;
+        this.isExistingUser = false;
+        this.resetRegistrationForm();
+        console.error('userVerification error:', err);
+        this.switchToRegistrationModal();
+      }
+    });
   }
 
   private switchToRegistrationModal(): void {
@@ -306,90 +372,193 @@ export class RecentIncidentComponent implements OnInit {
     }, 400);
   }
 
-  // ── Populate existing user data into form ──────────────────────────────────
+  // ── Populate all fields from existing user — all remain EDITABLE ───────────
 
   populateFormWithUserData(u: UserVerification): void {
-    this.fullName    = u.userName  || '';
-    this.email       = u.email     || this.email;
-    this.cnic        = u.cnic      || '';
-    this.phoneNumber = u.contactNo || '';
-    this.address     = u.address   || '';
+    this.fullName      = u.userName    || '';
+    this.email         = u.email       || this.email;
+    this.cnic          = u.cnic        || '';
+    this.phoneNumber   = u.contactNo   || '';
+    this.address       = u.address     || '';
+    this.age           = u.age         > 0 ? u.age : null;
+    this.genderID      = u.genderID    || null;
+    this.physicallyFit = u.physicallyFit ?? null;
+    this.degreeID      = u.degreeID    || null;
+    this.experienceID  = u.experienceID || null;
 
+    // Province → filter cities → set city
     if (u.provinceID) {
       this.provinceID     = u.provinceID;
-      // pre-filter cities without resetting cityID
       this.filteredCities = this.cityList.filter(
         (c: any) => c.provinceID === u.provinceID
       );
-      setTimeout(() => { this.cityID = u.cityID; }, 150);
+      // Set cityID after filteredCities is populated
+      setTimeout(() => { this.cityID = u.cityID ?? null; }, 150);
     }
 
+    // Parse domains JSON string → populate selectedDomains array
     if (u.domains) {
       try {
-        const domains: { domainID: number; domainTitle: string }[] =
+        const parsed: { domainID: number; domainTitle: string }[] =
           JSON.parse(u.domains);
-        if (domains?.length) this.selectedDomainID = domains[0].domainID;
-      } catch { /* ignore */ }
-    }
-  }
-
-  // ── Save ───────────────────────────────────────────────────────────────────
-
-  saveVolunteerRegistration(): void {
-    if (!this.validateRegistrationForm()) return;
-    this.isLoading = true;
-
-    const payload = {
-      userID:     this.userData?.userID ?? 0,
-      email:      this.email,
-      userName:   this.fullName,
-      cnic:       this.cnic,
-      contactNo:  this.phoneNumber,
-      address:    this.address,
-      provinceID: this.provinceID,
-      cityID:     this.cityID,
-      domainID:   this.selectedDomainID,
-      incidentID: this.selectedIncident?.incidentID,
-      spType:     this.isExistingUser ? 'update' : 'insert'
-    };
-
-    console.log('Payload →', JSON.stringify(payload, null, 2));
-
-    this.dataService.postDirect('auth-api/saveUser', payload).subscribe({
-      next: () => {
-        this.isLoading = false;
-        this.toastr.success(
-          this.isExistingUser
-            ? 'Volunteered for incident successfully!'
-            : 'Registration complete! You have volunteered successfully.'
-        );
-        const el = document.getElementById('volunteerRegistrationModal');
-        if (el) bootstrap.Modal.getInstance(el)?.hide();
-        this.resetModal();
-      },
-      error: (err: any) => {
-        this.isLoading = false;
-        console.error('Save error:', err);
-        this.toastr.error('Failed to complete registration. Please try again.');
+        if (parsed && parsed.length > 0) {
+          // Deduplicate by domainID
+          const seen = new Set<number>();
+          this.selectedDomains = parsed
+            .filter(d => {
+              if (seen.has(d.domainID)) return false;
+              seen.add(d.domainID);
+              return true;
+            })
+            .map(d => d.domainID);
+        }
+      } catch (e) {
+        console.error('Error parsing user domains:', e);
+        this.selectedDomains = [];
       }
+    }
+
+    console.log('Form populated:', {
+      fullName: this.fullName,
+      cnic: this.cnic,
+      age: this.age,
+      genderID: this.genderID,
+      physicallyFit: this.physicallyFit,
+      degreeID: this.degreeID,
+      experienceID: this.experienceID,
+      provinceID: this.provinceID,
+      cityID: this.cityID,
+      selectedDomains: this.selectedDomains
     });
   }
 
   // ── Validation ─────────────────────────────────────────────────────────────
 
   validateRegistrationForm(): boolean {
-    if (!this.fullName.trim())    { this.toastr.error('Full name is required');    return false; }
-    if (!this.cnic.trim())        { this.toastr.error('CNIC is required');         return false; }
-    if (!this.phoneNumber.trim()) { this.toastr.error('Phone number is required'); return false; }
-    if (!this.address.trim())     { this.toastr.error('Address is required');      return false; }
-    if (!this.provinceID)         { this.toastr.error('Province is required');     return false; }
-    if (!this.cityID)             { this.toastr.error('City is required');         return false; }
-    if (!this.selectedDomainID)   { this.toastr.error('Domain is required');       return false; }
+    if (!this.fullName.trim())       { this.toastr.error('Full name is required');        return false; }
+    if (!this.cnic.trim())           { this.toastr.error('CNIC is required');             return false; }
+    if (!this.age || this.age < 1)   { this.toastr.error('Age is required');              return false; }
+    if (!this.genderID)              { this.toastr.error('Gender is required');           return false; }
+    if (!this.phoneNumber.trim())    { this.toastr.error('Phone number is required');     return false; }
+    if (this.physicallyFit === null) { this.toastr.error('Physical fitness is required'); return false; }
+    if (!this.address.trim())        { this.toastr.error('Address is required');          return false; }
+    if (!this.degreeID)              { this.toastr.error('Degree is required');           return false; }
+    if (!this.experienceID)          { this.toastr.error('Experience is required');       return false; }
+    if (!this.provinceID)            { this.toastr.error('Province is required');         return false; }
+    if (!this.cityID)                { this.toastr.error('City is required');             return false; }
+    if (this.selectedDomains.length === 0) { this.toastr.error('At least one domain is required'); return false; }
     return true;
   }
 
   isValidEmail(email: string): boolean {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  }
+
+  // ── Complete Registration ──────────────────────────────────────────────────
+  //
+  // EXISTING USER: saveUser(spType:'update') with current form values → applyForIncident
+  // NEW USER:      saveUser(spType:'insert') → userVerification to get userID → applyForIncident
+
+  saveVolunteerRegistration(): void {
+    if (!this.validateRegistrationForm()) return;
+    this.isLoading = true;
+
+    const payload = {
+      userID:        this.isExistingUser ? (this.userData?.userID ?? 0) : 0,
+      userName:      this.fullName.trim(),
+      email:         this.email.trim(),
+      json:          JSON.stringify(this.selectedDomains),
+      cnic:          this.cnic.trim(),
+      age:           Number(this.age),
+      genderID:      Number(this.genderID),
+      cityID:        Number(this.cityID),
+      countryID:     1,
+      physicallyFit: Number(this.physicallyFit),
+      contactNo:     this.phoneNumber.trim(),
+      address:       this.address.trim(),
+      roleID:        1,
+      userTypeID:    1,
+      degreeID:      Number(this.degreeID),
+      experienceID:  Number(this.experienceID),
+      spType:        this.isExistingUser ? 'insert' : 'insert'
+    };
+
+    console.log('saveUser payload:', JSON.stringify(payload, null, 2));
+
+    this.dataService.postDirect('auth-api/saveUser', payload).subscribe({
+      next: (res: any) => {
+        console.log('saveUser response:', res);
+
+        if (this.isExistingUser && this.userData?.userID) {
+          // Existing user — userID already known, apply directly
+          this.applyForIncident(this.userData.userID);
+        } else {
+          // New user — fetch userID from verification then apply
+          this.fetchNewUserIDAndApply();
+        }
+      },
+      error: (err: any) => {
+        this.isLoading = false;
+        console.error('saveUser error:', err);
+        this.toastr.error('Failed to save. Please try again.');
+      }
+    });
+  }
+
+  private fetchNewUserIDAndApply(): void {
+    this.dataService.getHttp('auth-api/userVerification', { email: this.email }).subscribe({
+      next: (res: any) => {
+        console.log('userVerification after save:', res);
+
+        let newUserID: number | null = null;
+        if (Array.isArray(res) && res.length > 0 && res[0]?.userID) {
+          newUserID = res[0].userID;
+        } else if (Array.isArray(res?.data) && res.data.length > 0) {
+          newUserID = res.data[0]?.userID ?? null;
+        } else if (res?.userID) {
+          newUserID = res.userID;
+        }
+
+        if (newUserID) {
+          this.applyForIncident(newUserID);
+        } else {
+          this.isLoading = false;
+          this.toastr.error('Could not retrieve user ID. Please try again.');
+        }
+      },
+      error: (err: any) => {
+        this.isLoading = false;
+        console.error('userVerification after save error:', err);
+        this.toastr.error('Registration saved but could not apply. Please try again.');
+      }
+    });
+  }
+
+  private applyForIncident(userID: number): void {
+    const applyPayload = {
+      applicantVolunteerID: 0,
+      userID:               userID,
+      incidentID:           this.selectedIncident?.incidentID ?? 0,
+      spType:               'insert'
+    };
+
+    console.log('applyForIncident payload:', JSON.stringify(applyPayload, null, 2));
+
+    this.dataService.postDirect('user-api/User/saveApplicantUser', applyPayload).subscribe({
+      next: (res: any) => {
+        this.isLoading = false;
+        console.log('applyForIncident response:', res);
+        this.toastr.success('You have successfully volunteered for this incident!');
+        const el = document.getElementById('volunteerRegistrationModal');
+        if (el) bootstrap.Modal.getInstance(el)?.hide();
+        this.resetModal();
+      },
+      error: (err: any) => {
+        this.isLoading = false;
+        console.error('applyForIncident error:', err);
+        this.toastr.error('Could not apply for incident. Please try again.');
+      }
+    });
   }
 
   // ── Reset ──────────────────────────────────────────────────────────────────
@@ -405,14 +574,19 @@ export class RecentIncidentComponent implements OnInit {
   }
 
   resetRegistrationForm(): void {
-    this.fullName         = '';
-    this.cnic             = '';
-    this.phoneNumber      = '';
-    this.address          = '';
-    this.provinceID       = null;
-    this.cityID           = null;
-    this.selectedDomainID = null;
-    this.filteredCities   = [];
+    this.fullName        = '';
+    this.cnic            = '';
+    this.phoneNumber     = '';
+    this.address         = '';
+    this.age             = null;
+    this.genderID        = null;
+    this.physicallyFit   = null;
+    this.degreeID        = null;
+    this.experienceID    = null;
+    this.provinceID      = null;
+    this.cityID          = null;
+    this.selectedDomains = [];
+    this.filteredCities  = [];
   }
 
   closeRegistrationModal(): void {

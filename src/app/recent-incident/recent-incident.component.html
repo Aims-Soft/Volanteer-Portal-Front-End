@@ -14,7 +14,7 @@
 
       <div class="modal-body ev-body">
 
-        <!-- Email Address row -->
+        <!-- Email row -->
         <div class="ev-row mb-3">
           <label class="ev-label">Email Address</label>
           <div class="d-flex gap-2 align-items-center">
@@ -25,16 +25,13 @@
               [(ngModel)]="email"
               [disabled]="isOtpSent || isLoading"
             />
-            <button
-              class="btn ev-btn"
-              (click)="sendOTP()"
-              [disabled]="isLoading || isOtpSent">
+            <button class="btn ev-btn" (click)="sendOTP()" [disabled]="isLoading || isOtpSent">
               {{ isLoading && !isOtpSent ? 'Sending...' : 'Get Code' }}
             </button>
           </div>
         </div>
 
-        <!-- Verification Code row (shown after OTP sent) -->
+        <!-- OTP row -->
         <div class="ev-row" *ngIf="isOtpSent">
           <label class="ev-label">Verification Code</label>
           <div class="d-flex gap-2 align-items-center">
@@ -45,10 +42,7 @@
               [(ngModel)]="otpCode"
               [disabled]="isLoading"
             />
-            <button
-              class="btn ev-btn"
-              (click)="verifyOTP()"
-              [disabled]="isLoading">
+            <button class="btn ev-btn" (click)="verifyOTP()" [disabled]="isLoading">
               {{ isLoading ? 'Verifying...' : 'Varify' }}
             </button>
           </div>
@@ -81,15 +75,13 @@
           <div>
             <strong>{{ email }}</strong>
             <div class="small text-muted" *ngIf="isExistingUser">
-              Your existing profile has been loaded. Fields are locked.
+              Welcome back! Your info has been loaded — you can update any field before submitting.
             </div>
             <div class="small text-muted" *ngIf="!isExistingUser">
               New registration — please fill in your details below.
             </div>
           </div>
-          <span class="ms-auto badge"
-                [ngClass]="isExistingUser ? 'bg-success' : 'bg-primary'"
-                style="font-size:0.72rem;">
+          <span class="ms-auto badge" [ngClass]="isExistingUser ? 'bg-success' : 'bg-primary'" style="font-size:0.72rem;">
             {{ isExistingUser ? 'Existing User' : 'New User' }}
           </span>
         </div>
@@ -99,59 +91,88 @@
           <!-- Full Name -->
           <div class="col-md-6">
             <label class="form-label fw-semibold">Full Name <span class="text-danger">*</span></label>
-            <input
-              type="text"
-              class="form-control volunteer-input"
-              [(ngModel)]="fullName"
-              placeholder="Enter full name"
-              [disabled]="isExistingUser"
-            />
+            <input type="text" class="form-control volunteer-input"
+              [(ngModel)]="fullName" placeholder="Enter full name" />
           </div>
 
           <!-- CNIC -->
           <div class="col-md-6">
             <label class="form-label fw-semibold">CNIC <span class="text-danger">*</span></label>
-            <input
-              type="text"
-              class="form-control volunteer-input"
-              [(ngModel)]="cnic"
-              placeholder="00000-0000000-0"
-              [disabled]="isExistingUser"
-            />
+            <input type="text" class="form-control volunteer-input"
+              [(ngModel)]="cnic" placeholder="00000-0000000-0" />
+          </div>
+
+          <!-- Age -->
+          <div class="col-md-6">
+            <label class="form-label fw-semibold">Age <span class="text-danger">*</span></label>
+            <input type="number" class="form-control volunteer-input"
+              [(ngModel)]="age" placeholder="Enter age" min="1" />
+          </div>
+
+          <!-- Gender -->
+          <div class="col-md-6">
+            <label class="form-label fw-semibold">Gender <span class="text-danger">*</span></label>
+            <select class="form-select volunteer-select" [(ngModel)]="genderID">
+              <option [ngValue]="null" disabled>Select Gender</option>
+              <option *ngFor="let g of genderList" [ngValue]="g.genderID">{{ g.genderName }}</option>
+            </select>
           </div>
 
           <!-- Phone Number -->
           <div class="col-md-6">
             <label class="form-label fw-semibold">Phone Number <span class="text-danger">*</span></label>
-            <input
-              type="text"
-              class="form-control volunteer-input"
-              [(ngModel)]="phoneNumber"
-              placeholder="0300-1234567"
-              [disabled]="isExistingUser"
-            />
+            <input type="text" class="form-control volunteer-input"
+              [(ngModel)]="phoneNumber" placeholder="0300-1234567" />
+          </div>
+
+          <!-- Physically Fit -->
+          <div class="col-md-6">
+            <label class="form-label fw-semibold d-block">
+              Physically fit for demanding tasks? <span class="text-danger">*</span>
+            </label>
+            <div class="d-flex gap-3 mt-2">
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="physicallyFit"
+                  [(ngModel)]="physicallyFit" [value]="1" id="fitYes" />
+                <label class="form-check-label" for="fitYes">Yes</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="physicallyFit"
+                  [(ngModel)]="physicallyFit" [value]="0" id="fitNo" />
+                <label class="form-check-label" for="fitNo">No</label>
+              </div>
+            </div>
           </div>
 
           <!-- Address -->
-          <div class="col-md-6">
+          <div class="col-12">
             <label class="form-label fw-semibold">Address <span class="text-danger">*</span></label>
-            <input
-              type="text"
-              class="form-control volunteer-input"
-              [(ngModel)]="address"
-              placeholder="Enter your address"
-              [disabled]="isExistingUser"
-            />
+            <input type="text" class="form-control volunteer-input"
+              [(ngModel)]="address" placeholder="Enter your address" />
+          </div>
+
+          <!-- Last Degree -->
+          <div class="col-md-6">
+            <label class="form-label fw-semibold">Last Degree <span class="text-danger">*</span></label>
+            <select class="form-select volunteer-select" [(ngModel)]="degreeID">
+              <option [ngValue]="null" disabled>Select Degree</option>
+              <option *ngFor="let d of degreeList" [ngValue]="d.degreeID">{{ d.degreeName }}</option>
+            </select>
+          </div>
+
+          <!-- Experience -->
+          <div class="col-md-6">
+            <label class="form-label fw-semibold">Experience <span class="text-danger">*</span></label>
+            <select class="form-select volunteer-select" [(ngModel)]="experienceID">
+              <option [ngValue]="null" disabled>Select Experience</option>
+              <option *ngFor="let e of experienceList" [ngValue]="e.experienceID">{{ e.experienceTitle }}</option>
+            </select>
           </div>
 
           <!-- Province -->
           <div class="col-md-6">
             <label class="form-label fw-semibold">Province <span class="text-danger">*</span></label>
-            <select
-              class="form-select volunteer-select"
-              [(ngModel)]="provinceID"
-              (change)="onProvinceChange()"
-              [disabled]="isExistingUser">
+            <select class="form-select volunteer-select" [(ngModel)]="provinceID" (change)="onProvinceChange()">
               <option [ngValue]="null" disabled>Select Province</option>
               <option *ngFor="let p of provinceList" [ngValue]="p.provinceID">{{ p.provinceName }}</option>
             </select>
@@ -160,37 +181,32 @@
           <!-- City -->
           <div class="col-md-6">
             <label class="form-label fw-semibold">City <span class="text-danger">*</span></label>
-            <select
-              class="form-select volunteer-select"
-              [(ngModel)]="cityID"
-              [disabled]="!provinceID || isExistingUser">
+            <select class="form-select volunteer-select" [(ngModel)]="cityID" [disabled]="!provinceID">
               <option [ngValue]="null" disabled>Select City</option>
               <option *ngFor="let c of filteredCities" [ngValue]="c.cityID">{{ c.cityName }}</option>
             </select>
           </div>
 
-          <!-- Domain -->
+          <!-- Domain multi-select -->
           <div class="col-12">
-            <label class="form-label fw-semibold">Domain <span class="text-danger">*</span></label>
-            <select
-              class="form-select volunteer-select"
-              [(ngModel)]="selectedDomainID"
-              [disabled]="isExistingUser">
-              <option [ngValue]="null" disabled>Select Domain</option>
-              <option *ngFor="let d of domainList" [ngValue]="d.domainID">{{ d.domainTitle }}</option>
+            <label class="form-label fw-semibold">Domain <span class="text-danger">*</span> <small class="text-muted fw-normal">(select multiple)</small></label>
+            <select class="form-select volunteer-select" (change)="onDomainSelect($event)">
+              <option value="" disabled selected hidden>Select Domain</option>
+              <option *ngFor="let d of domainList" [value]="d.domainID">{{ d.domainTitle }}</option>
             </select>
+
+            <!-- Selected domain pills -->
+            <div class="d-flex flex-wrap gap-2 mt-2" *ngIf="selectedDomains.length > 0">
+              <span
+                *ngFor="let id of selectedDomains"
+                class="badge rounded-pill d-flex align-items-center gap-1"
+                style="background:#ffe4ec; color:#c0304a; font-size:0.78rem; padding:6px 10px; font-weight:500;">
+                {{ getDomainName(id) }}
+                <i class="bi bi-x ms-1" style="cursor:pointer; font-size:0.85rem;" (click)="removeDomain(id)"></i>
+              </span>
+            </div>
           </div>
 
-        </div>
-
-        <!-- Locked notice for existing users -->
-        <div class="mt-3 p-3 rounded-3 bg-warning-subtle border border-warning-subtle d-flex gap-2 align-items-start"
-             *ngIf="isExistingUser">
-          <i class="bi bi-lock-fill text-warning mt-1"></i>
-          <small class="text-muted">
-            Your profile data is loaded from your existing account and cannot be changed here.
-            Click <strong>Complete Registration</strong> to volunteer for this incident.
-          </small>
         </div>
 
       </div>
@@ -199,12 +215,9 @@
         <button type="button" class="btn btn-cancel" data-bs-dismiss="modal" (click)="closeRegistrationModal()">
           Cancel
         </button>
-        <button
-          type="button"
-          class="btn btn-volunteer"
-          (click)="saveVolunteerRegistration()"
-          [disabled]="isLoading">
-          {{ isLoading ? 'Saving...' : 'Complete Registration' }}
+        <button type="button" class="btn btn-volunteer" (click)="saveVolunteerRegistration()" [disabled]="isLoading">
+          <span *ngIf="isLoading" class="spinner-border spinner-border-sm me-2" role="status"></span>
+          {{ isLoading ? 'Processing...' : 'Complete Registration' }}
         </button>
       </div>
 
@@ -219,7 +232,6 @@
 <section class="bg-light py-5">
   <div class="container-fluid px-4">
 
-    <!-- Header -->
     <div class="d-flex justify-content-between align-items-start mb-4">
       <div>
         <h2 class="incidents-title mb-1">Recent Incidents</h2>
@@ -230,7 +242,6 @@
       </a>
     </div>
 
-    <!-- Cards -->
     <div class="row g-3">
 
       <div class="col-12 col-md-6 col-xl-4" *ngFor="let incident of displayedIncidents">
@@ -251,7 +262,6 @@
             <i class="bi bi-geo-alt me-1"></i> {{ incident.cityName }}, {{ incident.provinceName }}
           </p>
 
-          <!-- Parsed domain tags -->
           <div class="d-flex flex-wrap gap-2 mb-3">
             <ng-container *ngIf="incident.domainTitle && incident.domainTitle.length > 0; else noDomains">
               <span class="role-tag" *ngFor="let title of incident.domainTitle">

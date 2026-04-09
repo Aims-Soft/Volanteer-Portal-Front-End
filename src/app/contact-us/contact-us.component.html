@@ -1,105 +1,190 @@
-<section class="py-5 bg-light" style="min-height: 100vh;">
-  <div class="container py-4 py-md-5">
-    
-    <!-- Section Header -->
-    <div class="text-center mb-5">
-       <span class="badge rounded-pill bg-secondary bg-opacity-10 text-warning px-3 py-2 mt-4">
-       Contact Us
-      </span>
-      <h2 class=" fw-bold mb-3" style="font-size: clamp(2rem, 5vw, 3rem);">
-        Get in Touch
-      </h2>
-      <p class="text-white-50 mb-0">Have a question? We're here to help</p>
+<!-- Hero Section -->
+<section class="contact-hero">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <h1 class="contact-hero-title">
+          Contact <span class="text-pink">Us</span>
+        </h1>
+        <p class="contact-hero-subtitle">
+          Have questions about volunteering, need assistance, or want to partner with<br>
+          Pakistan Volunteers? We're here to help. Reach out to our team.
+        </p>
+      </div>
     </div>
-    
-    <!-- Content Grid -->
-    <div class="row g-4 justify-content-center">
+  </div>
+</section>
+
+<!-- Contact Form Section -->
+<section class="contact-section py-5">
+  <div class="container py-4">
+    <div class="row g-5">
       
-      <!-- Left Column - Contact Info Cards -->
-      <div class="col-12 col-lg-4">
-        <div class="d-flex flex-column gap-3 gap-md-4">
+      <!-- Left Column: Contact Info -->
+      <div class="col-12 col-lg-5">
+        <div class="contact-info-wrapper">
+          <h2 class="contact-section-title mb-4">Get in touch</h2>
+          <p class="contact-description mb-5">
+            Our support team is available 24/7 to handle urgent inquiries. For general questions, we aim to respond within 24 hours.
+          </p>
           
-          <!-- Email Card -->
-          <div class="card border-0 shadow-lg rounded-4 p-4">
-            <div class="d-flex align-items-center gap-3">
-              <div class="bg-warning bg-opacity-25 rounded-3 p-3 flex-shrink-0">
-                <i class="bi bi-envelope text-warning fs-4"></i>
+          <!-- Contact Details -->
+          <div class="contact-details">
+            
+            <!-- Address -->
+            <div class="contact-item">
+              <div class="contact-icon" style="background-color: #ffe0e8;">
+                <i class="bi bi-geo-alt-fill" style="color: #FF2056;"></i>
               </div>
-              <div>
-                <p class="text-warning fw-semibold mb-1 small">Email</p>
-                <p class="fw-bold mb-0">contact@mosquenetwork.pk</p>
+              <div class="contact-text">
+                <h6 class="fw-semibold mb-1">Address</h6>
+                <p class="text-muted mb-0">
+                  123 Crisis Response Way Suite 100<br>
+                  San Francisco, CA 94105
+                </p>
               </div>
             </div>
-          </div>
-          
-          <!-- Phone Card -->
-          <div class="card border-0 shadow-lg rounded-4 p-4">
-            <div class="d-flex align-items-center gap-3">
-              <div class="bg-warning bg-opacity-25 rounded-3 p-3 flex-shrink-0">
-                <i class="bi bi-telephone text-warning fs-4"></i>
+            
+            <!-- Phone -->
+            <div class="contact-item">
+              <div class="contact-icon" style="background-color: #ffe0e8;">
+                <i class="bi bi-telephone-fill" style="color: #FF2056;"></i>
               </div>
-              <div>
-                <p class="text-warning fw-semibold mb-1 small">Phone</p>
-                <p class="fw-bold mb-0">+92 300 1234567</p>
-              </div>
-            </div>
-          </div>
-          
-          <!-- Address Card -->
-          <div class="card border-0 shadow-lg rounded-4 p-4">
-            <div class="d-flex align-items-center gap-3">
-              <div class="bg-warning bg-opacity-25 rounded-3 p-3 flex-shrink-0">
-                <i class="bi bi-geo-alt text-warning fs-4"></i>
-              </div>
-              <div>
-                <p class="text-warning fw-semibold mb-1 small">Address</p>
-                <p class="fw-bold mb-0">Street 04, H-8/1, Islamabad</p>
+              <div class="contact-text">
+                <h6 class="fw-semibold mb-1">Phone</h6>
+                <p class="text-muted mb-0">
+                  +1 (555) 234-5678<br>
+                  <small>Toll-free, 24/7 Support</small>
+                </p>
               </div>
             </div>
+            
+            <!-- Email -->
+            <div class="contact-item">
+              <div class="contact-icon" style="background-color: #ffe0e8;">
+                <i class="bi bi-envelope-fill" style="color: #FF2056;"></i>
+              </div>
+              <div class="contact-text">
+                <h6 class="fw-semibold mb-1">Email</h6>
+                <p class="text-muted mb-0">
+                  <a href="mailto:support@crisisnet.org" class="text-decoration-none text-muted">
+                    support@crisisnet.org
+                  </a>
+                </p>
+              </div>
+            </div>
+            
           </div>
-          
         </div>
       </div>
       
-      <!-- Right Column - Contact Form -->
+      <!-- Right Column: Contact Form -->
       <div class="col-12 col-lg-7">
-        <div class="card border-0 shadow-lg rounded-4 p-4 p-md-5">
-          <form>
-            <div class="row g-3 g-md-4">
-              
-              <!-- Name Field -->
-              <div class="col-12 col-md-6">
-                <label class="form-label fw-semibold">Name <span class="text-danger">*</span></label>
-                <input type="text" class="form-control" placeholder="Your name" required>
+        <div class="contact-form-wrapper">
+          <form #contactForm="ngForm" (ngSubmit)="submitForm()">
+            
+            <!-- Full Name -->
+            <div class="mb-4">
+              <label class="form-label fw-semibold">Full Name <span class="text-danger">*</span></label>
+              <input
+                type="text"
+                [(ngModel)]="f_userName"
+                name="fullName"
+                placeholder="Enter your full name"
+                class="form-control form-control-lg contact-input"
+                [class.is-invalid]="(nameCtrl.invalid && nameCtrl.touched) || (isFormSubmitted && isEmpty(f_userName))"
+                #nameCtrl="ngModel"
+                required
+              />
+              <div class="invalid-feedback" *ngIf="(nameCtrl.invalid && nameCtrl.touched) || (isFormSubmitted && isEmpty(f_userName))">
+                Full name is required
               </div>
-              
-              <!-- Email Field -->
-              <div class="col-12 col-md-6">
-                <label class="form-label fw-semibold">Email <span class="text-danger">*</span></label>
-                <input type="email" class="form-control" placeholder="your@email.com" required>
-              </div>
-              
-              <!-- Subject Field -->
-              <div class="col-12">
-                <label class="form-label fw-semibold">Subject <span class="text-danger">*</span></label>
-                <input type="text" class="form-control" placeholder="What is this about?" required>
-              </div>
-              
-              <!-- Message Field -->
-              <div class="col-12">
-                <label class="form-label fw-semibold">Message <span class="text-danger">*</span></label>
-                <textarea class="form-control" rows="5" placeholder="Write your message..." required></textarea>
-              </div>
-              
-              <!-- Submit Button -->
-              <div class="col-12">
-                <button type="submit" class="btn themecolor btn-lg text-white rounded-pill px-4 px-md-5 py-3">
-                  <i class="bi bi-send me-2"></i>
-                  Send Message
-                </button>
-              </div>
-              
             </div>
+            
+            <!-- Email Address -->
+            <div class="mb-4">
+              <label class="form-label fw-semibold">Email Address <span class="text-danger">*</span></label>
+              <input
+                type="email"
+                [(ngModel)]="f_email"
+                name="email"
+                placeholder="Enter your email address"
+                class="form-control form-control-lg contact-input"
+                [class.is-invalid]="(emailCtrl.invalid && emailCtrl.touched) || (isFormSubmitted && isEmpty(f_email))"
+                #emailCtrl="ngModel"
+                required
+                email
+              />
+              <div class="invalid-feedback" *ngIf="(emailCtrl.invalid && emailCtrl.touched) || (isFormSubmitted && isEmpty(f_email))">
+                <span *ngIf="isEmpty(f_email)">Email is required</span>
+                <span *ngIf="!isEmpty(f_email) && emailCtrl.errors?.['email']">Enter a valid email</span>
+              </div>
+            </div>
+            
+            <!-- Phone Number -->
+            <div class="mb-4">
+              <label class="form-label fw-semibold">Phone Number</label>
+              <input
+                type="text"
+                [(ngModel)]="f_contact"
+                name="contact"
+                placeholder="03001234567"
+                class="form-control form-control-lg contact-input"
+                #contactCtrl="ngModel"
+              />
+            </div>
+            
+            <!-- Subject -->
+            <div class="mb-4">
+              <label class="form-label fw-semibold">Subject <span class="text-danger">*</span></label>
+              <input
+                type="text"
+                [(ngModel)]="f_subject"
+                name="subject"
+                placeholder="How can we help?"
+                class="form-control form-control-lg contact-input"
+                [class.is-invalid]="(subjectCtrl.invalid && subjectCtrl.touched) || (isFormSubmitted && isEmpty(f_subject))"
+                #subjectCtrl="ngModel"
+                required
+              />
+              <div class="invalid-feedback" *ngIf="(subjectCtrl.invalid && subjectCtrl.touched) || (isFormSubmitted && isEmpty(f_subject))">
+                Subject is required
+              </div>
+            </div>
+            
+            <!-- Message -->
+            <div class="mb-4">
+              <label class="form-label fw-semibold">Message <span class="text-danger">*</span></label>
+              <textarea
+                [(ngModel)]="f_userMessage"
+                name="message"
+                placeholder="Please describe your inquiry..."
+                class="form-control form-control-lg contact-input"
+                [class.is-invalid]="(messageCtrl.invalid && messageCtrl.touched) || (isFormSubmitted && isEmpty(f_userMessage))"
+                rows="6"
+                #messageCtrl="ngModel"
+                required
+              ></textarea>
+              <div class="invalid-feedback" *ngIf="(messageCtrl.invalid && messageCtrl.touched) || (isFormSubmitted && isEmpty(f_userMessage))">
+                Message is required
+              </div>
+            </div>
+            
+            <!-- Submit Button -->
+            <div class="text-end">
+              <button
+                type="submit"
+                class="btn btn-lg contact-submit-btn"
+                [disabled]="isSubmitting">
+                <span *ngIf="!isSubmitting">Send Message</span>
+                <span *ngIf="isSubmitting">
+                  <span class="spinner-border spinner-border-sm me-2" role="status"></span>
+                  Sending...
+                </span>
+                <i class="bi bi-send-fill ms-2" *ngIf="!isSubmitting"></i>
+              </button>
+            </div>
+            
           </form>
         </div>
       </div>

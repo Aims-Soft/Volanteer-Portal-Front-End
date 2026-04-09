@@ -19,6 +19,8 @@ import { RecentIncidentComponent } from './recent-incident/recent-incident.compo
 import { VolunteerRegistrationComponent } from './volunteer-registration/volunteer-registration.component';
 import { SkillComponent } from './skill/skill.component';
 import { IncidentComponent } from './incident/incident.component';
+import { ContactUsComponent } from './contact-us/contact-us.component';
+import { ActiveIncidentComponent } from './active-incident/active-incident.component';
 
 
 
@@ -43,6 +45,8 @@ const routes: Routes = [
     {path:'skill', component: SkillComponent},
     {path:'incident', component: IncidentComponent},
     
+    {path:'contactus', component: ContactUsComponent},
+    {path:'active', component: ActiveIncidentComponent},
     {path:'**', redirectTo: ''} 
  
     

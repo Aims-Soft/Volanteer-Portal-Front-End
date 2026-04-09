@@ -48,6 +48,7 @@ import { WhoWeNeedComponent } from './who-we-need/who-we-need.component';
 import { VolunteerRegistrationComponent } from './volunteer-registration/volunteer-registration.component';
 import { SkillComponent } from './skill/skill.component';
 import { IncidentComponent } from './incident/incident.component';
+import { ActiveIncidentComponent } from './active-incident/active-incident.component';
 // import { RecomendedBooksComponent } from './recomended-books/recomended-books.component';
 
 
@@ -87,6 +88,7 @@ import { IncidentComponent } from './incident/incident.component';
     VolunteerRegistrationComponent,
     SkillComponent,
     IncidentComponent,
+    ActiveIncidentComponent,
     // RecomendedBooksComponent,
 
 
