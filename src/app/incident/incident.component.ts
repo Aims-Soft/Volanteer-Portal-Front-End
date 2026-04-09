@@ -45,7 +45,8 @@ interface Incident {
   provinceName?: string;
   priortyTypeID: number;
   priortyTypeTitle?: string;
-  isActive?: boolean | number;
+  status?: number;        // Add this - API returns status field
+  isActive?: boolean | number;  // Keep this for component use
   domains?: string;        // raw JSON string from API e.g. "[{\"domainID\":1,\"domainTitle\":\".Net\"}]"
   domainTitle?: string[];  // parsed for display in table
 }
@@ -107,7 +108,7 @@ export class IncidentComponent implements OnInit {
 
   // ── Loaders ────────────────────────────────────────────────────────────────
 
-  loadIncidents(): void {
+loadIncidents(): void {
   this.dataService.getHttp('admin-api/Admin/getIncidents').subscribe({
     next: (res: any) => {
       const raw: Incident[] = res?.data ?? res ?? [];
@@ -127,9 +128,8 @@ export class IncidentComponent implements OnInit {
           }
         }
         
-        // Ensure isActive is properly set (default to true/false based on your API)
-        // If your API returns 1/0 instead of true/false, convert it
-        const isActive = inc.isActive === true || inc.isActive === 1;
+        // FIX: Only compare with number 1 since API returns status as number
+        const isActive = inc.status === 1;
         
         return { ...inc, domainTitle, isActive };
       });
@@ -460,7 +460,7 @@ export class IncidentComponent implements OnInit {
   //   });
   // }
 
-  toggleStatus(incident: Incident): void {
+ toggleStatus(incident: Incident): void {
   const newStatus = incident.isActive ? 0 : 1;
   const payload = {
     incidentID: incident.incidentID,
@@ -478,18 +478,18 @@ export class IncidentComponent implements OnInit {
       const statusText = newStatus === 1 ? 'activated' : 'deactivated';
       this.toastr.success(`Incident "${incident.incidentTitle}" ${statusText} successfully!`);
       
-      // Update local state only after successful API response
+      // Update local state
       incident.isActive = !incident.isActive;
       
-      // Optional: Reload incidents to ensure data consistency
-      // this.loadIncidents();
+      // Also update in filteredIncidents array
+      const filteredIndex = this.filteredIncidents.findIndex(i => i.incidentID === incident.incidentID);
+      if (filteredIndex !== -1) {
+        this.filteredIncidents[filteredIndex].isActive = incident.isActive;
+      }
     },
     error: (err: any) => { 
       console.error('Status update error:', err);
       this.toastr.error('Failed to update incident status. Please try again.');
-      
-      // Revert the checkbox state since the API call failed
-      // The checkbox will show the original state because we didn't update incident.isActive
     }
   });
 }

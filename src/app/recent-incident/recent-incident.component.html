@@ -1,6 +1,224 @@
+<!-- ══════════════════════════════════════════════════════════
+     EMAIL VERIFICATION MODAL
+══════════════════════════════════════════════════════════ -->
+<div class="modal fade" id="emailVerificationModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" style="max-width: 480px;">
+    <div class="modal-content ev-modal">
+
+      <div class="modal-header ev-header border-0">
+        <h5 class="ev-title">Verify Email</h5>
+        <button type="button" class="btn ev-close" data-bs-dismiss="modal">
+          <i class="bi bi-x-lg"></i>
+        </button>
+      </div>
+
+      <div class="modal-body ev-body">
+
+        <!-- Email Address row -->
+        <div class="ev-row mb-3">
+          <label class="ev-label">Email Address</label>
+          <div class="d-flex gap-2 align-items-center">
+            <input
+              type="email"
+              class="ev-input flex-grow-1"
+              placeholder="Enter Email Address"
+              [(ngModel)]="email"
+              [disabled]="isOtpSent || isLoading"
+            />
+            <button
+              class="btn ev-btn"
+              (click)="sendOTP()"
+              [disabled]="isLoading || isOtpSent">
+              {{ isLoading && !isOtpSent ? 'Sending...' : 'Get Code' }}
+            </button>
+          </div>
+        </div>
+
+        <!-- Verification Code row (shown after OTP sent) -->
+        <div class="ev-row" *ngIf="isOtpSent">
+          <label class="ev-label">Verification Code</label>
+          <div class="d-flex gap-2 align-items-center">
+            <input
+              type="text"
+              class="ev-input flex-grow-1"
+              placeholder="Enter Code"
+              [(ngModel)]="otpCode"
+              [disabled]="isLoading"
+            />
+            <button
+              class="btn ev-btn"
+              (click)="verifyOTP()"
+              [disabled]="isLoading">
+              {{ isLoading ? 'Verifying...' : 'Varify' }}
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     VOLUNTEER REGISTRATION MODAL
+══════════════════════════════════════════════════════════ -->
+<div class="modal fade" id="volunteerRegistrationModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+    <div class="modal-content volunteer-modal">
+
+      <div class="modal-header border-0">
+        <h5 class="modal-title fw-bold">Volunteer Registration</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="closeRegistrationModal()"></button>
+      </div>
+
+      <div class="modal-body">
+
+        <!-- Status banner -->
+        <div class="alert border rounded-3 mb-4 d-flex align-items-center gap-2"
+             [ngClass]="isExistingUser ? 'alert-success' : 'alert-light'">
+          <i class="bi" [ngClass]="isExistingUser ? 'bi-person-check-fill text-success' : 'bi-envelope-check text-primary'"></i>
+          <div>
+            <strong>{{ email }}</strong>
+            <div class="small text-muted" *ngIf="isExistingUser">
+              Your existing profile has been loaded. Fields are locked.
+            </div>
+            <div class="small text-muted" *ngIf="!isExistingUser">
+              New registration — please fill in your details below.
+            </div>
+          </div>
+          <span class="ms-auto badge"
+                [ngClass]="isExistingUser ? 'bg-success' : 'bg-primary'"
+                style="font-size:0.72rem;">
+            {{ isExistingUser ? 'Existing User' : 'New User' }}
+          </span>
+        </div>
+
+        <div class="row g-3">
+
+          <!-- Full Name -->
+          <div class="col-md-6">
+            <label class="form-label fw-semibold">Full Name <span class="text-danger">*</span></label>
+            <input
+              type="text"
+              class="form-control volunteer-input"
+              [(ngModel)]="fullName"
+              placeholder="Enter full name"
+              [disabled]="isExistingUser"
+            />
+          </div>
+
+          <!-- CNIC -->
+          <div class="col-md-6">
+            <label class="form-label fw-semibold">CNIC <span class="text-danger">*</span></label>
+            <input
+              type="text"
+              class="form-control volunteer-input"
+              [(ngModel)]="cnic"
+              placeholder="00000-0000000-0"
+              [disabled]="isExistingUser"
+            />
+          </div>
+
+          <!-- Phone Number -->
+          <div class="col-md-6">
+            <label class="form-label fw-semibold">Phone Number <span class="text-danger">*</span></label>
+            <input
+              type="text"
+              class="form-control volunteer-input"
+              [(ngModel)]="phoneNumber"
+              placeholder="0300-1234567"
+              [disabled]="isExistingUser"
+            />
+          </div>
+
+          <!-- Address -->
+          <div class="col-md-6">
+            <label class="form-label fw-semibold">Address <span class="text-danger">*</span></label>
+            <input
+              type="text"
+              class="form-control volunteer-input"
+              [(ngModel)]="address"
+              placeholder="Enter your address"
+              [disabled]="isExistingUser"
+            />
+          </div>
+
+          <!-- Province -->
+          <div class="col-md-6">
+            <label class="form-label fw-semibold">Province <span class="text-danger">*</span></label>
+            <select
+              class="form-select volunteer-select"
+              [(ngModel)]="provinceID"
+              (change)="onProvinceChange()"
+              [disabled]="isExistingUser">
+              <option [ngValue]="null" disabled>Select Province</option>
+              <option *ngFor="let p of provinceList" [ngValue]="p.provinceID">{{ p.provinceName }}</option>
+            </select>
+          </div>
+
+          <!-- City -->
+          <div class="col-md-6">
+            <label class="form-label fw-semibold">City <span class="text-danger">*</span></label>
+            <select
+              class="form-select volunteer-select"
+              [(ngModel)]="cityID"
+              [disabled]="!provinceID || isExistingUser">
+              <option [ngValue]="null" disabled>Select City</option>
+              <option *ngFor="let c of filteredCities" [ngValue]="c.cityID">{{ c.cityName }}</option>
+            </select>
+          </div>
+
+          <!-- Domain -->
+          <div class="col-12">
+            <label class="form-label fw-semibold">Domain <span class="text-danger">*</span></label>
+            <select
+              class="form-select volunteer-select"
+              [(ngModel)]="selectedDomainID"
+              [disabled]="isExistingUser">
+              <option [ngValue]="null" disabled>Select Domain</option>
+              <option *ngFor="let d of domainList" [ngValue]="d.domainID">{{ d.domainTitle }}</option>
+            </select>
+          </div>
+
+        </div>
+
+        <!-- Locked notice for existing users -->
+        <div class="mt-3 p-3 rounded-3 bg-warning-subtle border border-warning-subtle d-flex gap-2 align-items-start"
+             *ngIf="isExistingUser">
+          <i class="bi bi-lock-fill text-warning mt-1"></i>
+          <small class="text-muted">
+            Your profile data is loaded from your existing account and cannot be changed here.
+            Click <strong>Complete Registration</strong> to volunteer for this incident.
+          </small>
+        </div>
+
+      </div>
+
+      <div class="modal-footer border-0">
+        <button type="button" class="btn btn-cancel" data-bs-dismiss="modal" (click)="closeRegistrationModal()">
+          Cancel
+        </button>
+        <button
+          type="button"
+          class="btn btn-volunteer"
+          (click)="saveVolunteerRegistration()"
+          [disabled]="isLoading">
+          {{ isLoading ? 'Saving...' : 'Complete Registration' }}
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     PAGE
+══════════════════════════════════════════════════════════ -->
 <section class="bg-light py-5">
   <div class="container-fluid px-4">
- 
+
     <!-- Header -->
     <div class="d-flex justify-content-between align-items-start mb-4">
       <div>
@@ -11,41 +229,52 @@
         {{ showAll ? 'Show Less' : 'View All Incidents' }} <span>&rarr;</span>
       </a>
     </div>
- 
-    <!-- Cards Grid -->
+
+    <!-- Cards -->
     <div class="row g-3">
- 
-      <!-- Dynamic Card -->
+
       <div class="col-12 col-md-6 col-xl-4" *ngFor="let incident of displayedIncidents">
         <div class="incident-card h-100">
+
           <div class="d-flex justify-content-between align-items-center mb-3">
             <span class="priority-badge" [ngClass]="getPriorityClass(incident.priortyTypeTitle)">
-              <i [class]="getPriorityIcon(incident.priortyTypeTitle)" class="me-1"></i> {{ incident.priortyTypeTitle }}
+              <i [class]="getPriorityIcon(incident.priortyTypeTitle)" class="me-1"></i>
+              {{ incident.priortyTypeTitle }}
             </span>
             <span class="time-label">
               <i class="bi bi-calendar me-1"></i> {{ formatDate(incident.date) }}
             </span>
           </div>
+
           <h5 class="incident-name mb-1">{{ incident.incidentTitle }}</h5>
           <p class="incident-location mb-3">
             <i class="bi bi-geo-alt me-1"></i> {{ incident.cityName }}, {{ incident.provinceName }}
           </p>
+
+          <!-- Parsed domain tags -->
           <div class="d-flex flex-wrap gap-2 mb-3">
-            <span class="role-tag" *ngFor="let domain of getParsedDomains(incident.domains)">
-              {{ domain.domainTitle }} ({{ incident.volunteerNeeded }})
-            </span>
+            <ng-container *ngIf="incident.domainTitle && incident.domainTitle.length > 0; else noDomains">
+              <span class="role-tag" *ngFor="let title of incident.domainTitle">
+                {{ title }} ({{ incident.volunteerNeeded }})
+              </span>
+            </ng-container>
+            <ng-template #noDomains>
+              <span class="role-tag text-muted">No domains assigned</span>
+            </ng-template>
           </div>
-          <button class="btn btn-volunteer w-100" (click)="volunteerForIncident(incident.incidentID)">
+
+          <button class="btn btn-volunteer w-100" (click)="volunteerForIncident(incident)">
             Volunteer for this <i class="bi bi-chevron-right ms-1"></i>
           </button>
+
         </div>
       </div>
- 
-      <!-- Empty state when no incidents -->
+
       <div *ngIf="displayedIncidents.length === 0" class="col-12 text-center py-5">
-        <p class="text-muted">No incidents available at the moment.</p>
+        <i class="bi bi-inbox" style="font-size:3rem; color:#cbd5e1; display:block;"></i>
+        <p class="text-muted mt-3">No incidents available at the moment.</p>
       </div>
- 
+
     </div>
   </div>
 </section>
