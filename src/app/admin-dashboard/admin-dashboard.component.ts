@@ -172,7 +172,7 @@ export class AdminDashboardComponent implements OnInit {
   }
   
   loadActiveIncidentsList(): void {
-    this.dataService.getHttp('admin-api/Admin/getActiveIncidents').subscribe({
+    this.dataService.getHttp('dashboard-api/Dashboard/getDashboardIncidents?ActiveStatus=1').subscribe({
       next: (res: any) => {
         console.log('Active Incidents Response:', res);
         
@@ -192,7 +192,7 @@ export class AdminDashboardComponent implements OnInit {
   }
   
   loadActiveVolunteersList(): void {
-    this.dataService.getHttp('admin-api/Admin/getActiveVolunteers').subscribe({
+    this.dataService.getHttp('dashboard-api/Dashboard/getDashboardVolunteer?ActiveStatus=active').subscribe({
       next: (res: any) => {
         console.log('Active Volunteers Response:', res);
         

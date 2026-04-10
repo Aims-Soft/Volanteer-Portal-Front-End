@@ -402,3 +402,95 @@
     min-width: 100%;
   }
 }
+
+// Volunteer Details Modal
+.vol-detail-table {
+  font-size: 0.9rem;
+  
+  tbody tr {
+    border-bottom: 1px solid #f1f5f9;
+    transition: all 0.3s ease;
+    
+    &:hover {
+      background-color: #f8fafc;
+    }
+    
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+  
+  th {
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 0.8rem;
+    border-bottom: 2px solid #e5e7eb;
+  }
+}
+
+// Avatar Circle
+.vol-avatar-circle {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  font-weight: 700;
+  flex-shrink: 0;
+  background-color: #ffe0e8;
+  color: #FF2056;
+}
+
+// View Details Button
+.vol-view-btn {
+  background: #fff;
+  color: #374151;
+  font-size: 0.75rem;
+  font-weight: 500;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  padding: 4px 12px;
+  margin-left: 8px;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    background: #f3f4f6;
+    border-color: #9ca3af;
+    color: #1f2937;
+  }
+  
+  &:active {
+    transform: scale(0.98);
+  }
+}
+
+// Modal XL size
+.modal-xl {
+  max-width: 1140px;
+}
+
+// Responsive
+@media (max-width: 992px) {
+  .vol-avatar-circle {
+    width: 40px;
+    height: 40px;
+    font-size: 0.9rem;
+  }
+  
+  .vol-detail-table {
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .vol-detail-table {
+    font-size: 0.8rem;
+  }
+  
+  .vol-view-btn {
+    font-size: 0.7rem;
+    padding: 3px 8px;
+  }
+}

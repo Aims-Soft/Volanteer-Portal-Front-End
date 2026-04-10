@@ -55,7 +55,15 @@
                 <div class="inc-loc">{{ inc.provinceName }}, {{ inc.cityName }}</div>
               </td>
               <td class="inc-td inc-state">{{ inc.provinceName ?? '—' }}</td>
-              <td class="inc-td inc-vol">{{ inc.volunteerNeeded }}</td>
+             <td class="inc-td inc-vol">
+  {{ inc.volunteerNeeded }} 
+  <button 
+    class="btn btn-sm vol-view-btn"
+    (click)="openVolunteerDetailsModal(inc.incidentID)"
+    title="View volunteer details">
+    View Details
+  </button>
+</td>
               <td class="inc-td">
                 <span class="inc-badge" [ngClass]="getPriorityClass(inc.priortyTypeID)">
                   <i class="bi bi-exclamation-triangle-fill me-1"></i>
@@ -299,6 +307,96 @@
           [disabled]="isSubmitting">
           {{ isSubmitting ? 'Creating...' : 'Create Incident' }}
         </button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     VOLUNTEER DETAILS MODAL
+══════════════════════════════════════════════════════════ -->
+<div class="modal fade" id="volunteerDetailsModal" tabindex="-1" aria-labelledby="volunteerDetailsLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-xl modal-dialog-scrollable">
+    <div class="modal-content inc-modal">
+
+      <!-- Header -->
+      <div class="modal-header inc-modal-header">
+        <h5 class="inc-modal-title" id="volunteerDetailsLabel">Volunteer Details</h5>
+        <button type="button" class="btn ms-auto inc-modal-close" data-bs-dismiss="modal">
+          <i class="bi bi-x-lg"></i>
+        </button>
+      </div>
+
+      <!-- Body -->
+      <div class="modal-body p-0">
+        
+        <!-- Loading State -->
+        <div *ngIf="isLoadingVolunteers" class="text-center py-5">
+          <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+          <p class="text-muted mt-3">Loading volunteers...</p>
+        </div>
+        
+        <!-- Volunteer Table -->
+        <div *ngIf="!isLoadingVolunteers" class="table-responsive">
+          <table class="table table-hover align-middle mb-0 vol-detail-table">
+            <thead style="background-color: #f9fafb;">
+              <tr>
+                <th class="py-3 px-4 fw-semibold text-secondary small">Volunteer</th>
+                <th class="py-3 px-4 fw-semibold text-secondary small">Email</th>
+                <th class="py-3 px-4 fw-semibold text-secondary small">CNIC</th>
+                <th class="py-3 px-4 fw-semibold text-secondary small">Role & Location</th>
+              </tr>
+            </thead>
+            <tbody>
+              
+              <ng-container *ngIf="volunteerDetailsList.length > 0; else noVolunteers">
+                <tr *ngFor="let volunteer of volunteerDetailsList">
+                  <td class="py-3 px-4">
+                    <div class="d-flex align-items-center gap-3">
+                      <div class="vol-avatar-circle">{{ getInitials(volunteer.userName) }}</div>
+                      <div>
+                        <h6 class="mb-0 fw-semibold" style="font-size: 0.95rem;">{{ volunteer.userName }}</h6>
+                        <small class="text-muted">{{ volunteer.contactNo }}</small>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="py-3 px-4">
+                    <span class="text-secondary" style="font-size: 0.9rem;">{{ volunteer.email }}</span>
+                  </td>
+                  <td class="py-3 px-4">
+                    <span class="text-secondary" style="font-size: 0.9rem;">{{ volunteer.cnic }}</span>
+                  </td>
+                  <td class="py-3 px-4">
+                    <div>
+                      <span class="d-block fw-semibold mb-1" style="font-size: 0.9rem;">{{ volunteer.categoryTitle || 'General' }}</span>
+                      <small class="text-muted">{{ volunteer.cityName }}, {{ volunteer.provinceName }}</small>
+                    </div>
+                  </td>
+                </tr>
+              </ng-container>
+              
+              <ng-template #noVolunteers>
+                <tr>
+                  <td colspan="4" class="text-center py-5">
+                    <i class="bi bi-people" style="font-size: 3rem; color: #cbd5e1; display: block;"></i>
+                    <p class="text-muted mt-3 mb-0">No volunteers have applied for this incident yet.</p>
+                  </td>
+                </tr>
+              </ng-template>
+              
+            </tbody>
+          </table>
+        </div>
+        
+      </div>
+
+      <!-- Footer -->
+      <div class="modal-footer inc-modal-footer">
+        <button type="button" class="btn inc-btn-cancel" data-bs-dismiss="modal">Close</button>
       </div>
 
     </div>

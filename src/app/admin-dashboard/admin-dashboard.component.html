@@ -103,7 +103,7 @@
         <div class="list-card">
           <div class="d-flex justify-content-between align-items-center mb-4">
             <h3 class="fw-bold mb-0" style="color: #1e293b;">Recent Registrations</h3>
-            <a href="#" class="text-decoration-none fw-semibold" style="color: #FF2056;">View All</a>
+            <a href="#" routerLink="/volunteerReg" class="text-decoration-none fw-semibold" style="color: #FF2056;">View All</a>
           </div>
           
           <div *ngFor="let volunteer of volunteersList.slice(0, 3)" class="registration-item">
@@ -113,11 +113,11 @@
               </div>
               <div class="flex-grow-1">
                 <h4 class="mb-0 fw-semibold">{{ volunteer.userName }} </h4>
-                <small class="text-muted">{{ volunteer.domain || 'General' }}</small>
+                <small class="text-muted">{{ volunteer.categoryTitle || 'General' }}</small>
               </div>
-              <button class="btn btn-outline-secondary btn-sm rounded-pill px-3" (click)="viewProfile(volunteer.userID)">
+              <!-- <button class="btn btn-outline-secondary btn-sm rounded-pill px-3" (click)="viewProfile(volunteer.userID)">
                 Profile
-              </button>
+              </button> -->
             </div>
           </div>
           
@@ -131,8 +131,8 @@
       <div class="col-12 col-lg-6">
         <div class="list-card">
           <div class="d-flex justify-content-between align-items-center mb-4">
-            <h3 class="fw-bold mb-0" style="color: #1e293b;">Recent Crises</h3>
-            <a href="#" class="text-decoration-none fw-semibold" style="color: #FF2056;">View All</a>
+            <h3 class="fw-bold mb-0" style="color: #1e293b;">Recent Incident</h3>
+            <a href="#" class="text-decoration-none fw-semibold" routerLink="/incident" style="color: #FF2056;">View All</a>
           </div>
           
           <div *ngFor="let incident of incidentsList.slice(0, 3)" class="crisis-item">
@@ -163,13 +163,13 @@
 
 <!-- Total Volunteers Modal -->
 <div class="modal fade" id="volunteersModal" tabindex="-1" aria-labelledby="volunteersModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-lg">
+  <div class="modal-dialog modal-dialog-centered modal-md">
     <div class="modal-content">
-      <div class="modal-header" style="background-color: #FF2056; color: white;">
-        <h5 class="modal-title fw-bold" id="volunteersModalLabel">
+      <div class="modal-header" style=" color: rgb(8, 8, 8);">
+        <h3 class="modal-title fw-bold" id="volunteersModalLabel">
           <i class="bi bi-clipboard-check-fill me-2"></i> All Volunteers ({{ totalVolunteers }})
-        </h5>
-        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </h3>
+        <button type="button" class="btn-close btn-close-black" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <div class="table-responsive">
@@ -178,28 +178,30 @@
               <tr>
                 <th>#</th>
                 <th>Name</th>
-                <th>Email</th>
-                <th>Domain</th>
-                <th>Status</th>
-                <th>Action</th>
+                <!-- <th>Email</th> -->
+                <!-- <th>Domain</th> -->
+                <!-- <th>Status</th> -->
+                <!-- <th>Action</th> -->
+                 <!-- <th></th> -->
+
               </tr>
             </thead>
             <tbody>
               <tr *ngFor="let volunteer of volunteersList; let i = index">
                 <td>{{ i + 1 }}</td>
-                <td>{{ volunteer.firstName }} {{ volunteer.lastName }}</td>
-                <td>{{ volunteer.email }}</td>
-                <td>{{ volunteer.domain || 'General' }}</td>
-                <td>
+                <td>{{ volunteer.userName }} {{ volunteer.lastName }}</td>
+                <!-- <td>{{ volunteer.email }}</td> -->
+                <!-- <td>{{ volunteer.domain || 'General' }}</td> -->
+                <!-- <td>
                   <span class="badge" [ngClass]="volunteer.isActive ? 'bg-success' : 'bg-secondary'">
                     {{ volunteer.isActive ? 'Active' : 'Inactive' }}
                   </span>
-                </td>
-                <td>
+                </td> -->
+                <!-- <td>
                   <button class="btn btn-sm btn-outline-primary" (click)="viewProfile(volunteer.userID)">
                     View
                   </button>
-                </td>
+                </td> -->
               </tr>
             </tbody>
           </table>
@@ -216,11 +218,11 @@
 <div class="modal fade" id="incidentsModal" tabindex="-1" aria-labelledby="incidentsModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-lg">
     <div class="modal-content">
-      <div class="modal-header" style="background-color: #FF2056; color: white;">
-        <h5 class="modal-title fw-bold" id="incidentsModalLabel">
+      <div class="modal-header" style=" color: rgb(29, 28, 28);">
+        <h3 class="modal-title fw-bold" id="incidentsModalLabel">
           <i class="bi bi-shield-exclamation me-2"></i> All Incidents ({{ totalIncidents }})
-        </h5>
-        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </h3>
+        <button type="button" class="btn-close btn-close-black" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <div class="table-responsive">
@@ -230,17 +232,17 @@
                 <th>#</th>
                 <th>Title</th>
                 <th>Location</th>
-                <th>Priority</th>
+                <!-- <th>Priority</th>
                 <th>Status</th>
-                <th>Action</th>
+                <th>Action</th> -->
               </tr>
             </thead>
             <tbody>
               <tr *ngFor="let incident of incidentsList; let i = index">
                 <td>{{ i + 1 }}</td>
                 <td>{{ incident.incidentTitle }}</td>
-                <td>{{ incident.cityName }}, {{ incident.provinceName }}</td>
-                <td>
+                <td> {{ incident.provinceName }}</td>
+                <!-- <td>
                   <span class="badge" [ngClass]="{
                     'bg-danger': incident.priortyTypeTitle?.includes('High'),
                     'bg-warning': incident.priortyTypeTitle?.includes('Medium'),
@@ -248,17 +250,17 @@
                   }">
                     {{ incident.priortyTypeTitle }}
                   </span>
-                </td>
-                <td>
+                </td> -->
+                <!-- <td>
                   <span class="badge" [ngClass]="incident.status === 1 ? 'bg-success' : 'bg-secondary'">
                     {{ incident.status === 1 ? 'Active' : 'Inactive' }}
                   </span>
-                </td>
-                <td>
+                </td> -->
+                <!-- <td>
                   <button class="btn btn-sm btn-outline-primary" (click)="viewIncident(incident.incidentID)">
                     View
                   </button>
-                </td>
+                </td> -->
               </tr>
             </tbody>
           </table>
@@ -275,11 +277,11 @@
 <div class="modal fade" id="activeIncidentsModal" tabindex="-1" aria-labelledby="activeIncidentsModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-lg">
     <div class="modal-content">
-      <div class="modal-header" style="background-color: #FF2056; color: white;">
-        <h5 class="modal-title fw-bold" id="activeIncidentsModalLabel">
+      <div class="modal-header" style=" color: rgb(7, 6, 6);">
+        <h3 class="modal-title fw-bold" id="activeIncidentsModalLabel">
           <i class="bi bi-exclamation-triangle-fill me-2"></i> Active Incidents ({{ activeIncidents }})
-        </h5>
-        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </h3>
+        <button type="button" class="btn-close btn-close-black" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <div class="table-responsive">
@@ -289,17 +291,17 @@
                 <th>#</th>
                 <th>Title</th>
                 <th>Location</th>
-                <th>Priority</th>
-                <th>Volunteers Needed</th>
-                <th>Action</th>
+                <!-- <th>Priority</th> -->
+                <!-- <th>Volunteers Needed</th> -->
+                <!-- <th>Action</th> -->
               </tr>
             </thead>
             <tbody>
               <tr *ngFor="let incident of activeIncidentsList; let i = index">
                 <td>{{ i + 1 }}</td>
                 <td>{{ incident.incidentTitle }}</td>
-                <td>{{ incident.cityName }}, {{ incident.provinceName }}</td>
-                <td>
+                <td> {{ incident.provinceName }}</td>
+                <!-- <td>
                   <span class="badge" [ngClass]="{
                     'bg-danger': incident.priortyTypeTitle?.includes('High'),
                     'bg-warning': incident.priortyTypeTitle?.includes('Medium'),
@@ -307,13 +309,13 @@
                   }">
                     {{ incident.priortyTypeTitle }}
                   </span>
-                </td>
-                <td>{{ incident.volunteerNeeded || 0 }}</td>
-                <td>
+                </td> -->
+                <!-- <td>{{ incident.volunteerNeeded || 0 }}</td> -->
+                <!-- <td>
                   <button class="btn btn-sm btn-outline-primary" (click)="viewIncident(incident.incidentID)">
                     View
                   </button>
-                </td>
+                </td> -->
               </tr>
             </tbody>
           </table>
@@ -330,11 +332,11 @@
 <div class="modal fade" id="activeVolunteersModal" tabindex="-1" aria-labelledby="activeVolunteersModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-lg">
     <div class="modal-content">
-      <div class="modal-header" style="background-color: #FF2056; color: white;">
-        <h5 class="modal-title fw-bold" id="activeVolunteersModalLabel">
+      <div class="modal-header" style=" color: rgb(8, 8, 8);">
+        <h3 class="modal-title fw-bold" id="activeVolunteersModalLabel">
           <i class="bi bi-people-fill me-2"></i> Active Volunteers ({{ activeVolunteers }})
-        </h5>
-        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </h3>
+        <button type="button" class="btn-close btn-close-black" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <div class="table-responsive">
@@ -343,24 +345,24 @@
               <tr>
                 <th>#</th>
                 <th>Name</th>
-                <th>Email</th>
+                <!-- <th>Email</th> -->
                 <th>Domain</th>
-                <th>Joined Date</th>
-                <th>Action</th>
+                <!-- <th>Joined Date</th> -->
+                <!-- <th>Action</th> -->
               </tr>
             </thead>
             <tbody>
               <tr *ngFor="let volunteer of activeVolunteersList; let i = index">
                 <td>{{ i + 1 }}</td>
-                <td>{{ volunteer.firstName }} {{ volunteer.lastName }}</td>
-                <td>{{ volunteer.email }}</td>
-                <td>{{ volunteer.domain || 'General' }}</td>
-                <td>{{ volunteer.createdDate | date:'mediumDate' }}</td>
-                <td>
+                <td>{{ volunteer.userName }} </td>
+                <!-- <td>{{ volunteer.email }}</td> -->
+                <td>{{ volunteer.domains || 'General' }}</td>
+                <!-- <td>{{ volunteer.createdDate | date:'mediumDate' }}</td> -->
+                <!-- <td>
                   <button class="btn btn-sm btn-outline-primary" (click)="viewProfile(volunteer.userID)">
                     View
                   </button>
-                </td>
+                </td> -->
               </tr>
             </tbody>
           </table>

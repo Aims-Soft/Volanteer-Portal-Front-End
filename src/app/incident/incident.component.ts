@@ -45,10 +45,10 @@ interface Incident {
   provinceName?: string;
   priortyTypeID: number;
   priortyTypeTitle?: string;
-  status?: number;        // Add this - API returns status field
-  isActive?: boolean | number;  // Keep this for component use
-  domains?: string;        // raw JSON string from API e.g. "[{\"domainID\":1,\"domainTitle\":\".Net\"}]"
-  domainTitle?: string[];  // parsed for display in table
+  status?: number;       
+  isActive?: boolean | number;  
+  domains?: string;       
+  domainTitle?: string[];  
 }
 
 @Component({
@@ -62,6 +62,10 @@ export class IncidentComponent implements OnInit {
   incidentList: Incident[] = [];
   filteredIncidents: Incident[] = [];
   searchTerm: string = '';
+
+    volunteerDetailsList: any[] = [];
+  isLoadingVolunteers: boolean = false;
+  selectedIncidentID: number | null = null;
 
   // ── Lookup lists ───────────────────────────────────────────────────────────
   provinceList: Province[]   = [];
@@ -105,6 +109,62 @@ export class IncidentComponent implements OnInit {
     // this.loadDomains();
     this.loadCategories();
   }
+
+
+
+   openVolunteerDetailsModal(incidentID: number): void {
+    this.selectedIncidentID = incidentID;
+    this.loadVolunteerDetails(incidentID);
+    
+    const modal = document.getElementById('volunteerDetailsModal');
+    if (modal) {
+      new bootstrap.Modal(modal).show();
+    }
+  }
+  
+  // ── Load Volunteer Details ─────────────────────────────────────────────────
+  
+  loadVolunteerDetails(incidentID: number): void {
+    this.isLoadingVolunteers = true;
+    this.volunteerDetailsList = [];
+    
+    this.dataService.getHttp('admin-api/Admin/getApplicantUser', { incidentID }).subscribe({
+      next: (res: any) => {
+        console.log('Volunteer Details Response:', res);
+        
+        if (Array.isArray(res)) {
+          this.volunteerDetailsList = res;
+        } else if (res?.data && Array.isArray(res.data)) {
+          this.volunteerDetailsList = res.data;
+        } else {
+          this.volunteerDetailsList = [];
+        }
+        
+        console.log('Loaded Volunteers:', this.volunteerDetailsList);
+        this.isLoadingVolunteers = false;
+      },
+      error: (err: any) => {
+        console.error('Error loading volunteer details:', err);
+        this.toastr.error('Failed to load volunteer details');
+        this.volunteerDetailsList = [];
+        this.isLoadingVolunteers = false;
+      }
+    });
+  }
+  
+  // ── Get Initials for Avatar ────────────────────────────────────────────────
+  
+  getInitials(name: string): string {
+    if (!name) return 'U';
+    const parts = name.trim().split(' ');
+    if (parts.length >= 2) {
+      return (parts[0][0] + parts[1][0]).toUpperCase();
+    }
+    return name.substring(0, 2).toUpperCase();
+  }
+  
+
+
 
   // ── Loaders ────────────────────────────────────────────────────────────────
 
